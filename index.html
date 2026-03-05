@@ -66,11 +66,11 @@
       min-height: 100svh; /* iOS Safari: excludes collapsible browser chrome */
       display: grid; grid-template-columns: 1fr 1.1fr;
       align-items: center; padding: 0 5%; gap: 3rem;
-      background: var(--navy); position: relative; overflow: hidden;
+      background: var(--navy); position: relative; overflow: clip;
       z-index: 1;
     }
     .hero-avatar-wrap { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-    .hero-avatar { width: 110px; height: 110px; border-radius: 50%; border: 2.5px solid var(--gold); box-shadow: 0 0 0 6px rgba(196,150,42,0.1), 0 8px 32px rgba(0,0,0,0.5); object-fit: cover; flex-shrink: 0; }
+    .hero-avatar { width: clamp(72px, 7vw, 110px); height: clamp(72px, 7vw, 110px); border-radius: 50%; border: 2.5px solid var(--gold); box-shadow: 0 0 0 6px rgba(196,150,42,0.1), 0 8px 32px rgba(0,0,0,0.5); object-fit: cover; flex: 0 0 auto; }
     .hero-avatar-meta { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
     .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); overflow-wrap: break-word; word-break: normal; }
     .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); overflow-wrap: break-word; word-break: normal; }
@@ -85,11 +85,28 @@
     .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
     .btn-secondary { padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: border-color 0.25s, color 0.25s, transform 0.2s; }
     .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
-    .hero-stats { margin-top: 4rem; display: flex; gap: 3rem; flex-wrap: wrap; }
+    /* hero-stats is always a CSS grid — never flex-wrap.
+       Divider nodes removed from DOM; visual separators via border-left on .hero-stat. */
+    .hero-stats {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0; /* gap controlled by padding on .hero-stat */
+    }
+    .hero-stat {
+      padding: 0 2rem 0 0;
+    }
+    .hero-stat + .hero-stat {
+      padding: 0 2rem;
+      border-left: 1px solid var(--border);
+    }
+    .hero-stat:last-child {
+      padding-right: 0;
+    }
     .hero-stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
     .hero-stat-number sup { font-size: 1.1rem; }
     .hero-stat-label { margin-top: 0.35rem; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .hero-divider { width: 1px; background: var(--border); align-self: stretch; }
+    .hero-divider { display: none; } /* kept for safety; no DOM nodes remain */
     .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
     .trajectory-svg { width: 100%; max-width: 520px; }
 
@@ -347,8 +364,12 @@
       #hero { padding: 7rem 4% 4rem; gap: 2rem; }
       h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
       .hero-sub { font-size: 0.93rem; max-width: 100%; }
-      .hero-stats { gap: 1.5rem; }
-      .hero-divider { display: none; }
+      /* Mobile: 2×2 grid, strip all borders */
+      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; margin-top: 2rem; }
+      .hero-stat { padding: 0.75rem 1rem 0.75rem 0; border-left: none !important; border-top: none !important; }
+      .hero-stat + .hero-stat { padding: 0.75rem 0 0.75rem 1rem; border-left: none !important; }
+      .hero-stat:nth-child(3) { border-top: 1px solid var(--border) !important; padding-top: 1rem; }
+      .hero-stat:nth-child(4) { border-top: 1px solid var(--border) !important; padding-top: 1rem; }
       .hero-stat-number { font-size: 1.8rem; }
       /* Metrics — reset 900px rules, apply 2-col layout */
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
@@ -390,7 +411,7 @@
       section { padding: 3rem 4%; }
       #hero { padding: 6.5rem 4% 3rem; }
       h1 { font-size: 2rem; }
-      .hero-avatar { width: 85px; height: 85px; }
+      .hero-avatar { width: clamp(72px, 18vw, 85px); height: clamp(72px, 18vw, 85px); }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-secondary { text-align: center; }
       .captable-metrics { grid-template-columns: 1fr; }
@@ -475,54 +496,50 @@
       min-width: 0;
     }
 
-    /* ── SMALL DESKTOP FIX (1101 – 1440px) ─────────────────────────────────
-       Root cause 1 — Avatar clipping:
-         #hero has overflow:hidden + align-items:center + no vertical padding.
-         At 1280×800 / 1366×768 (or 125% zoom), the left-column's stacked
-         content can exceed the hero's height. align-items:center then shifts
-         the content's top ABOVE the hero edge, and overflow:hidden clips it.
-         Fix: add explicit top/bottom padding + align-items:start.
+    /* ── HERO-STATS RESPONSIVE BREAKPOINTS ──────────────────────────────────
+       Base (≥1440px): 4-column grid, CSS border-left dividers via .hero-stat.
+       Mid-desktop (1101–1439px): 2×2 grid, strip dividers, anchor hero top.
+       Tablet/mobile: handled by existing ≤1100px and ≤640px rules below.
 
-       Root cause 2 — Stats spacing:
-         .hero-stats is flex + flex-wrap:wrap. At any width 1101–1440 px the
-         4th stat can wrap. Dividers (align-self:stretch) then become tall
-         orphaned vertical lines → large gap under "$1M Portfolio Managed".
-         Fix: single @media (max-width:1440px) block switches to a 2×2 CSS
-         grid for the entire small-desktop range (covers 1280, 1344, 1366,
-         1400, 1440 at both 100% and 125% browser zoom).
+       Root cause of original bug: .hero-stats was flex+flex-wrap with 3
+       separate .hero-divider DOM nodes. On wrap, dividers (align-self:stretch)
+       became tall orphaned bars → giant gap under "$1M Portfolio Managed".
+       Now fixed: divider nodes removed from DOM, .hero-stats is always grid.
     ────────────────────────────────────────────────────────────────────── */
 
-    @media (max-width: 1440px) and (min-width: 1101px) {
-      /* Fix 1: safe vertical padding + top-anchor prevents avatar clipping */
+    /* Mid-desktop: 2×2 grid, no side borders, hero anchored to top */
+    @media (max-width: 1439px) and (min-width: 1101px) {
       #hero {
         padding-top: 6.5rem;
         padding-bottom: 4rem;
         align-items: start;
       }
-
-      /* Fix 1b: avatar scales with viewport; flex:0 0 auto keeps it square */
-      .hero-avatar {
-        width: clamp(80px, 6vw, 110px);
-        height: clamp(80px, 6vw, 110px);
-        flex: 0 0 auto;
-      }
-
-      /* Fix 2: stable 2×2 grid — covers ALL small-desktop widths.
-         The previous fix only kicked in at ≤1300px, missing 1344/1366/1400.
-         Now the grid applies for the entire 1101–1440px range. */
-      .hero .hero-stats {
-        display: grid;
+      .hero-stats {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.5rem 2.5rem;
+        gap: 1.5rem 0;
         margin-top: 2.5rem;
       }
-
-      /* Dividers are row-separators in flex — meaningless in a grid */
-      .hero .hero-stats .hero-divider {
-        display: none;
+      /* In 2×2 layout only left-column items get a right gap; right-column get left border only in row 1 */
+      .hero-stat {
+        padding: 0 1.5rem 0 0;
+        border-left: none;
       }
-
-      /* Slightly reduce number size so two columns fit cleanly */
+      .hero-stat + .hero-stat {
+        padding: 0 0 0 1.5rem;
+        border-left: 1px solid var(--border);
+      }
+      /* 3rd item starts row 2 — no left border (it's the left column) */
+      .hero-stat:nth-child(3) {
+        padding: 1.5rem 1.5rem 0 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+      /* 4th item: row 2 right column */
+      .hero-stat:nth-child(4) {
+        padding: 1.5rem 0 0 1.5rem;
+        border-left: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+      }
       .hero-stat-number {
         font-size: 2rem;
       }
@@ -535,6 +552,24 @@
       color: rgba(136,153,170,0.45);
       letter-spacing: 0.05em;
       white-space: nowrap;
+    }
+
+    /* ── DEBUG OVERLAY (enabled via ?debug=1) ── */
+    #debug-overlay {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 9999;
+      background: rgba(8,17,31,0.92);
+      border: 1px solid rgba(196,150,42,0.4);
+      color: #D4AF5A;
+      font-family: monospace;
+      font-size: 0.68rem;
+      line-height: 1.6;
+      padding: 0.55rem 0.85rem;
+      border-radius: 3px;
+      pointer-events: none;
+      display: none;
     }
   </style>
 </head>
@@ -578,22 +613,19 @@
       <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Download Resume</a>
     </div>
     <div class="hero-stats fade-up">
-      <div>
+      <div class="hero-stat">
         <div class="hero-stat-number">$5<sup>M</sup></div>
         <div class="hero-stat-label">Fund AUM</div>
       </div>
-      <div class="hero-divider"></div>
-      <div>
+      <div class="hero-stat">
         <div class="hero-stat-number">10<sup>+</sup></div>
         <div class="hero-stat-label">Startups Advised</div>
       </div>
-      <div class="hero-divider"></div>
-      <div>
+      <div class="hero-stat">
         <div class="hero-stat-number">3.92</div>
         <div class="hero-stat-label">GPA / 4.0</div>
       </div>
-      <div class="hero-divider"></div>
-      <div>
+      <div class="hero-stat">
         <div class="hero-stat-number">$1<sup>M</sup></div>
         <div class="hero-stat-label">Portfolio Managed</div>
       </div>
@@ -1251,6 +1283,9 @@
   <div id="build-stamp"></div>
 </footer>
 
+<!-- Debug overlay: shown only when URL contains ?debug=1 -->
+<div id="debug-overlay"></div>
+
 <script>
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
@@ -1308,15 +1343,55 @@
   }, { threshold: 0.3 }).observe(document.querySelector('#metrics'));
 </script>
 <script>
-  /* Build stamp: visible only in footer — helps confirm latest deploy + breakpoint */
+  /* ── BUILD STAMP + DEBUG OVERLAY ──────────────────────────────────────────
+     Build stamp: always visible in footer (subtle).
+     Debug overlay: shown only when URL contains ?debug=1
+     To enable for friend: share URL + ?debug=1
+     To remove entirely: delete this script block and the #debug-overlay div.
+  ─────────────────────────────────────────────────────────────────────────── */
   (function() {
-    var stamp = document.getElementById('build-stamp');
-    if (!stamp) return;
-    var hash = '57306b3'; // git commit hash — update on each deploy
-    var deployed = '2026-03-05';
-    function update() {
-      stamp.textContent = 'v' + hash + ' · ' + deployed + ' · ' + window.innerWidth + 'px';
+    var HASH = 'e1c94a6';
+    var DEPLOYED = '2026-03-05';
+
+    function getBreakpoint(w) {
+      if (w >= 1440) return '>=1440 (4-col)';
+      if (w >= 1101) return '1101–1439 (2×2)';
+      if (w >= 641)  return '641–1100 (1-col hero)';
+      if (w >= 421)  return '421–640 (mobile 2-col stats)';
+      return '<=420 (mobile sm)';
     }
+
+    function getStatsMode(w) {
+      if (w >= 1440) return 'grid 4-col';
+      if (w >= 1101) return 'grid 2×2';
+      return 'grid 2-col mobile';
+    }
+
+    function update() {
+      var w = window.innerWidth;
+
+      // Footer stamp (always on)
+      var stamp = document.getElementById('build-stamp');
+      if (stamp) stamp.textContent = 'v' + HASH + ' · ' + DEPLOYED + ' · ' + w + 'px';
+
+      // Debug overlay (only when ?debug=1)
+      var overlay = document.getElementById('debug-overlay');
+      if (overlay && overlay.style.display !== 'none') {
+        overlay.innerHTML =
+          '<strong>DEBUG</strong><br>' +
+          'viewport: ' + w + 'px<br>' +
+          'breakpoint: ' + getBreakpoint(w) + '<br>' +
+          'stats mode: ' + getStatsMode(w) + '<br>' +
+          'dpr: ' + (window.devicePixelRatio || 1).toFixed(1);
+      }
+    }
+
+    // Enable overlay if ?debug=1
+    if (new URLSearchParams(location.search).get('debug') === '1') {
+      var overlay = document.getElementById('debug-overlay');
+      if (overlay) overlay.style.display = 'block';
+    }
+
     update();
     window.addEventListener('resize', update);
   })();
