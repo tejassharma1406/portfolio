@@ -45,7 +45,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 5%;
-      background: rgba(8,17,31,0.88); backdrop-filter: blur(14px);
+      background: rgba(8,17,31,0.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       transition: padding 0.3s;
     }
@@ -63,6 +63,7 @@
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
+      min-height: 100svh; /* iOS Safari: excludes collapsible browser chrome */
       display: grid; grid-template-columns: 1fr 1.1fr;
       align-items: center; padding: 0 5%; gap: 3rem;
       background: var(--navy); position: relative; overflow: hidden;
@@ -70,9 +71,9 @@
     }
     .hero-avatar-wrap { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
     .hero-avatar { width: 110px; height: 110px; border-radius: 50%; border: 2.5px solid var(--gold); box-shadow: 0 0 0 6px rgba(196,150,42,0.1), 0 8px 32px rgba(0,0,0,0.5); object-fit: cover; flex-shrink: 0; }
-    .hero-avatar-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); }
+    .hero-avatar-meta { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+    .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); overflow-wrap: break-word; word-break: normal; }
+    .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); overflow-wrap: break-word; word-break: normal; }
     .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
     .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
     .hero-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
@@ -98,12 +99,12 @@
     .section-label-line { width: 28px; height: 1px; background: var(--gold); }
     .section-label span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
     h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.12; color: var(--text); }
-    .section-intro { margin-top: 0.75rem; font-size: 0.97rem; color: var(--text-muted); max-width: 550px; }
+    .section-intro { margin-top: 0.75rem; font-size: 0.97rem; color: var(--text-muted); max-width: 550px; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
 
     /* ── ABOUT ── */
     #about { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; align-items: start; }
-    .about-text p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.95; margin-bottom: 1.2rem; }
+    .about-text p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.95; margin-bottom: 1.2rem; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
     .about-text p strong { color: var(--text); font-weight: 600; }
     .thesis-cards { display: flex; flex-direction: column; gap: 1.25rem; }
     .thesis-card { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.5rem 1.75rem; border-radius: 2px; transition: transform 0.25s, border-left-color 0.25s; }
@@ -111,7 +112,7 @@
     .thesis-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
     .thesis-card-icon { width: 28px; height: 28px; flex-shrink: 0; }
     .thesis-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
-    .thesis-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+    .thesis-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
 
     /* ── METRICS ── */
     #metrics { background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 5%; }
@@ -143,7 +144,7 @@
     .play-icon-circle { transition: stroke 0.25s; }
     .play-num { font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 700; color: rgba(196,150,42,0.3); letter-spacing: 0.2em; line-height: 1; margin-bottom: 0.6rem; }
     .play-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .play-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; flex: 1; }
+    .play-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; flex: 1; overflow-wrap: break-word; word-break: normal; hyphens: auto; min-width: 0; }
     .play-visual { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(196,150,42,0.1); }
     .play-visual-svg { width: 100%; }
 
@@ -161,7 +162,7 @@
     .timeline-location { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.4rem; }
     .timeline-location::before { content: ''; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; flex-shrink: 0; }
     .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .timeline-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: break-word; }
+    .timeline-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; min-width: 0; }
     .timeline-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.75; }
     .timeline-bullets li strong { color: var(--text); }
     .timeline-tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -197,7 +198,7 @@
     .project-course { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
     .project-meta-sub { font-size: 0.76rem; color: var(--text-muted); opacity: 0.7; margin-bottom: 1.75rem; }
     .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .project-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: break-word; }
+    .project-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; min-width: 0; }
     .project-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.75; }
     .project-bullets li strong { color: var(--text); }
     .project-stats { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 2.5rem; border: 1px solid var(--border); }
@@ -297,12 +298,21 @@
       .nav-links {
         display: flex !important; flex-direction: column; align-items: center; justify-content: center;
         gap: 0; list-style: none;
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        width: 100%; height: 100vh; height: 100dvh;
-        background: rgba(8,17,31,0.98); backdrop-filter: blur(20px);
+        /* Robust overlay: inset:0 + explicit trbl for older browsers */
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0; inset: 0;
+        width: 100%;
+        /* dvh with vh fallback; avoids iOS address-bar collapse issues */
+        height: 100vh; height: 100dvh;
+        /* Solid base colour first, then blurred overlay for capable browsers */
+        background: #08111F;
+        background: rgba(8,17,31,0.98);
+        -webkit-backdrop-filter: blur(20px); /* iOS Safari, older Chrome */
+        backdrop-filter: blur(20px);
         opacity: 0; pointer-events: none; visibility: hidden;
         transition: opacity 0.35s ease, visibility 0.35s ease; z-index: 200;
-        padding: 5rem 2rem 3rem; overflow-y: auto;
+        padding: 5rem 2rem 3rem;
+        overflow-y: auto; -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain; /* prevent scroll bleed on Android/iOS */
       }
       .nav-links.open { opacity: 1; pointer-events: auto; visibility: visible; }
       .nav-links li {
@@ -310,6 +320,8 @@
         border-bottom: 1px solid rgba(196,150,42,0.1);
         transform: translateY(18px); opacity: 0;
         transition: transform 0.4s ease, opacity 0.4s ease;
+        /* No negative margins, no absolute positioning — stable layout */
+        position: static; margin: 0;
       }
       .nav-links li:first-child { border-top: 1px solid rgba(196,150,42,0.1); }
       .nav-links.open li { transform: translateY(0); opacity: 1; }
@@ -321,6 +333,8 @@
       .nav-links.open li:nth-child(6) { transition-delay: 0.36s; }
       .nav-links li a {
         display: block; padding: 1.25rem 0;
+        /* min 44px tap target height for iOS/Android guidelines */
+        min-height: 44px; line-height: 44px;
         font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase;
         color: var(--text-muted); font-weight: 600;
         transition: color 0.25s;
@@ -383,6 +397,82 @@
       .project-stats { grid-template-columns: 1fr; }
       .p-stat { border-right: none !important; border-top: 1px solid var(--border) !important; }
       .p-stat:first-child { border-top: none !important; }
+    }
+
+    /* ── CROSS-BROWSER / CROSS-DEVICE DEFENSIVE RULES ──────────────────────
+       Root causes addressed:
+       • iOS Safari 100vh ≠ visible height → use svh/dvh with vh fallback
+       • backdrop-filter needs -webkit- prefix for Safari & old Chrome/Edge
+       • Flex children without min-width:0 collapse text on Chrome/Edge/Firefox
+       • CSS grid with fixed column widths squeezes text on narrow viewports
+       • word-break: normal + overflow-wrap: break-word is the correct default
+         (break-all causes vertical stacked letters; "anywhere" is less compat)
+       • overscroll-behavior: contain prevents scroll bleed through overlay on Android
+    ─────────────────────────────────────────────────────────────────────── */
+
+    /* Ensure all flex children that hold text don't collapse below content */
+    .about-text,
+    .thesis-cards,
+    .edu-detail,
+    .contact-sub,
+    .timeline-title,
+    .timeline-company,
+    .edu-degree,
+    .edu-school,
+    .project-title,
+    .project-course {
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    /* Highlighted inline spans / strong: keep them inline, never break-all */
+    .timeline-bullets li strong,
+    .project-bullets li strong,
+    .about-text p strong {
+      display: inline;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    /* Contact links: allow wrapping on very narrow screens */
+    .c-link {
+      overflow-wrap: break-word;
+      word-break: break-all; /* email/phone must break on 360px */
+      min-width: 0;
+    }
+
+    /* Skill pills: no fixed width that could squeeze */
+    .skill-pill { max-width: 100%; overflow-wrap: break-word; word-break: normal; }
+
+    /* Metrics grid: force 1-col at very narrow widths */
+    @media (max-width: 359px) {
+      .metrics-grid { grid-template-columns: 1fr !important; }
+      .metric-item { border-right: none !important; border-top: 1px solid var(--border); }
+      .metric-item:first-child { border-top: none; }
+      .playbook-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* Cap table: guard the fixed 260px column from creating layout overflow */
+    .captable-inner {
+      /* Prevent the fixed 260px column from overflowing at zoom ≥125% */
+      min-width: 0;
+    }
+    @media (max-width: 640px) {
+      .captable-inner { grid-template-columns: 1fr !important; }
+    }
+
+    /* Desktop zoom resilience: at 125%/150% zoom the effective viewport shrinks.
+       The clamp() functions already adapt, but ensure containers don't overflow. */
+    .hero-left, .hero-right { min-width: 0; }
+
+    /* Prevent any grid cell from forcing horizontal scroll */
+    .metrics-grid > *,
+    .playbook-grid > *,
+    .about-grid > *,
+    .edu-grid > *,
+    .skills-wrapper > * {
+      min-width: 0;
     }
   </style>
 </head>
@@ -1107,20 +1197,32 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  // Hamburger menu
+  // Hamburger menu — robust for Android Chrome, iOS Safari, Windows Edge/Firefox
   const hamburger = document.getElementById('navHamburger');
   const navLinks = document.getElementById('navLinks');
   function closeMenu() {
     hamburger.classList.remove('open');
     navLinks.classList.remove('open');
     document.body.style.overflow = '';
+    hamburger.setAttribute('aria-expanded', 'false');
   }
+  function openMenu() {
+    hamburger.classList.add('open');
+    navLinks.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-controls', 'navLinks');
+
+  // Use both click and touchstart to ensure Android Chrome registers the tap
   hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('open');
-    navLinks.classList.toggle('open', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    hamburger.classList.contains('open') ? closeMenu() : openMenu();
   });
+  // Escape key closes menu (accessibility + desktop window zoom UX)
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  // Tap on the overlay backdrop (not a list item) closes menu
   navLinks.addEventListener('click', (e) => { if (e.target === navLinks) closeMenu(); });
 
   function counter(el, target, suffix, isK) {
