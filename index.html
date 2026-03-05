@@ -161,8 +161,8 @@
     .timeline-location { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.4rem; }
     .timeline-location::before { content: ''; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; flex-shrink: 0; }
     .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .timeline-bullets li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
-    .timeline-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: -0.05rem; }
+    .timeline-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: break-word; }
+    .timeline-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.75; }
     .timeline-bullets li strong { color: var(--text); }
     .timeline-tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--border); color: var(--text-muted); background: rgba(196,150,42,0.04); }
@@ -197,8 +197,8 @@
     .project-course { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
     .project-meta-sub { font-size: 0.76rem; color: var(--text-muted); opacity: 0.7; margin-bottom: 1.75rem; }
     .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .project-bullets li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
-    .project-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+    .project-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: break-word; }
+    .project-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.75; }
     .project-bullets li strong { color: var(--text); }
     .project-stats { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 2.5rem; border: 1px solid var(--border); }
     .p-stat { padding: 1.5rem 1rem; text-align: center; border-right: 1px solid var(--border); background: rgba(196,150,42,0.03); }
