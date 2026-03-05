@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tejas Sharma | Venture Capital &amp; Finance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:       #08111F;
+      --navy-mid:   #0D1E35;
+      --navy-light: #162844;
+      --gold:       #C4962A;
+      --gold-light: #D4AF5A;
+      --green-light:#22A06B;
+      --text:       #E8E4DC;
+      --text-muted: #8899AA;
+      --border:     rgba(196,150,42,0.18);
+      --card-bg:    rgba(13,30,53,0.7);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--navy); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--gold); color: var(--navy); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(196,150,42,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,150,42,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(8,17,31,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    nav.scrolled { padding: 0.85rem 5%; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.04em; }
+    .nav-logo span { color: var(--text); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); transition: color 0.25s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.25s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.35rem; border: 1px solid var(--gold); color: var(--gold-light); border-radius: 2px; transition: background 0.25s, color 0.25s; }
+    .nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      align-items: center; padding: 0 5%; gap: 3rem;
+      background: var(--navy); position: relative; overflow: hidden;
+      z-index: 1;
+    }
+    .hero-avatar-wrap { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+    .hero-avatar { width: 110px; height: 110px; border-radius: 50%; border: 2.5px solid var(--gold); box-shadow: 0 0 0 6px rgba(196,150,42,0.1), 0 8px 32px rgba(0,0,0,0.5); object-fit: cover; flex-shrink: 0; }
+    .hero-avatar-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+    .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+    .hero-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); }
+    h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-sub { margin-top: 1.75rem; font-size: 1.02rem; color: var(--text-muted); max-width: 460px; line-height: 1.9; }
+    .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { padding: 0.85rem 2rem; background: var(--gold); color: var(--navy); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.25s, transform 0.2s; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-secondary { padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: border-color 0.25s, color 0.25s, transform 0.2s; }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+    .hero-stats { margin-top: 4rem; display: flex; gap: 3rem; flex-wrap: wrap; }
+    .hero-stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
+    .hero-stat-number sup { font-size: 1.1rem; }
+    .hero-stat-label { margin-top: 0.35rem; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-divider { width: 1px; background: var(--border); align-self: stretch; }
+    .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
+    .trajectory-svg { width: 100%; max-width: 520px; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7rem 5%; position: relative; z-index: 1; }
+    .section-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .section-label-line { width: 28px; height: 1px; background: var(--gold); }
+    .section-label span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.12; color: var(--text); }
+    .section-intro { margin-top: 0.75rem; font-size: 0.97rem; color: var(--text-muted); max-width: 550px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; align-items: start; }
+    .about-text p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.95; margin-bottom: 1.2rem; }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+    .thesis-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+    .thesis-card { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.5rem 1.75rem; border-radius: 2px; transition: transform 0.25s, border-left-color 0.25s; }
+    .thesis-card:hover { transform: translateX(4px); border-left-color: var(--gold-light); }
+    .thesis-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+    .thesis-card-icon { width: 28px; height: 28px; flex-shrink: 0; }
+    .thesis-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .thesis-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* ── METRICS ── */
+    #metrics { background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 5%; }
+    .metrics-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .metric-item { text-align: center; padding: 2.5rem 1rem; border-right: 1px solid var(--border); }
+    .metric-item:last-child { border-right: none; }
+    .metric-number { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--gold-light); line-height: 1; display: block; }
+    .metric-suffix { font-size: 1.5rem; color: var(--gold); }
+    .metric-label { margin-top: 0.75rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+    .metrics-chart-wrap { min-width: 220px; }
+    .chart-svg { width: 100%; max-width: 240px; }
+    .chart-bar { opacity: 0; animation: barRise 0.6s ease forwards; }
+    .chart-bar:nth-child(1) { animation-delay: 0.1s; }
+    .chart-bar:nth-child(2) { animation-delay: 0.2s; }
+    .chart-bar:nth-child(3) { animation-delay: 0.3s; }
+    .chart-bar:nth-child(4) { animation-delay: 0.4s; }
+    .chart-bar:nth-child(5) { animation-delay: 0.5s; }
+    @keyframes barRise { from { opacity:0; transform:scaleY(0); transform-origin:bottom; } to { opacity:1; transform:scaleY(1); transform-origin:bottom; } }
+
+    /* ── VC PLAYBOOK ── */
+    #sectors { background: var(--navy); }
+    .playbook-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+    .play-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.25rem 1.75rem; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
+    .play-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .play-card:hover .play-icon-circle { stroke: rgba(196,150,42,0.65); }
+    .play-icon-wrap { margin-bottom: 1.5rem; }
+    .play-icon { width: 48px; height: 48px; }
+    .play-icon-circle { transition: stroke 0.25s; }
+    .play-num { font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 700; color: rgba(196,150,42,0.3); letter-spacing: 0.2em; line-height: 1; margin-bottom: 0.6rem; }
+    .play-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .play-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; flex: 1; }
+    .play-visual { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(196,150,42,0.1); }
+    .play-visual-svg { width: 100%; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--navy-mid); border-top: 1px solid var(--border); }
+    .timeline { margin-top: 4.5rem; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold) 60%, transparent); }
+    .timeline-item { padding-left: 3rem; padding-bottom: 3.5rem; position: relative; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -6px; top: 6px; width: 13px; height: 13px; background: var(--gold); border-radius: 50%; border: 2px solid var(--navy-mid); box-shadow: 0 0 0 4px rgba(196,150,42,0.15); }
+    .timeline-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+    .timeline-period { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,150,42,0.1); padding: 0.2rem 0.7rem; border-radius: 2px; }
+    .timeline-company { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+    .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .timeline-location { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.4rem; }
+    .timeline-location::before { content: ''; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; flex-shrink: 0; }
+    .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .timeline-bullets li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
+    .timeline-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: -0.05rem; }
+    .timeline-bullets li strong { color: var(--text); }
+    .timeline-tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--border); color: var(--text-muted); background: rgba(196,150,42,0.04); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--navy); border-top: 1px solid var(--border); }
+    .skills-wrapper { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-pill { font-size: 0.78rem; font-weight: 500; padding: 0.42rem 0.95rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); transition: border-color 0.2s, color 0.2s; }
+    .skill-pill:hover { border-color: var(--gold); color: var(--gold-light); }
+    .skill-pill.highlight { border-color: rgba(196,150,42,0.45); color: var(--gold-light); background: rgba(196,150,42,0.08); font-weight: 600; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--navy-mid); border-top: 1px solid var(--border); }
+    .edu-grid { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .edu-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.25rem; position: relative; overflow: hidden; transition: transform 0.25s, border-color 0.25s; }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
+    .edu-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); }
+    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .edu-school { font-size: 0.86rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.25rem; }
+    .edu-period { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 1.1rem; }
+    .edu-detail { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
+    .edu-gpa { display: inline-block; margin-top: 1rem; padding: 0.28rem 0.8rem; background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.28); font-size: 0.75rem; font-weight: 700; color: var(--green-light); letter-spacing: 0.05em; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--navy); border-top: 1px solid var(--border); }
+    .project-card { margin-top: 3rem; background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; transition: border-color 0.25s; }
+    .project-card:hover { border-color: rgba(196,150,42,0.4); }
+    .project-badge { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1rem; }
+    .project-title { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .project-course { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
+    .project-meta-sub { font-size: 0.76rem; color: var(--text-muted); opacity: 0.7; margin-bottom: 1.75rem; }
+    .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .project-bullets li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; }
+    .project-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+    .project-bullets li strong { color: var(--text); }
+    .project-stats { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 2.5rem; border: 1px solid var(--border); }
+    .p-stat { padding: 1.5rem 1rem; text-align: center; border-right: 1px solid var(--border); background: rgba(196,150,42,0.03); }
+    .p-stat:last-child { border-right: none; }
+    .p-stat-val { font-family: 'Playfair Display', serif; font-size: 1.85rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
+    .p-stat-lbl { margin-top: 0.4rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* ── CAP TABLE CARD ── */
+    .captable-card { margin-top: 2.5rem; background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; transition: border-color 0.25s; }
+    .captable-card:hover { border-color: rgba(196,150,42,0.4); }
+    .captable-inner { display: grid; grid-template-columns: 260px 1fr; gap: 3.5rem; align-items: center; margin-top: 2.25rem; }
+    .donut-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+    .donut-svg { width: 240px; height: 240px; overflow: visible; }
+    .donut-slice { cursor: pointer; transition: opacity 0.2s, filter 0.2s; }
+    .donut-slice:hover { opacity: 0.85; filter: brightness(1.25); }
+    .donut-center-label { position: absolute; text-align: center; pointer-events: none; }
+    .donut-center-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
+    .donut-center-sub { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem; }
+    .captable-right { display: flex; flex-direction: column; gap: 1.75rem; }
+    .captable-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .ct-metric { background: rgba(196,150,42,0.04); border: 1px solid var(--border); padding: 1rem 1.2rem; }
+    .ct-metric-val { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
+    .ct-metric-lbl { margin-top: 0.3rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .ct-table { width: 100%; border-collapse: collapse; }
+    .ct-table thead tr { border-bottom: 1px solid var(--border); }
+    .ct-table th { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); padding: 0 0.75rem 0.65rem; text-align: left; }
+    .ct-table th:last-child { text-align: right; }
+    .ct-table td { font-size: 0.82rem; color: var(--text-muted); padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(196,150,42,0.07); vertical-align: middle; }
+    .ct-table td:last-child { text-align: right; }
+    .ct-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; flex-shrink: 0; vertical-align: middle; }
+    .ct-bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
+    .ct-bar-bg { flex: 1; height: 4px; background: rgba(196,150,42,0.1); border-radius: 2px; }
+    .ct-bar-fill { height: 4px; border-radius: 2px; }
+    .ct-pct { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 700; color: var(--text); min-width: 42px; text-align: right; }
+    .ct-download { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(196,150,42,0.35); padding: 0.6rem 1.25rem; transition: background 0.2s, color 0.2s; }
+    .ct-download:hover { background: rgba(196,150,42,0.08); color: var(--gold-light); }
+    @media (max-width: 900px) { .captable-inner { grid-template-columns: 1fr; } .donut-wrap { justify-content: flex-start; } }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy-mid); border-top: 1px solid var(--border); text-align: center; }
+    .contact-inner { max-width: 640px; margin: 0 auto; }
+    .contact-inner h2 { margin-top: 1.5rem; }
+    .contact-sub { margin-top: 1rem; font-size: 0.97rem; color: var(--text-muted); line-height: 1.85; }
+    .c-links { margin-top: 2.5rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+    .c-link { display: flex; align-items: center; gap: 0.55rem; font-size: 0.83rem; font-weight: 600; color: var(--text-muted); padding: 0.75rem 1.5rem; border: 1px solid var(--border); transition: border-color 0.25s, color 0.25s, transform 0.2s; }
+    .c-link:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer { padding: 1.75rem 5%; background: var(--navy); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+    .footer-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--gold-light); }
+    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ── FADE ── */
+    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) { #hero { grid-template-columns: 1fr; padding-top: 8rem; } .hero-right { display: none; } }
+    @media (max-width: 900px) { .about-grid, .edu-grid, .skills-wrapper { grid-template-columns: 1fr; gap: 2rem; } .metrics-inner { grid-template-columns: 1fr; } .metrics-grid { grid-template-columns: repeat(3,1fr); } .metrics-chart-wrap { display: none; } .playbook-grid { grid-template-columns: repeat(2,1fr); } .project-stats { grid-template-columns: repeat(2,1fr); } .p-stat:nth-child(2) { border-right: none; } .p-stat:nth-child(3),.p-stat:nth-child(4) { border-top: 1px solid var(--border); } }
+    @media (max-width: 640px) { .nav-links { display: none; } .hero-stats { gap: 2rem; } .hero-divider { display: none; } .metrics-grid { grid-template-columns: 1fr 1fr; } .playbook-grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Tejas<span> Sharma</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-avatar-wrap fade-up">
+      <img class="hero-avatar" src="profile.png" alt="Tejas Sharma" />
+      <div class="hero-avatar-meta">
+        <div class="hero-avatar-name">Tejas Sharma</div>
+        <div class="hero-avatar-role">VC &amp; Startup Finance</div>
+      </div>
+    </div>
+    <div class="hero-eyebrow fade-up">
+      <div class="hero-eyebrow-line"></div>
+      <span>Venture Capital &amp; Finance</span>
+    </div>
+    <h1 class="fade-up">Tejas<br /><em>Sharma</em></h1>
+    <p class="hero-sub fade-up">MS Finance (STEM) graduate from the University of Arizona. I help startups raise capital, build compelling investor narratives, and scale with clarity at the intersection of fundraising strategy, financial modeling, and venture operations.</p>
+    <div class="hero-actions fade-up">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Download Resume</a>
+    </div>
+    <div class="hero-stats fade-up">
+      <div>
+        <div class="hero-stat-number">$5<sup>M</sup></div>
+        <div class="hero-stat-label">Fund AUM</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div>
+        <div class="hero-stat-number">10<sup>+</sup></div>
+        <div class="hero-stat-label">Startups Advised</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div>
+        <div class="hero-stat-number">3.92</div>
+        <div class="hero-stat-label">GPA / 4.0</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div>
+        <div class="hero-stat-number">$1<sup>M</sup></div>
+        <div class="hero-stat-label">Portfolio Managed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROWTH TRAJECTORY ILLUSTRATION -->
+  <div class="hero-right fade-up">
+    <svg class="trajectory-svg" viewBox="0 0 520 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#C4962A" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#C4962A" stop-opacity="0.0"/>
+        </linearGradient>
+        <radialGradient id="peakGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#C4962A" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#C4962A" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#C4962A" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#C4962A" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur8">
+          <feGaussianBlur stdDeviation="8"/>
+        </filter>
+      </defs>
+
+      <!-- Ambient glow at top-right peak -->
+      <ellipse cx="448" cy="78" rx="140" ry="100" fill="url(#peakGlow)" filter="url(#blur8)"/>
+
+      <!-- Faint background watermark text -->
+      <text x="30"  y="190" fill="rgba(196,150,42,0.04)" font-size="72" font-family="Playfair Display, serif" font-weight="700" font-style="italic">alpha</text>
+      <text x="160" y="380" fill="rgba(196,150,42,0.03)" font-size="52" font-family="Playfair Display, serif" font-weight="700">growth</text>
+
+      <!-- Subtle background radial grid -->
+      <circle cx="448" cy="78" r="80"  stroke="rgba(196,150,42,0.05)" stroke-width="1" fill="none"/>
+      <circle cx="448" cy="78" r="140" stroke="rgba(196,150,42,0.04)" stroke-width="1" fill="none"/>
+      <circle cx="448" cy="78" r="200" stroke="rgba(196,150,42,0.03)" stroke-width="1" fill="none"/>
+      <circle cx="448" cy="78" r="270" stroke="rgba(196,150,42,0.02)" stroke-width="1" fill="none"/>
+
+      <!-- Area fill under main trajectory -->
+      <path d="M 30,445 C 90,420 160,390 210,362 C 270,328 310,290 355,248 C 395,210 420,155 448,78 L 448,460 L 30,460 Z" fill="url(#areaFill)"/>
+
+      <!-- Shadow/echo trajectories (progressively faded outward) -->
+      <path d="M 30,455 C 92,432 162,402 212,374 C 273,340 313,302 358,260 C 398,222 423,167 448,90" stroke="rgba(196,150,42,0.07)" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M 30,450 C 91,427 161,397 211,370 C 272,336 312,297 357,255 C 397,216 422,161 448,84" stroke="rgba(196,150,42,0.1)"  stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M 30,445 C 90,422 160,392 210,365 C 271,331 311,293 356,251 C 396,212 421,157 448,80" stroke="rgba(196,150,42,0.15)" stroke-width="2"   stroke-linecap="round"/>
+      <path d="M 30,440 C 89,417 159,387 209,360 C 270,326 310,288 355,246 C 395,208 420,153 448,76" stroke="rgba(196,150,42,0.22)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Main trajectory -->
+      <path d="M 30,435 C 88,411 158,381 208,354 C 269,320 309,282 354,240 C 394,202 419,147 448,70"  stroke="rgba(196,150,42,0.65)" stroke-width="3"   stroke-linecap="round"/>
+      <!-- Brightest leading edge -->
+      <path d="M 30,432 C 87,408 157,378 207,351 C 268,317 308,279 353,237 C 393,199 418,144 448,67"  stroke="#C4962A"              stroke-width="2.2" stroke-linecap="round" stroke-dasharray="none"/>
+
+      <!-- Vertical drop lines from nodes (connecting to baseline — depth) -->
+      <line x1="138" y1="390" x2="138" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
+      <line x1="260" y1="310" x2="260" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
+      <line x1="380" y1="210" x2="380" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
+
+      <!-- NODE 1: Pre-Seed (~138, 390) -->
+      <circle cx="138" cy="390" r="28" fill="url(#nodeGlow)" filter="url(#blur8)"/>
+      <circle cx="138" cy="390" r="16" fill="rgba(196,150,42,0.06)" stroke="rgba(196,150,42,0.2)" stroke-width="1"/>
+      <circle cx="138" cy="390" r="5"  fill="#08111F" stroke="#C4962A" stroke-width="1.8"/>
+      <text x="138" y="373" text-anchor="middle" fill="rgba(196,150,42,0.55)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">PRE-SEED</text>
+      <text x="162" y="398" fill="rgba(196,150,42,0.4)" font-size="11" font-family="Playfair Display,serif" font-weight="700">$60K</text>
+
+      <!-- NODE 2: Seed (~260, 310) -->
+      <circle cx="260" cy="310" r="32" fill="url(#nodeGlow)" filter="url(#blur8)"/>
+      <circle cx="260" cy="310" r="20" fill="rgba(196,150,42,0.07)" stroke="rgba(196,150,42,0.28)" stroke-width="1.2"/>
+      <circle cx="260" cy="310" r="6"  fill="#08111F" stroke="#C4962A" stroke-width="2"/>
+      <text x="260" y="290" text-anchor="middle" fill="rgba(196,150,42,0.65)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">SEED</text>
+      <text x="285" y="320" fill="rgba(196,150,42,0.5)" font-size="12" font-family="Playfair Display,serif" font-weight="700">$2M</text>
+
+      <!-- NODE 3: Series A (~380, 210) -->
+      <circle cx="380" cy="210" r="38" fill="url(#nodeGlow)" filter="url(#blur8)"/>
+      <circle cx="380" cy="210" r="24" fill="rgba(196,150,42,0.09)" stroke="rgba(196,150,42,0.38)" stroke-width="1.5"/>
+      <circle cx="380" cy="210" r="8"  fill="#08111F" stroke="#C4962A" stroke-width="2.2"/>
+      <text x="380" y="188" text-anchor="middle" fill="rgba(196,150,42,0.78)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">SERIES A</text>
+      <text x="408" y="220" fill="rgba(196,150,42,0.62)" font-size="13" font-family="Playfair Display,serif" font-weight="700">$5M</text>
+
+      <!-- PEAK NODE (448, 70) -->
+      <circle cx="448" cy="70" r="50" fill="url(#peakGlow)" filter="url(#blur8)"/>
+      <circle cx="448" cy="70" r="22" fill="rgba(196,150,42,0.14)" stroke="rgba(196,150,42,0.55)" stroke-width="1.5"/>
+      <circle cx="448" cy="70" r="10" fill="rgba(196,150,42,0.35)" stroke="#C4962A" stroke-width="2"/>
+      <circle cx="448" cy="70" r="4"  fill="#C4962A"/>
+
+      <!-- Radiating sparks from peak -->
+      <line x1="448" y1="70" x2="475" y2="40"  stroke="rgba(196,150,42,0.55)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="448" y1="70" x2="468" y2="32"  stroke="rgba(196,150,42,0.42)" stroke-width="1"   stroke-linecap="round"/>
+      <line x1="448" y1="70" x2="480" y2="55"  stroke="rgba(196,150,42,0.38)" stroke-width="1"   stroke-linecap="round"/>
+      <line x1="448" y1="70" x2="488" y2="68"  stroke="rgba(196,150,42,0.3)"  stroke-width="0.9" stroke-linecap="round"/>
+      <line x1="448" y1="70" x2="476" y2="88"  stroke="rgba(196,150,42,0.22)" stroke-width="0.8" stroke-linecap="round"/>
+      <line x1="448" y1="70" x2="458" y2="32"  stroke="rgba(196,150,42,0.32)" stroke-width="0.8" stroke-linecap="round"/>
+      <line x1="448" y1="70" x2="430" y2="30"  stroke="rgba(196,150,42,0.28)" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- Fund label at peak -->
+      <text x="448" y="24" text-anchor="middle" fill="rgba(196,150,42,0.8)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="2">WPSF</text>
+      <text x="448" y="13" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="9" font-family="Playfair Display,serif" font-weight="700">$5M</text>
+
+      <!-- Scattered ambient dots -->
+      <circle cx="70"  cy="260" r="2"   fill="rgba(196,150,42,0.2)"/>
+      <circle cx="180" cy="180" r="1.5" fill="rgba(196,150,42,0.18)"/>
+      <circle cx="310" cy="130" r="2"   fill="rgba(196,150,42,0.2)"/>
+      <circle cx="420" cy="160" r="1.5" fill="rgba(196,150,42,0.15)"/>
+      <circle cx="80"  cy="370" r="1.5" fill="rgba(196,150,42,0.12)"/>
+      <circle cx="490" cy="120" r="1.5" fill="rgba(196,150,42,0.18)"/>
+      <circle cx="200" cy="430" r="2"   fill="rgba(196,150,42,0.1)"/>
+      <circle cx="340" cy="380" r="1.5" fill="rgba(196,150,42,0.1)"/>
+      <circle cx="500" cy="200" r="1"   fill="rgba(196,150,42,0.15)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Thesis</span></div>
+  <h2 class="fade-up">Where capital<br />meets conviction.</h2>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>I am a venture capital and startup finance professional with a proven track record across <strong>fundraising strategy, financial modeling, and go-to-market execution</strong>. As a VC Analyst at <strong>Tech Launch Arizona</strong>, I led end-to-end investment evaluation for the Wildcat Philanthropic Seed Fund, a $5M evergreen fund, and spearheaded a capital strategy to grow AUM by 30%.</p>
+      <p>Having sat on both sides of the table, I co-founded FanFliQ and navigated a <strong>$60K seed raise</strong> firsthand. At India Accelerator, I prepared 10+ founders for investor meetings, refined pitch decks, and stress-tested unit economics until the numbers told a clear, fundable story.</p>
+      <p>My edge is translating raw financials into <strong>compelling fundraising narratives</strong>. Revenue projections, cash flow models, cap table modeling, waterfall analysis, and investor memo writing are the tools I reach for every day to help founders raise with conviction and scale with discipline.</p>
+    </div>
+    <div class="thesis-cards fade-up">
+      <div class="thesis-card">
+        <div class="thesis-card-header">
+          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
+            <text x="14" y="19" text-anchor="middle" fill="#C4962A" font-size="14" font-family="Inter,sans-serif" font-weight="700">$</text>
+          </svg>
+          <div class="thesis-card-title">Startup Fundraising</div>
+        </div>
+        <p>Building investor-ready decks, financial models, and data rooms. Crafting fundraising narratives that connect unit economics to vision and close rounds from pre-seed through Series A.</p>
+      </div>
+      <div class="thesis-card">
+        <div class="thesis-card-header">
+          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
+            <polyline points="6,20 10,14 14,16 18,10 22,7" stroke="#C4962A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="22" cy="7" r="2" fill="#C4962A"/>
+          </svg>
+          <div class="thesis-card-title">GTM &amp; Growth Strategy</div>
+        </div>
+        <p>Designing go-to-market playbooks, optimizing acquisition channels, tracking cohort performance, and building revenue operations that drive repeatable, capital-efficient growth.</p>
+      </div>
+      <div class="thesis-card">
+        <div class="thesis-card-header">
+          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
+            <rect x="8" y="9" width="12" height="10" rx="1" stroke="#C4962A" stroke-width="1.2" fill="none"/>
+            <line x1="11" y1="13" x2="17" y2="13" stroke="#C4962A" stroke-width="1" stroke-linecap="round"/>
+            <line x1="11" y1="15.5" x2="15" y2="15.5" stroke="#C4962A" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+          <div class="thesis-card-title">VC Operations</div>
+        </div>
+        <p>Deal sourcing, investment memo writing, due diligence, portfolio monitoring, and LP reporting. Building the infrastructure that lets a fund move fast and back the right founders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="metrics-inner">
+    <div class="metrics-grid">
+      <div class="metric-item fade-up"><span class="metric-number">40<span class="metric-suffix">%</span></span><div class="metric-label">Faster IC Turnaround</div></div>
+      <div class="metric-item fade-up"><span class="metric-number">30<span class="metric-suffix">%</span></span><div class="metric-label">AUM Expansion Target</div></div>
+      <div class="metric-item fade-up"><span class="metric-number">70<span class="metric-suffix">%</span></span><div class="metric-label">Investor Approval Rate</div></div>
+      <div class="metric-item fade-up"><span class="metric-number">25<span class="metric-suffix">%</span></span><div class="metric-label">CAC Reduction</div></div>
+      <div class="metric-item fade-up"><span class="metric-number">1K<span class="metric-suffix">+</span></span><div class="metric-label">Creators Onboarded</div></div>
+    </div>
+    <div class="metrics-chart-wrap fade-up">
+      <svg class="chart-svg" viewBox="0 0 240 180" fill="none">
+        <line x1="30" y1="150" x2="220" y2="150" stroke="rgba(196,150,42,0.2)" stroke-width="1"/>
+        <line x1="30" y1="10"  x2="30"  y2="150" stroke="rgba(196,150,42,0.2)" stroke-width="1"/>
+        <line x1="30" y1="110" x2="220" y2="110" stroke="rgba(196,150,42,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="30" y1="80"  x2="220" y2="80"  stroke="rgba(196,150,42,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="30" y1="50"  x2="220" y2="50"  stroke="rgba(196,150,42,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+        <rect class="chart-bar" x="45"  y="100" width="22" height="50"  fill="rgba(196,150,42,0.25)" rx="1"/>
+        <rect class="chart-bar" x="80"  y="85"  width="22" height="65"  fill="rgba(196,150,42,0.35)" rx="1"/>
+        <rect class="chart-bar" x="115" y="65"  width="22" height="85"  fill="rgba(196,150,42,0.5)"  rx="1"/>
+        <rect class="chart-bar" x="150" y="45"  width="22" height="105" fill="rgba(196,150,42,0.65)" rx="1"/>
+        <rect class="chart-bar" x="185" y="25"  width="22" height="125" fill="#C4962A"               rx="1"/>
+        <polyline points="56,100 91,85 126,65 161,45 196,25" stroke="#D4AF5A" stroke-width="1.5" fill="none" stroke-dasharray="3 3" opacity="0.6"/>
+        <circle cx="196" cy="25" r="4" fill="#D4AF5A"/>
+        <text x="125" y="170" text-anchor="middle" fill="rgba(196,150,42,0.4)" font-size="9" font-family="Inter,sans-serif" font-weight="600">PORTFOLIO GROWTH</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- VC PLAYBOOK -->
+<section id="sectors">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>The VC Playbook</span></div>
+  <h2 class="fade-up">What I bring to the table.</h2>
+  <p class="section-intro fade-up">The work a strong VC associate executes every day at firms like Sequoia, a16z, or Bessemer, across deal sourcing, diligence, portfolio, and fundraising.</p>
+  <div class="playbook-grid">
+
+    <!-- 01 Startup Fundraising -->
+    <div class="play-card fade-up">
+      <div class="play-icon-wrap">
+        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
+          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
+          <!-- Rocket body -->
+          <path d="M24 10 C24 10 30 16 30 24 L24 28 L18 24 C18 16 24 10 24 10Z" fill="rgba(196,150,42,0.12)" stroke="#C4962A" stroke-width="1.2" stroke-linejoin="round"/>
+          <!-- Rocket flame -->
+          <path d="M21 27 C21 27 22 31 24 33 C26 31 27 27 27 27" fill="rgba(196,150,42,0.35)" stroke="none"/>
+          <!-- Rocket window -->
+          <circle cx="24" cy="22" r="2.5" fill="rgba(196,150,42,0.2)" stroke="#C4962A" stroke-width="1"/>
+          <!-- Dollar sign overlay -->
+          <text x="24" y="42" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.1em">RAISE</text>
+        </svg>
+      </div>
+      <div class="play-num">01</div>
+      <div class="play-title">Startup Fundraising</div>
+      <p class="play-desc">Building data rooms, structuring SAFE and priced rounds, cap table modeling, waterfall analysis, and coaching founders from pre-seed to Series A closes.</p>
+      <!-- Mini infographic: funding stage ladder -->
+      <div class="play-visual">
+        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
+          <!-- Stage dots connected by curve -->
+          <line x1="18" y1="46" x2="162" y2="46" stroke="rgba(196,150,42,0.12)" stroke-width="1"/>
+          <path d="M18,44 C60,44 80,22 108,18 C136,14 148,10 162,8" stroke="rgba(196,150,42,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Pre-seed -->
+          <circle cx="18" cy="44" r="4" fill="#08111F" stroke="rgba(196,150,42,0.5)" stroke-width="1.5"/>
+          <text x="18" y="56" text-anchor="middle" fill="rgba(196,150,42,0.4)" font-size="6.5" font-family="Inter,sans-serif" font-weight="600">PRE-SEED</text>
+          <!-- Seed -->
+          <circle cx="72" cy="28" r="5" fill="#08111F" stroke="rgba(196,150,42,0.65)" stroke-width="1.8"/>
+          <text x="72" y="20" text-anchor="middle" fill="rgba(196,150,42,0.55)" font-size="6.5" font-family="Inter,sans-serif" font-weight="600">SEED</text>
+          <!-- Series A -->
+          <circle cx="130" cy="14" r="6" fill="rgba(196,150,42,0.1)" stroke="#C4962A" stroke-width="2"/>
+          <circle cx="130" cy="14" r="2.5" fill="#C4962A"/>
+          <text x="130" y="8" text-anchor="middle" fill="rgba(196,150,42,0.75)" font-size="6.5" font-family="Inter,sans-serif" font-weight="700">SERIES A</text>
+          <!-- Amounts -->
+          <text x="18" y="44" text-anchor="middle" fill="rgba(196,150,42,0)" font-size="6" font-family="Inter">$60K</text>
+          <text x="162" y="6" text-anchor="middle" fill="rgba(196,150,42,0.6)" font-size="7" font-family="Playfair Display,serif" font-weight="700">↑ AUM</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 02 Financial Modeling -->
+    <div class="play-card fade-up">
+      <div class="play-icon-wrap">
+        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
+          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
+          <!-- Spreadsheet grid -->
+          <rect x="11" y="12" width="26" height="22" rx="1.5" fill="rgba(196,150,42,0.06)" stroke="rgba(196,150,42,0.4)" stroke-width="1.2"/>
+          <line x1="11" y1="17" x2="37" y2="17" stroke="rgba(196,150,42,0.35)" stroke-width="0.8"/>
+          <line x1="11" y1="22" x2="37" y2="22" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
+          <line x1="11" y1="27" x2="37" y2="27" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
+          <line x1="19" y1="12" x2="19" y2="34" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
+          <line x1="29" y1="12" x2="29" y2="34" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
+          <!-- Trend line overlaid on spreadsheet -->
+          <polyline points="14,32 20,26 26,23 32,18" stroke="#C4962A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="18" r="2" fill="#C4962A"/>
+          <!-- Bottom label -->
+          <text x="24" y="42" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.08em">MODEL</text>
+        </svg>
+      </div>
+      <div class="play-num">02</div>
+      <div class="play-title">Financial Modeling</div>
+      <p class="play-desc">3-statement models, cash flow projections, cap table modeling, waterfall analysis, unit economics, and scenario analysis that drive investor conviction.</p>
+      <!-- Mini infographic: waterfall bars -->
+      <div class="play-visual">
+        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
+          <line x1="10" y1="50" x2="170" y2="50" stroke="rgba(196,150,42,0.15)" stroke-width="1"/>
+          <!-- Bars: Revenue, COGS, Gross, OpEx, EBITDA -->
+          <rect x="14"  y="20" width="18" height="30" fill="rgba(196,150,42,0.45)" rx="1"/>
+          <rect x="44"  y="32" width="18" height="18" fill="rgba(196,150,42,0.25)" rx="1"/>
+          <rect x="74"  y="14" width="18" height="36" fill="rgba(196,150,42,0.55)" rx="1"/>
+          <rect x="104" y="28" width="18" height="22" fill="rgba(196,150,42,0.3)" rx="1"/>
+          <rect x="134" y="8"  width="18" height="42" fill="#C4962A" rx="1"/>
+          <!-- Trend line -->
+          <polyline points="23,20 53,32 83,14 113,28 143,8" stroke="rgba(212,175,90,0.6)" stroke-width="1.2" stroke-dasharray="3 2" fill="none" stroke-linecap="round"/>
+          <!-- Labels -->
+          <text x="23"  y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">REV</text>
+          <text x="53"  y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">COGS</text>
+          <text x="83"  y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">GP</text>
+          <text x="113" y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">OPEX</text>
+          <text x="143" y="56" text-anchor="middle" fill="rgba(196,150,42,0.55)" font-size="5.5" font-family="Inter" font-weight="700">EBIT</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 03 Fundraising Storytelling -->
+    <div class="play-card fade-up">
+      <div class="play-icon-wrap">
+        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
+          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
+          <!-- Presentation slide -->
+          <rect x="10" y="13" width="28" height="18" rx="1.5" fill="rgba(196,150,42,0.07)" stroke="rgba(196,150,42,0.45)" stroke-width="1.2"/>
+          <!-- Chart inside slide -->
+          <polyline points="14,27 18,23 22,24 26,19 32,15" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="15" r="2" fill="#C4962A"/>
+          <!-- Podium stand -->
+          <line x1="24" y1="31" x2="24" y2="36" stroke="rgba(196,150,42,0.4)" stroke-width="1.5"/>
+          <line x1="16" y1="36" x2="32" y2="36" stroke="rgba(196,150,42,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Narrative arc label -->
+          <text x="24" y="43" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.08em">PITCH</text>
+        </svg>
+      </div>
+      <div class="play-num">03</div>
+      <div class="play-title">Fundraising Storytelling</div>
+      <p class="play-desc">Translating numbers into narratives. Pitch deck strategy, investment memo writing, and investor communication that builds trust and closes rounds.</p>
+      <!-- Mini infographic: pitch deck pages arc -->
+      <div class="play-visual">
+        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
+          <!-- Deck slides (stacked cards) -->
+          <rect x="10"  y="28" width="22" height="16" rx="1" fill="rgba(196,150,42,0.08)" stroke="rgba(196,150,42,0.25)" stroke-width="1"/>
+          <rect x="46"  y="20" width="22" height="24" rx="1" fill="rgba(196,150,42,0.1)"  stroke="rgba(196,150,42,0.35)" stroke-width="1"/>
+          <rect x="82"  y="14" width="22" height="30" rx="1" fill="rgba(196,150,42,0.13)" stroke="rgba(196,150,42,0.45)" stroke-width="1"/>
+          <rect x="118" y="8"  width="22" height="36" rx="1" fill="rgba(196,150,42,0.18)" stroke="rgba(196,150,42,0.6)" stroke-width="1.2"/>
+          <rect x="148" y="4"  width="22" height="40" rx="1" fill="rgba(196,150,42,0.22)" stroke="#C4962A" stroke-width="1.5"/>
+          <!-- Mini chart lines inside last slide -->
+          <polyline points="152,38 155,28 162,24 168,16" stroke="rgba(196,150,42,0.8)" stroke-width="1.2" stroke-linecap="round"/>
+          <!-- Arc connecting slides -->
+          <path d="M21,28 C21,12 57,12 57,20" stroke="rgba(196,150,42,0.2)" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+          <!-- Labels -->
+          <text x="21"  y="52" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">PROBLEM</text>
+          <text x="57"  y="52" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">MARKET</text>
+          <text x="93"  y="52" text-anchor="middle" fill="rgba(196,150,42,0.4)"  font-size="5.5" font-family="Inter">TRACTION</text>
+          <text x="129" y="52" text-anchor="middle" fill="rgba(196,150,42,0.5)"  font-size="5.5" font-family="Inter">ASK</text>
+          <text x="159" y="52" text-anchor="middle" fill="rgba(196,150,42,0.7)"  font-size="5.5" font-family="Inter" font-weight="700">CLOSE</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 04 GTM & Revenue Ops -->
+    <div class="play-card fade-up">
+      <div class="play-icon-wrap">
+        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
+          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
+          <!-- Funnel shape -->
+          <path d="M10 13 L38 13 L30 25 L30 36 L18 36 L18 25 Z" fill="rgba(196,150,42,0.08)" stroke="rgba(196,150,42,0.45)" stroke-width="1.2" stroke-linejoin="round"/>
+          <!-- Funnel divisions -->
+          <line x1="13" y1="19" x2="35" y2="19" stroke="rgba(196,150,42,0.3)" stroke-width="0.8"/>
+          <line x1="17" y1="25" x2="31" y2="25" stroke="rgba(196,150,42,0.3)" stroke-width="0.8"/>
+          <!-- Arrow at bottom -->
+          <line x1="24" y1="36" x2="24" y2="40" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M21 38 L24 41 L27 38" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Label -->
+          <text x="24" y="9" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.08em">GTM</text>
+        </svg>
+      </div>
+      <div class="play-num">04</div>
+      <div class="play-title">GTM &amp; Revenue Ops</div>
+      <p class="play-desc">Go-to-market strategy, channel optimization, CAC/LTV analysis, cohort tracking, and growth frameworks to help portfolio companies scale efficiently.</p>
+      <!-- Mini infographic: funnel chart -->
+      <div class="play-visual">
+        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
+          <!-- Horizontal funnel bars (centered, shrinking) -->
+          <rect x="10"  y="6"  width="160" height="10" rx="1" fill="rgba(196,150,42,0.2)"  stroke="rgba(196,150,42,0.3)" stroke-width="0.8"/>
+          <rect x="28"  y="20" width="124" height="10" rx="1" fill="rgba(196,150,42,0.3)"  stroke="rgba(196,150,42,0.4)" stroke-width="0.8"/>
+          <rect x="50"  y="34" width="80"  height="10" rx="1" fill="rgba(196,150,42,0.45)" stroke="rgba(196,150,42,0.55)" stroke-width="1"/>
+          <rect x="68"  y="48" width="44"  height="8"  rx="1" fill="#C4962A"/>
+          <!-- Labels -->
+          <text x="90" y="14"  text-anchor="middle" fill="rgba(196,150,42,0.45)" font-size="6" font-family="Inter" font-weight="600">AWARENESS</text>
+          <text x="90" y="28"  text-anchor="middle" fill="rgba(196,150,42,0.5)"  font-size="6" font-family="Inter" font-weight="600">LEADS</text>
+          <text x="90" y="42"  text-anchor="middle" fill="rgba(196,150,42,0.65)" font-size="6" font-family="Inter" font-weight="700">PIPELINE</text>
+          <text x="90" y="56"  text-anchor="middle" fill="rgba(8,17,31,0.9)"     font-size="6" font-family="Inter" font-weight="700">REVENUE</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Professional Experience</span></div>
+  <h2 class="fade-up">From the trenches<br />of early-stage capital.</h2>
+  <p class="section-intro fade-up">Hands-on experience across fund operations, founder advisory, and startup co-founding.</p>
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta"><span class="timeline-period">May 2025 to Present</span><span class="timeline-company">Tech Launch Arizona &middot; University of Arizona</span></div>
+      <div class="timeline-title">Venture Capital Summer Analyst</div>
+      <div class="timeline-location">Tucson, United States</div>
+      <ul class="timeline-bullets">
+        <li>Led <strong>end-to-end due diligence</strong> for early-stage ventures supporting investment decisions for the <strong>$5M Wildcat Philanthropic Seed Fund (WPSF)</strong>.</li>
+        <li>Built comprehensive <strong>financial models</strong>, authored investment memos, and delivered data-driven diligence reports to an internal Investment Committee of domain experts.</li>
+        <li>Evaluated IP-backed technologies, assessed market feasibility, and benchmarked competitive landscapes using <strong>PitchBook</strong>.</li>
+        <li>Spearheading <strong>capital strategy initiatives</strong> to expand WPSF's AUM by 30%, leveraging relationships with HNIs, alumni investors, and philanthropic networks.</li>
+        <li>Introduced structured scoring rubrics and pipeline management frameworks, improving IC decision-making turnaround time by <strong>40%</strong>.</li>
+      </ul>
+      <div class="timeline-tags"><span class="tag">Due Diligence</span><span class="tag">PitchBook</span><span class="tag">Financial Modeling</span><span class="tag">Investment Memos</span><span class="tag">Capital Strategy</span><span class="tag">Deal Sourcing</span><span class="tag">Portfolio Support</span></div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta"><span class="timeline-period">Nov 2022 to Aug 2024</span><span class="timeline-company">FanFliQ &middot; New Delhi, India</span></div>
+      <div class="timeline-title">Co-Founder &amp; Finance Lead</div>
+      <div class="timeline-location">New Delhi, India</div>
+      <ul class="timeline-bullets">
+        <li>Co-founded FanFliQ, a <strong>music-tech SaaS platform</strong>, onboarding 1,000+ creators and driving a 20% increase in revenue per creator through data-driven service bundling.</li>
+        <li>Owned financial planning and GTM analytics, reducing <strong>CAC by approximately 25%</strong> through channel prioritization and cohort-level performance tracking.</li>
+        <li>Analyzed user retention and churn patterns to inform product iteration, stabilizing monthly churn below early-stage SaaS benchmarks.</li>
+        <li>Built investor-facing financial models and valuation frameworks to support a <strong>$60K seed raise at $300K post-money valuation</strong>.</li>
+      </ul>
+      <div class="timeline-tags"><span class="tag">SaaS</span><span class="tag">Seed Raise</span><span class="tag">Valuation</span><span class="tag">GTM Analytics</span><span class="tag">FP&amp;A</span></div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta"><span class="timeline-period">Mar 2022 to Oct 2022</span><span class="timeline-company">India Accelerator &middot; Delhi-NCR, India</span></div>
+      <div class="timeline-title">Entrepreneur In Residence (VC Analyst)</div>
+      <div class="timeline-location">Delhi-NCR, India</div>
+      <ul class="timeline-bullets">
+        <li>Advised <strong>10+ startups</strong> in IA's flagship cohort on financial modeling, GTM strategy, and investor readiness, supporting raises from pre-seed to pre-Series A.</li>
+        <li>Conducted startup screening and investment due diligence using <strong>PitchBook</strong> to select high-potential ventures aligned with IA's fund thesis.</li>
+        <li>Prepared founders for Demo Day by refining investor pitches and stress-testing business models.</li>
+        <li>Achieved a <strong>70% increase in investor approval rates</strong> and reduced market-entry risk by 25% through targeted market analysis and commercialization strategy support.</li>
+      </ul>
+      <div class="timeline-tags"><span class="tag">Startup Screening</span><span class="tag">Demo Day Prep</span><span class="tag">Investor Relations</span><span class="tag">Pitch Coaching</span><span class="tag">Fundraising Strategy</span><span class="tag">Portfolio Tracking</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Capabilities</span></div>
+  <h2 class="fade-up">Tools of the trade.</h2>
+  <div class="skills-wrapper">
+    <div class="fade-up">
+      <div class="skill-group-title">Technical &amp; Analytical</div>
+      <div class="skill-list">
+        <span class="skill-pill highlight">Startup Fundraising</span>
+        <span class="skill-pill highlight">Financial Modeling</span>
+        <span class="skill-pill highlight">Cash Flow Projections</span>
+        <span class="skill-pill highlight">DCF Modeling</span>
+        <span class="skill-pill highlight">Cap Table Modeling</span>
+        <span class="skill-pill highlight">Waterfall Analysis</span>
+        <span class="skill-pill highlight">Revenue Operations</span>
+        <span class="skill-pill highlight">PitchBook</span>
+        <span class="skill-pill highlight">Bloomberg Terminal</span>
+        <span class="skill-pill">Equity Valuation</span>
+        <span class="skill-pill">Portfolio Management</span>
+        <span class="skill-pill">Unit Economics</span>
+        <span class="skill-pill">CAC / LTV Analysis</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">Advanced MS Excel</span>
+        <span class="skill-pill">FP&amp;A</span>
+        <span class="skill-pill">Options Pricing</span>
+        <span class="skill-pill">Quantitative Analysis</span>
+      </div>
+    </div>
+    <div class="fade-up">
+      <div class="skill-group-title">Qualitative &amp; Advisory</div>
+      <div class="skill-list">
+        <span class="skill-pill highlight">Fundraising Storytelling</span>
+        <span class="skill-pill highlight">Investment Memo Writing</span>
+        <span class="skill-pill highlight">GTM Strategy</span>
+        <span class="skill-pill highlight">Investor Relations</span>
+        <span class="skill-pill highlight">Due Diligence</span>
+        <span class="skill-pill">Deal Sourcing</span>
+        <span class="skill-pill">Pitch Deck Strategy</span>
+        <span class="skill-pill">Market Mapping</span>
+        <span class="skill-pill">Capital Strategy</span>
+        <span class="skill-pill">Pipeline Management</span>
+        <span class="skill-pill">Business Negotiations</span>
+        <span class="skill-pill">LP Reporting</span>
+        <span class="skill-pill">Cohort Analysis</span>
+        <span class="skill-pill">Competitive Benchmarking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Education</span></div>
+  <h2 class="fade-up">Academic foundation.</h2>
+  <div class="edu-grid">
+    <div class="edu-card fade-up">
+      <div class="edu-degree">MS Finance (STEM)</div>
+      <div class="edu-school">University of Arizona, Eller College of Management</div>
+      <div class="edu-period">Tucson, AZ &middot; 2024 to 2025</div>
+      <div class="edu-detail">Eller Academic Excellence Awardee &middot; 3x Dean's List</div>
+      <span class="edu-gpa">GPA: 3.92 / 4.00</span>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-degree">Bachelor of Management Studies</div>
+      <div class="edu-school">Shiv Nadar University, School of Management &amp; Entrepreneurship</div>
+      <div class="edu-period">Delhi-NCR, India &middot; May 2022</div>
+      <div class="edu-detail">Specialization in Finance</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Project Spotlight</span></div>
+  <h2 class="fade-up">Applied portfolio theory.</h2>
+  <div class="project-card fade-up">
+    <span class="project-badge">Academic Project</span>
+    <div class="project-title">$1M AUM Endowment Fund Investment Project</div>
+    <div class="project-course">FIN526 &middot; Portfolio Management Theory</div>
+    <div class="project-meta-sub">Eller College of Management, University of Arizona &middot; Jan 2025 to May 2025</div>
+    <ul class="project-bullets">
+      <li>Managed a <strong>$1M endowment portfolio</strong> with a 70/30 equity-to-fixed-income allocation using Modern Portfolio Theory and Fama-French factor models, targeting an annual alpha of 2 to 3%.</li>
+      <li>Conducted in-depth analysis on <strong>20+ equities and fixed-income securities</strong> using Fama-French 10-factor model factor exposures to construct an alpha-generating portfolio.</li>
+      <li>Presented investment recommendations with <strong>10+ financial metrics</strong> including Sharpe ratio, beta, yield, and drawdown to faculty investment advisors for approval and implementation.</li>
+      <li>Built financial models to drive actionable insights in portfolio rebalancing and asset allocation decisions.</li>
+    </ul>
+    <div class="project-stats">
+      <div class="p-stat"><div class="p-stat-val">$1M</div><div class="p-stat-lbl">Portfolio AUM</div></div>
+      <div class="p-stat"><div class="p-stat-val">70/30</div><div class="p-stat-lbl">Equity / Fixed Income</div></div>
+      <div class="p-stat"><div class="p-stat-val">20+</div><div class="p-stat-lbl">Securities Analyzed</div></div>
+      <div class="p-stat"><div class="p-stat-val">2-3%</div><div class="p-stat-lbl">Target Alpha</div></div>
+    </div>
+  </div>
+
+  <!-- CAP TABLE MODEL CARD -->
+  <div class="captable-card fade-up">
+    <span class="project-badge">&#9654; Cap Table Model</span>
+    <div class="project-title">Tejas Ventures Inc. &mdash; Cap Table Analysis</div>
+    <div class="project-course">Pre-Seed to Series Seed Round Modeling</div>
+    <div class="project-meta-sub">Built in Excel &middot; Convertible Note + Priced Round + Option Pool</div>
+
+    <div class="captable-inner">
+
+      <!-- DONUT CHART -->
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 240 240">
+          <defs>
+            <filter id="sliceGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <!-- CEO: 26.607% -->
+          <path class="donut-slice" d="M 120.00,30.00 A 90,90 0 0,1 209.54,129.07 L 174.72,125.54 A 55,55 0 0,0 120.00,65.00 Z" fill="#C4962A">
+            <title>CEO — 26.61%</title>
+          </path>
+          <!-- CTO: 26.607% -->
+          <path class="donut-slice" d="M 209.54,129.07 A 90,90 0 0,1 101.95,208.17 L 108.97,173.88 A 55,55 0 0,0 174.72,125.54 Z" fill="rgba(196,150,42,0.72)">
+            <title>CTO — 26.61%</title>
+          </path>
+          <!-- COO: 26.607% -->
+          <path class="donut-slice" d="M 101.95,208.17 A 90,90 0 0,1 34.10,93.15 L 67.50,103.59 A 55,55 0 0,0 108.97,173.88 Z" fill="rgba(196,150,42,0.45)">
+            <title>COO — 26.61%</title>
+          </path>
+          <!-- Option Pool: 15.417% -->
+          <path class="donut-slice" d="M 34.10,93.15 A 90,90 0 0,1 93.47,34.00 L 103.79,67.44 A 55,55 0 0,0 67.50,103.59 Z" fill="rgba(196,150,42,0.22)">
+            <title>Option Pool — 15.42%</title>
+          </path>
+          <!-- Lead Angel: 4.762% -->
+          <path class="donut-slice" d="M 93.47,34.00 A 90,90 0 0,1 120.00,30.00 L 120.00,65.00 A 55,55 0 0,0 103.79,67.44 Z" fill="#22A06B">
+            <title>Lead Angel — 4.76%</title>
+          </path>
+          <!-- Inner hole label -->
+          <text x="120" y="113" text-anchor="middle" fill="#D4AF5A" font-size="15" font-family="Playfair Display,serif" font-weight="700">$4.2M</text>
+          <text x="120" y="128" text-anchor="middle" fill="rgba(136,153,170,0.8)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">POST-MONEY</text>
+        </svg>
+      </div>
+
+      <!-- RIGHT: METRICS + TABLE -->
+      <div class="captable-right">
+        <div class="captable-metrics">
+          <div class="ct-metric">
+            <div class="ct-metric-val">$4.0M</div>
+            <div class="ct-metric-lbl">Pre-Money Val.</div>
+          </div>
+          <div class="ct-metric">
+            <div class="ct-metric-val">$3.35</div>
+            <div class="ct-metric-lbl">Share Price</div>
+          </div>
+          <div class="ct-metric">
+            <div class="ct-metric-val">1.25M</div>
+            <div class="ct-metric-lbl">Total Shares</div>
+          </div>
+        </div>
+
+        <table class="ct-table">
+          <thead>
+            <tr>
+              <th>Shareholder</th>
+              <th>Shares</th>
+              <th>Ownership</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="ct-dot" style="background:#C4962A;"></span>CEO (Founder)</td>
+              <td>333,333</td>
+              <td>
+                <div class="ct-bar-wrap">
+                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:#C4962A;"></div></div>
+                  <span class="ct-pct">26.61%</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ct-dot" style="background:rgba(196,150,42,0.72);"></span>CTO (Founder)</td>
+              <td>333,333</td>
+              <td>
+                <div class="ct-bar-wrap">
+                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.72);"></div></div>
+                  <span class="ct-pct">26.61%</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ct-dot" style="background:rgba(196,150,42,0.45);"></span>COO (Founder)</td>
+              <td>333,334</td>
+              <td>
+                <div class="ct-bar-wrap">
+                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.45);"></div></div>
+                  <span class="ct-pct">26.61%</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ct-dot" style="background:rgba(196,150,42,0.22);"></span>Option Pool</td>
+              <td>193,138</td>
+              <td>
+                <div class="ct-bar-wrap">
+                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:15.42%;background:rgba(196,150,42,0.22);"></div></div>
+                  <span class="ct-pct">15.42%</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ct-dot" style="background:#22A06B;"></span>Lead Angel</td>
+              <td>59,657</td>
+              <td>
+                <div class="ct-bar-wrap">
+                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:4.76%;background:#22A06B;"></div></div>
+                  <span class="ct-pct">4.76%</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a href="models/VC Modelling.xlsx" download class="ct-download">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download Excel Model
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label fade-up" style="justify-content:center;"><div class="section-label-line"></div><span>Get In Touch</span><div class="section-label-line"></div></div>
+    <h2 class="fade-up">Let's connect.</h2>
+    <p class="contact-sub fade-up">Open to conversations about venture capital roles, investment opportunities, portfolio company introductions, or simply talking shop about early-stage markets.</p>
+    <div class="c-links fade-up">
+      <a href="mailto:tejas.sh1406@gmail.com" class="c-link">&#9993; tejas.sh1406@gmail.com</a>
+      <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="c-link" target="_blank">&#128279; LinkedIn</a>
+      <a href="tel:+15203427175" class="c-link">&#128222; +1 (520) 342-7175</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Tejas Sharma</div>
+  <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  function counter(el, target, suffix, isK) {
+    let s = null;
+    const run = (ts) => {
+      if (!s) s = ts;
+      const p = Math.min((ts - s) / 1500, 1), ease = 1 - Math.pow(1-p, 3), v = Math.floor(ease * target);
+      el.innerHTML = (isK && v >= 1000 ? '1K' : v) + `<span class="metric-suffix">${suffix}</span>`;
+      if (p < 1) requestAnimationFrame(run);
+    };
+    requestAnimationFrame(run);
+  }
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const d = [{t:40,s:'%'},{t:30,s:'%'},{t:70,s:'%'},{t:25,s:'%'},{t:1000,s:'+',k:true}];
+        e.target.querySelectorAll('.metric-number').forEach((el, i) => { if (d[i]) counter(el, d[i].t, d[i].s, d[i].k); });
+      }
+    });
+  }, { threshold: 0.3 }).observe(document.querySelector('#metrics'));
+</script>
+</body>
+</html>
