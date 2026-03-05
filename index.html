@@ -478,54 +478,47 @@
     /* ── SMALL DESKTOP FIX (1101 – 1440px) ─────────────────────────────────
        Root cause 1 — Avatar clipping:
          #hero has overflow:hidden + align-items:center + no vertical padding.
-         At 1280×800 / 1366×768 (or 110 % zoom), the left-column's stacked
+         At 1280×800 / 1366×768 (or 125% zoom), the left-column's stacked
          content can exceed the hero's height. align-items:center then shifts
-         the content's top ABOVE the hero edge, and overflow:hidden clips it,
-         cutting off the avatar and its 6 px box-shadow ring.
-         Fix: add explicit top/bottom padding + align-items:start so the
-         avatar always starts safely below the fixed nav.
+         the content's top ABOVE the hero edge, and overflow:hidden clips it.
+         Fix: add explicit top/bottom padding + align-items:start.
 
        Root cause 2 — Stats spacing:
-         .hero-stats is flex + flex-wrap:wrap + gap:3rem.  At ~1280–1300 px
-         the 4th stat ("$1M Portfolio Managed") wraps to a new row.
-         hero-divider elements have align-self:stretch, so they become
-         tall orphaned lines in the wrapped row → large vertical gap.
-         Fix: switch to a 2×2 CSS grid at ≤1300 px and hide dividers.
+         .hero-stats is flex + flex-wrap:wrap. At any width 1101–1440 px the
+         4th stat can wrap. Dividers (align-self:stretch) then become tall
+         orphaned vertical lines → large gap under "$1M Portfolio Managed".
+         Fix: single @media (max-width:1440px) block switches to a 2×2 CSS
+         grid for the entire small-desktop range (covers 1280, 1344, 1366,
+         1400, 1440 at both 100% and 125% browser zoom).
     ────────────────────────────────────────────────────────────────────── */
 
     @media (max-width: 1440px) and (min-width: 1101px) {
-      /* Fix 1: safe top padding prevents avatar from being pushed above
-         the hero edge by centering; align-items:start anchors content top */
+      /* Fix 1: safe vertical padding + top-anchor prevents avatar clipping */
       #hero {
         padding-top: 6.5rem;
         padding-bottom: 4rem;
         align-items: start;
       }
 
-      /* Fix 1b: scale avatar with viewport so it never crowds the column */
+      /* Fix 1b: avatar scales with viewport; flex:0 0 auto keeps it square */
       .hero-avatar {
         width: clamp(80px, 6vw, 110px);
         height: clamp(80px, 6vw, 110px);
+        flex: 0 0 auto;
       }
 
-      /* Fix 2: tighten stat gap so wrapping is less likely to trigger */
-      .hero-stats {
-        gap: 2rem;
-        margin-top: 2.75rem;
-      }
-    }
-
-    @media (max-width: 1300px) and (min-width: 1101px) {
-      /* Fix 2: switch from flex-wrap to a stable 2×2 grid */
-      .hero-stats {
+      /* Fix 2: stable 2×2 grid — covers ALL small-desktop widths.
+         The previous fix only kicked in at ≤1300px, missing 1344/1366/1400.
+         Now the grid applies for the entire 1101–1440px range. */
+      .hero .hero-stats {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, auto));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.5rem 2.5rem;
         margin-top: 2.5rem;
       }
 
-      /* Dividers make no sense in a grid; hide them */
-      .hero-divider {
+      /* Dividers are row-separators in flex — meaningless in a grid */
+      .hero .hero-stats .hero-divider {
         display: none;
       }
 
@@ -533,6 +526,15 @@
       .hero-stat-number {
         font-size: 2rem;
       }
+    }
+
+    /* ── BUILD / DEBUG STAMP ── */
+    #build-stamp {
+      font-size: 0.6rem;
+      font-family: monospace;
+      color: rgba(136,153,170,0.45);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -1246,6 +1248,7 @@
 <footer>
   <div class="footer-name">Tejas Sharma</div>
   <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
+  <div id="build-stamp"></div>
 </footer>
 
 <script>
@@ -1303,6 +1306,20 @@
       }
     });
   }, { threshold: 0.3 }).observe(document.querySelector('#metrics'));
+</script>
+<script>
+  /* Build stamp: visible only in footer — helps confirm latest deploy + breakpoint */
+  (function() {
+    var stamp = document.getElementById('build-stamp');
+    if (!stamp) return;
+    var hash = '57306b3'; // git commit hash — update on each deploy
+    var deployed = '2026-03-05';
+    function update() {
+      stamp.textContent = 'v' + hash + ' · ' + deployed + ' · ' + window.innerWidth + 'px';
+    }
+    update();
+    window.addEventListener('resize', update);
+  })();
 </script>
 </body>
 </html>
