@@ -294,9 +294,31 @@
     .nav-contact-mobile { display: none; }
 
     /* ── RESPONSIVE ── */
-    /* Small desktop: boost top padding so avatar clears nav at short viewport heights */
+    /* ≤1440px: anchor hero to top so avatar is never pushed above padding-top by
+       align-items:center overflow math. Also covers the "looks like 1440×900"
+       MacBook display mode which the max-width:1439px rule misses by 1px. */
     @media (max-width: 1440px) {
-      #hero { padding-top: clamp(5rem, 10vh, 7rem); }
+      #hero { padding-top: clamp(5rem, 10vh, 7rem); align-items: start; }
+    }
+
+    /* Project bullets: below 1440px switch from flex to block so <strong> tags
+       flow inline (not as separate flex items that squeeze/collapse). Scoped to
+       .project-bullets only — .timeline-bullets is unaffected. */
+    @media (max-width: 1439px) {
+      .project-bullets li {
+        display: block;
+        padding-left: 1.4rem;
+        position: relative;
+        overflow-wrap: break-word;
+        word-break: normal;
+        hyphens: auto;
+        min-width: 0;
+      }
+      .project-bullets li::before {
+        position: absolute;
+        left: 0;
+        top: 0.1rem;
+      }
     }
     @media (max-width: 1100px) {
       #hero { grid-template-columns: 1fr; padding-top: 8rem; }
