@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Independence Mobility Platform | Tejas Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/evaluations">Evaluations</a></li>
+    <li><a href="/theses">Theses</a></li>
+    <li><a href="/modeling">Modeling</a></li>
+    <li><a href="/experience">Experience</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
+  </ul>
+  <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <a href="/evaluations" class="back-link">All Evaluations</a>
+  <div class="page-header-label"><div class="page-header-label-line"></div><span>Mobility SaaS</span></div>
+  <h1>Driver Independence<br /><em>Mobility Platform</em></h1>
+  <p class="page-header-sub">Early Stage &middot; Evaluated 2025 &middot; Mobility SaaS</p>
+</div>
+
+<!-- CASE STUDY CONTENT -->
+<div class="cs-detail" style="padding-top: 5rem; padding-bottom: 6rem;">
+
+  <div class="cs-detail-section fade-up">
+    <h3>Problem</h3>
+    <p>Gig economy drivers across rideshare and delivery platforms operate with limited visibility into cross-platform demand patterns, incentive structures, and earnings optimization strategies. The result is inefficient time allocation and unpredictable income for a large and growing workforce that lacks the institutional support structures of traditional employment. Existing tools are either platform-specific or too narrow in scope to address the cross-platform coordination challenge.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Solution</h3>
+    <p>A cross-platform software tool that aggregates demand signals and operational data across multiple rideshare and delivery networks, providing personalized, real-time guidance to help drivers optimize when, where, and how they work. The platform is designed to improve earnings efficiency without requiring manual coordination across separate applications, reducing cognitive load while increasing per-hour output for active drivers.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Market Opportunity</h3>
+    <p>The gig transportation workforce is large, growing, and largely underserved by purpose-built software. As independent work continues to expand as a labor market category, driver-side tooling is emerging as a distinct software vertical with meaningful addressable market and limited competition at the cross-platform level. The absence of a dominant player creates an early-mover opportunity for a company that can establish network effects before incumbents respond.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Competitive Landscape</h3>
+    <p>Existing solutions in this category are narrow and platform-specific. No well-funded competitor has established a dominant cross-platform position. The medium-term competitive risk is native feature development by the rideshare platforms themselves, which have strong incentives to shape driver behavior through their own interfaces and could replicate certain features with existing infrastructure.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Evaluation Focus</h3>
+    <p>The evaluation focused on the unit economics structure and sensitivity to churn, the sustainability of platform API access over time, driver retention and engagement cohort behavior, and the company's strategy for building a data position that becomes harder to replicate as the user base grows. Platform dependency and the regulatory environment for gig work were treated as key risk factors.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <div class="cs-detail-verdict">
+      <div class="cs-detail-verdict-label">Investment Perspective</div>
+      <p>Cross-platform tooling for gig workers addresses a clear and measurable pain point in a fragmented market. The product value proposition is straightforward and directly tied to driver income, which creates strong organic adoption incentives. The central investment question is around defensibility: whether the company can build a dataset and network position that compounds before larger platforms respond with competing features or API restrictions.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border);">
+    <a href="/evaluations" class="back-link">Back to All Evaluations</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-name">Tejas Sharma</div>
+  <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
+  <div id="build-stamp"></div>
+</footer>
+<div id="debug-overlay"></div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  (function() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+      if (href !== '/' && path.startsWith(href)) a.classList.add('active');
+    });
+  })();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks  = document.getElementById('navLinks');
+  function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
+  function openMenu()  { hamburger.classList.add('open');    navLinks.classList.add('open');    document.body.style.overflow = 'hidden'; hamburger.setAttribute('aria-expanded','true'); }
+  hamburger.setAttribute('aria-expanded','false');
+  hamburger.setAttribute('aria-controls','navLinks');
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+  (function() {
+    var stamp = document.getElementById('build-stamp');
+    if (stamp) stamp.textContent = 'vmulti-page · 2026-03-05 · ' + window.innerWidth + 'px';
+  })();
+</script>
+</body>
+</html>

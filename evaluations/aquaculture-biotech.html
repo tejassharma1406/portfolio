@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oral Vaccine Platform for Aquaculture | Tejas Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/evaluations">Evaluations</a></li>
+    <li><a href="/theses">Theses</a></li>
+    <li><a href="/modeling">Modeling</a></li>
+    <li><a href="/experience">Experience</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
+  </ul>
+  <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <a href="/evaluations" class="back-link">All Evaluations</a>
+  <div class="page-header-label"><div class="page-header-label-line"></div><span>Aquaculture Biotech</span></div>
+  <h1>Oral Vaccine Platform<br /><em>for Aquaculture</em></h1>
+  <p class="page-header-sub">Early Stage &middot; Evaluated 2025 &middot; Aquaculture Biotech</p>
+</div>
+
+<!-- CASE STUDY CONTENT -->
+<div class="cs-detail" style="padding-top: 5rem; padding-bottom: 6rem;">
+
+  <div class="cs-detail-section fade-up">
+    <h3>Problem</h3>
+    <p>Disease management in commercial aquaculture relies heavily on injectable vaccines and antibiotic treatments. Injectable approaches require significant labor, cause fish handling stress, and face growing regulatory and consumer pressure related to antibiotic use in food supply chains. These constraints limit operational scalability for farm operators and create sustainability risks that are increasingly scrutinized by food retailers and regulatory bodies in major markets.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Solution</h3>
+    <p>An oral vaccine delivery system that enables mass immunization of farmed fish through feed-based administration. The platform is designed to eliminate the need for manual injection, reduce fish handling stress, and enable disease prevention at a scale not feasible with current injectable methods. The approach targets the major disease categories responsible for the highest rates of mortality and economic loss in commercial aquaculture operations.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Market Opportunity</h3>
+    <p>Aquaculture is among the fastest-growing protein production sectors globally, driven by rising demand for sustainable seafood and the fundamental limits of wild catch capacity. Disease prevention is consistently identified as a top operational and economic priority by farm operators. The adoption of more scalable health management tools is accelerating across major producing regions as farm scale increases and sustainability mandates tighten.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Competitive Landscape</h3>
+    <p>Injectable vaccines produced by a small number of established veterinary pharmaceutical companies remain the standard of care across the industry. Oral delivery has historically faced meaningful technical barriers related to antigen stability and achieving efficacy comparable to injectable approaches at commercial scale. A platform that credibly overcomes these barriers would represent a significant competitive differentiation in a market where the incumbent approach has structural limitations.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Evaluation Focus</h3>
+    <p>The evaluation examined the biological mechanism and efficacy evidence relative to injectable alternatives, the manufacturing scalability pathway, the regulatory approval strategy across key aquaculture markets, and the quality of existing relationships with commercial farm operators. The founding team's combined biology expertise and aquaculture operational experience was a significant factor in the assessment.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <div class="cs-detail-verdict">
+      <div class="cs-detail-verdict-label">Investment Perspective</div>
+      <p>An oral vaccine platform with demonstrated efficacy at commercial scale could meaningfully reshape disease management across a large and growing industry. The value proposition is directly tied to a measurable economic outcome for operators, which creates strong adoption incentives once technical and regulatory risk is sufficiently reduced. The key investment question is the degree to which that risk has been de-risked relative to the company's current stage and the capital required to reach the next meaningful validation milestone.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border);">
+    <a href="/evaluations" class="back-link">Back to All Evaluations</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-name">Tejas Sharma</div>
+  <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
+  <div id="build-stamp"></div>
+</footer>
+<div id="debug-overlay"></div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  (function() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+      if (href !== '/' && path.startsWith(href)) a.classList.add('active');
+    });
+  })();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks  = document.getElementById('navLinks');
+  function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
+  function openMenu()  { hamburger.classList.add('open');    navLinks.classList.add('open');    document.body.style.overflow = 'hidden'; hamburger.setAttribute('aria-expanded','true'); }
+  hamburger.setAttribute('aria-expanded','false');
+  hamburger.setAttribute('aria-controls','navLinks');
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+  (function() {
+    var stamp = document.getElementById('build-stamp');
+    if (stamp) stamp.textContent = 'vmulti-page · 2026-03-05 · ' + window.innerWidth + 'px';
+  })();
+</script>
+</body>
+</html>

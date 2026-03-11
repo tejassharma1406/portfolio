@@ -7,472 +7,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --navy:       #08111F;
-      --navy-mid:   #0D1E35;
-      --navy-light: #162844;
-      --gold:       #C4962A;
-      --gold-light: #D4AF5A;
-      --green-light:#22A06B;
-      --blue-accent:#5B9BD5;
-      --purple-accent:#9B7FE8;
-      --text:       #E8E4DC;
-      --text-muted: #8899AA;
-      --border:     rgba(196,150,42,0.18);
-      --card-bg:    rgba(13,30,53,0.7);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--navy); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
-    a { color: inherit; text-decoration: none; }
-    ::selection { background: var(--gold); color: var(--navy); }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--navy); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(196,150,42,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(196,150,42,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none; z-index: 0;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem 5%;
-      background: rgba(8,17,31,0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      transition: padding 0.3s;
-    }
-    nav.scrolled { padding: 0.85rem 5%; }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.04em; }
-    .nav-logo span { color: var(--text); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); transition: color 0.25s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.25s; }
-    .nav-links a:hover { color: var(--gold-light); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.35rem; border: 1px solid var(--gold); color: var(--gold-light); border-radius: 2px; transition: background 0.25s, color 0.25s; }
-    .nav-cta:hover { background: var(--gold); color: var(--navy); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: grid; grid-template-columns: 1fr 1.1fr;
-      align-items: center;
-      padding: clamp(4.5rem, 9vh, 7rem) 5% clamp(2rem, 4vh, 4rem);
-      gap: 3rem;
-      background: var(--navy); position: relative; overflow: visible;
-      z-index: 1;
-    }
-    .hero-avatar-wrap { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; flex: 0 0 auto; }
-    .hero-avatar { width: clamp(84px, 6vw, 120px); height: clamp(84px, 6vw, 120px); min-width: clamp(84px, 6vw, 120px); border-radius: 9999px; border: 2.5px solid var(--gold); box-shadow: 0 0 0 6px rgba(196,150,42,0.1), 0 8px 32px rgba(0,0,0,0.5); object-fit: cover; object-position: center; flex: 0 0 auto; flex-shrink: 0; }
-    .hero-avatar-meta { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
-    .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); }
-    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-    .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
-    .hero-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
-    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); }
-    h1 em { font-style: italic; color: var(--gold-light); }
-    .hero-sub { margin-top: 1.75rem; font-size: 1.02rem; color: var(--text-muted); max-width: 480px; line-height: 1.9; }
-    .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary { padding: 0.85rem 2rem; background: var(--gold); color: var(--navy); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.25s, transform 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-secondary { padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: border-color 0.25s, color 0.25s, transform 0.2s; }
-    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
-    .hero-stats {
-      margin-top: 4rem;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0;
-    }
-    .hero-stat { padding: 0 2rem 0 0; }
-    .hero-stat + .hero-stat { padding: 0 2rem; border-left: 1px solid var(--border); }
-    .hero-stat:last-child { padding-right: 0; }
-    .hero-stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
-    .hero-stat-number sup { font-size: 1.1rem; }
-    .hero-stat-label { margin-top: 0.35rem; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
-    .trajectory-svg { width: 100%; max-width: 520px; }
-
-    /* ── SECTION BASE ── */
-    section { padding: 7rem 5%; position: relative; z-index: 1; }
-    .section-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-    .section-label-line { width: 28px; height: 1px; background: var(--gold); }
-    .section-label span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
-    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.12; color: var(--text); }
-    .section-intro { margin-top: 0.75rem; font-size: 0.97rem; color: var(--text-muted); max-width: 550px; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-
-    /* ── ABOUT ── */
-    #about { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; align-items: start; }
-    .about-text p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.95; margin-bottom: 1.2rem; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-    .about-text p strong { color: var(--text); font-weight: 600; }
-    .thesis-cards { display: flex; flex-direction: column; gap: 1.25rem; }
-    .thesis-card { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.5rem 1.75rem; border-radius: 2px; transition: transform 0.25s, border-left-color 0.25s; }
-    .thesis-card:hover { transform: translateX(4px); border-left-color: var(--gold-light); }
-    .thesis-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
-    .thesis-card-icon { width: 28px; height: 28px; flex-shrink: 0; }
-    .thesis-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
-    .thesis-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-
-    /* ── INVESTMENT THESES ── */
-    #theses { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .theses-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .thesis-item { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2rem 2rem 2rem 1.75rem; transition: transform 0.25s, border-left-color 0.25s; }
-    .thesis-item:hover { transform: translateX(4px); border-left-color: var(--gold-light); }
-    .thesis-item-num { font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; color: rgba(196,150,42,0.3); letter-spacing: 0.2em; margin-bottom: 0.5rem; }
-    .thesis-item-name { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .thesis-item-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; overflow-wrap: break-word; hyphens: auto; }
-
-    /* ── DEAL SOURCING ── */
-    #sourcing { background: var(--navy); border-top: 1px solid var(--border); }
-    .sourcing-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .sourcing-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; transition: transform 0.25s, border-color 0.25s; position: relative; }
-    .sourcing-card:hover { transform: translateY(-3px); border-color: rgba(196,150,42,0.35); }
-    .sourcing-card-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: rgba(196,150,42,0.1); line-height: 1; margin-bottom: 0.75rem; }
-    .sourcing-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .sourcing-card-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; overflow-wrap: break-word; hyphens: auto; }
-    @media (max-width: 900px) {
-      .theses-grid, .sourcing-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── CASE STUDIES ── */
-    #work { background: var(--navy); border-top: 1px solid var(--border); }
-    .cs-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .cs-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      padding: 2.25rem 2rem; cursor: pointer;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-      display: flex; flex-direction: column; position: relative; overflow: hidden;
-    }
-    .cs-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      opacity: 0.6; transition: opacity 0.25s;
-    }
-    .cs-card.digital-health::before { background: var(--green-light); }
-    .cs-card.mobility::before      { background: var(--blue-accent); }
-    .cs-card.biotech::before       { background: var(--gold); }
-    .cs-card.deep-tech::before     { background: var(--purple-accent); }
-    .cs-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
-    .cs-card:hover::before { opacity: 1; }
-    .cs-sector-badge {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1.25rem; border-radius: 2px;
-    }
-    .cs-sector-badge.digital-health { color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); }
-    .cs-sector-badge.mobility       { color: var(--blue-accent);  background: rgba(91,155,213,0.1);  border: 1px solid rgba(91,155,213,0.25); }
-    .cs-sector-badge.biotech        { color: var(--gold-light);   background: rgba(196,150,42,0.1);  border: 1px solid rgba(196,150,42,0.25); }
-    .cs-sector-badge.deep-tech      { color: var(--purple-accent);background: rgba(155,127,232,0.1); border: 1px solid rgba(155,127,232,0.25); }
-    .cs-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; line-height: 1.25; }
-    .cs-stage { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500; }
-    .cs-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; flex: 1; margin-bottom: 1.5rem; overflow-wrap: break-word; hyphens: auto; }
-    .cs-angles { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.75rem; }
-    .cs-angle-tag {
-      font-size: 0.61rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 0.2rem 0.6rem; background: rgba(196,150,42,0.04); border: 1px solid var(--border); color: var(--text-muted);
-    }
-    .cs-cta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-top: auto; transition: gap 0.2s; }
-    .cs-card:hover .cs-cta { gap: 0.8rem; }
-
-    /* ── CASE STUDY MODAL ── */
-    .cs-modal-overlay {
-      position: fixed; inset: 0; background: rgba(8,17,31,0.85); z-index: 500;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s;
-      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-    }
-    .cs-modal-overlay.open { opacity: 1; pointer-events: auto; }
-    .cs-modal {
-      position: fixed; top: 0; right: 0; bottom: 0; width: min(700px, 100vw);
-      background: var(--navy-mid); border-left: 1px solid var(--border); z-index: 501;
-      overflow-y: auto; -webkit-overflow-scrolling: touch;
-      transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-      padding: 3.5rem 3rem 4rem;
-    }
-    .cs-modal.open { transform: translateX(0); }
-    .cs-modal-close {
-      position: absolute; top: 1.5rem; right: 1.5rem; background: none;
-      border: 1px solid var(--border); color: var(--text-muted); width: 36px; height: 36px;
-      border-radius: 2px; cursor: pointer; font-size: 1.1rem;
-      display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s;
-    }
-    .cs-modal-close:hover { border-color: var(--gold); color: var(--gold-light); }
-    .cs-modal-sector-label {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1rem; border-radius: 2px;
-    }
-    .cs-modal-sector-label.digital-health { color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); }
-    .cs-modal-sector-label.mobility       { color: var(--blue-accent);  background: rgba(91,155,213,0.1);  border: 1px solid rgba(91,155,213,0.25); }
-    .cs-modal-sector-label.biotech        { color: var(--gold-light);   background: rgba(196,150,42,0.1);  border: 1px solid rgba(196,150,42,0.25); }
-    .cs-modal-sector-label.deep-tech      { color: var(--purple-accent);background: rgba(155,127,232,0.1); border: 1px solid rgba(155,127,232,0.25); }
-    .cs-modal h3 { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 0.5rem; }
-    .cs-modal-stage { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
-    .cs-modal-divider { width: 40px; height: 1px; background: var(--gold); opacity: 0.5; margin-bottom: 2rem; }
-    .cs-modal-section { margin-bottom: 2rem; }
-    .cs-modal-section h4 {
-      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem;
-    }
-    .cs-modal-section h4::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--gold); }
-    .cs-modal-section p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; overflow-wrap: break-word; hyphens: auto; }
-    .cs-modal-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .cs-modal-section ul li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; overflow-wrap: break-word; hyphens: auto; }
-    .cs-modal-section ul li::before { content: '›'; color: var(--gold); font-size: 1rem; flex-shrink: 0; line-height: 1.7; }
-    .cs-modal-section ul li strong { color: var(--text); font-weight: 600; }
-    .cs-modal-verdict {
-      background: rgba(196,150,42,0.04); border: 1px solid var(--border); border-left: 3px solid var(--gold);
-      padding: 1.5rem 1.75rem; margin-top: 0.5rem;
-    }
-    .cs-modal-verdict-label { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
-    .cs-modal-verdict p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; overflow-wrap: break-word; hyphens: auto; }
-
-    /* ── EXPERIENCE ── */
-    #experience { background: var(--navy-mid); border-top: 1px solid var(--border); }
-    .timeline { margin-top: 4.5rem; position: relative; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold) 60%, transparent); }
-    .timeline-item { padding-left: 3rem; padding-bottom: 3.5rem; position: relative; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-dot { position: absolute; left: -6px; top: 6px; width: 13px; height: 13px; background: var(--gold); border-radius: 50%; border: 2px solid var(--navy-mid); box-shadow: 0 0 0 4px rgba(196,150,42,0.15); }
-    .timeline-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
-    .timeline-period { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,150,42,0.1); padding: 0.2rem 0.7rem; border-radius: 2px; }
-    .timeline-company { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
-    .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
-    .timeline-location { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.4rem; }
-    .timeline-location::before { content: ''; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; flex-shrink: 0; }
-    .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .timeline-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; min-width: 0; }
-    .timeline-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.75; }
-    .timeline-bullets li strong { color: var(--text); }
-    .timeline-tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .tag { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--border); color: var(--text-muted); background: rgba(196,150,42,0.04); }
-
-    /* ── FINANCIAL MODELING ── */
-    #modeling { background: var(--navy); border-top: 1px solid var(--border); }
-    .modeling-intro { margin-top: 0.75rem; font-size: 0.97rem; color: var(--text-muted); max-width: 560px; line-height: 1.85; }
-    .captable-card { margin-top: 3.5rem; background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; transition: border-color 0.25s; }
-    .captable-card:hover { border-color: rgba(196,150,42,0.4); }
-    .project-badge { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1rem; }
-    .project-title { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .project-course { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
-    .project-meta-sub { font-size: 0.76rem; color: var(--text-muted); opacity: 0.7; margin-bottom: 1.75rem; }
-    .captable-inner { display: grid; grid-template-columns: 260px 1fr; gap: 3.5rem; align-items: center; margin-top: 2.25rem; }
-    .donut-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
-    .donut-svg { width: 240px; height: 240px; overflow: visible; }
-    .donut-slice { cursor: pointer; transition: opacity 0.2s, filter 0.2s; }
-    .donut-slice:hover { opacity: 0.85; filter: brightness(1.25); }
-    .captable-right { display: flex; flex-direction: column; gap: 1.75rem; }
-    .captable-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-    .ct-metric { background: rgba(196,150,42,0.04); border: 1px solid var(--border); padding: 1rem 1.2rem; }
-    .ct-metric-val { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
-    .ct-metric-lbl { margin-top: 0.3rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .ct-table { width: 100%; border-collapse: collapse; }
-    .ct-table thead tr { border-bottom: 1px solid var(--border); }
-    .ct-table th { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); padding: 0 0.75rem 0.65rem; text-align: left; }
-    .ct-table th:last-child { text-align: right; }
-    .ct-table td { font-size: 0.82rem; color: var(--text-muted); padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(196,150,42,0.07); vertical-align: middle; }
-    .ct-table td:last-child { text-align: right; }
-    .ct-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; flex-shrink: 0; vertical-align: middle; }
-    .ct-bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
-    .ct-bar-bg { flex: 1; height: 4px; background: rgba(196,150,42,0.1); border-radius: 2px; }
-    .ct-bar-fill { height: 4px; border-radius: 2px; }
-    .ct-pct { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 700; color: var(--text); min-width: 42px; text-align: right; }
-    .ct-download { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(196,150,42,0.35); padding: 0.6rem 1.25rem; transition: background 0.2s, color 0.2s; }
-    .ct-download:hover { background: rgba(196,150,42,0.08); color: var(--gold-light); }
-    .model-note { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
-    .model-note::before { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; flex-shrink: 0; }
-
-    /* ── INVESTMENT INTERESTS ── */
-    #interests { background: var(--navy-mid); border-top: 1px solid var(--border); }
-    .interests-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .interest-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      padding: 2rem 1.75rem; transition: transform 0.25s, border-color 0.25s; position: relative; overflow: hidden;
-    }
-    .interest-card:hover { transform: translateY(-3px); border-color: rgba(196,150,42,0.35); }
-    .interest-card-accent {
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--accent-color, var(--gold)); opacity: 0.5; transition: opacity 0.25s;
-    }
-    .interest-card:hover .interest-card-accent { opacity: 1; }
-    .interest-icon { font-size: 1.4rem; margin-bottom: 1rem; line-height: 1; }
-    .interest-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .interest-thesis { font-size: 0.86rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; hyphens: auto; }
-    .interests-fifth { grid-column: span 1; }
-
-    /* ── SKILLS ── */
-    #skills { background: var(--navy); border-top: 1px solid var(--border); }
-    .skills-wrapper { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-    .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-    .skill-pill { font-size: 0.78rem; font-weight: 500; padding: 0.42rem 0.95rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); transition: border-color 0.2s, color 0.2s; max-width: 100%; overflow-wrap: break-word; }
-    .skill-pill:hover { border-color: var(--gold); color: var(--gold-light); }
-    .skill-pill.highlight { border-color: rgba(196,150,42,0.45); color: var(--gold-light); background: rgba(196,150,42,0.08); font-weight: 600; }
-
-    /* ── EDUCATION ── */
-    #education { background: var(--navy-mid); border-top: 1px solid var(--border); }
-    .edu-grid { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .edu-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.25rem; position: relative; overflow: hidden; transition: transform 0.25s, border-color 0.25s; }
-    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
-    .edu-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); }
-    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .edu-school { font-size: 0.86rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.25rem; }
-    .edu-period { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 1.1rem; }
-    .edu-detail { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; min-width: 0; overflow-wrap: break-word; }
-    .edu-gpa { display: inline-block; margin-top: 1rem; padding: 0.28rem 0.8rem; background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.28); font-size: 0.75rem; font-weight: 700; color: var(--green-light); letter-spacing: 0.05em; }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--navy); border-top: 1px solid var(--border); text-align: center; }
-    .contact-inner { max-width: 640px; margin: 0 auto; }
-    .contact-inner h2 { margin-top: 1.5rem; }
-    .contact-sub { margin-top: 1rem; font-size: 0.97rem; color: var(--text-muted); line-height: 1.85; }
-    .c-links { margin-top: 2.5rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
-    .c-link { display: flex; align-items: center; gap: 0.55rem; font-size: 0.83rem; font-weight: 600; color: var(--text-muted); padding: 0.75rem 1.5rem; border: 1px solid var(--border); transition: border-color 0.25s, color 0.25s, transform 0.2s; min-width: 0; overflow-wrap: break-word; word-break: break-all; }
-    .c-link:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
-
-    /* ── FOOTER ── */
-    footer { padding: 1.75rem 5%; background: var(--navy); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
-    .footer-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--gold-light); }
-    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
-
-    /* ── FADE ── */
-    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── HAMBURGER ── */
-    .nav-hamburger {
-      display: none; flex-direction: column; justify-content: center; gap: 6px;
-      cursor: pointer; background: none; border: none; padding: 8px; z-index: 201;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--gold-light); border-radius: 2px; transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), opacity 0.25s ease, width 0.25s ease; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .nav-contact-mobile { display: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1600px) {
-      #hero { padding-top: clamp(5rem, 10vh, 7rem); align-items: start; }
-      .hero-avatar-wrap { margin-top: 12px; }
-      .hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.5rem 0; margin-top: 2.5rem; }
-      .hero-stat              { padding: 0 1.5rem 0 0; border-left: none; border-top: none; }
-      .hero-stat + .hero-stat { padding: 0 0 0 1.5rem; border-left: 1px solid var(--border); border-top: none; }
-      .hero-stat:nth-child(3) { padding: 1.5rem 1.5rem 0 0; border-left: none; border-top: 1px solid var(--border); }
-      .hero-stat:nth-child(4) { padding: 1.5rem 0 0 1.5rem; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
-      .hero-stat-number { font-size: 2rem; }
-    }
-    @media (max-width: 1100px) {
-      #hero { grid-template-columns: 1fr; padding-top: 8rem; }
-      .hero-right { display: none; }
-      .interests-grid { grid-template-columns: repeat(2,1fr); }
-    }
-    @media (max-width: 900px) {
-      .about-grid, .edu-grid, .skills-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-      .cs-grid { grid-template-columns: 1fr; }
-      .captable-inner { grid-template-columns: 1fr; }
-      .donut-wrap { justify-content: flex-start; }
-      .captable-metrics { grid-template-columns: repeat(2,1fr); }
-    }
-    @media (max-width: 768px) {
-      .hero-stats { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
-      .hero-stat              { padding: 0.75rem 0; border-left: none !important; border-top: none !important; }
-      .hero-stat ~ .hero-stat { border-top: 1px solid var(--border) !important; }
-      .hero-stat-number { font-size: 2rem; }
-    }
-    @media (max-width: 640px) {
-      nav { z-index: 300; }
-      .nav-hamburger { display: flex; }
-      .nav-cta { display: none; }
-      .nav-contact-mobile { display: block; }
-      .nav-links {
-        display: flex !important; flex-direction: column; align-items: center; justify-content: center;
-        gap: 0; list-style: none;
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0; inset: 0;
-        width: 100%; height: 100vh; height: 100dvh;
-        background: #08111F; background: rgba(8,17,31,0.98);
-        -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
-        opacity: 0; pointer-events: none; visibility: hidden;
-        transition: opacity 0.35s ease, visibility 0.35s ease; z-index: 200;
-        padding: 5rem 2rem 3rem; overflow-y: auto; -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-      }
-      .nav-links.open { opacity: 1; pointer-events: auto; visibility: visible; }
-      .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(196,150,42,0.1); transform: translateY(18px); opacity: 0; transition: transform 0.4s ease, opacity 0.4s ease; position: static; margin: 0; }
-      .nav-links li:first-child { border-top: 1px solid rgba(196,150,42,0.1); }
-      .nav-links.open li { transform: translateY(0); opacity: 1; }
-      .nav-links.open li:nth-child(1) { transition-delay: 0.06s; }
-      .nav-links.open li:nth-child(2) { transition-delay: 0.12s; }
-      .nav-links.open li:nth-child(3) { transition-delay: 0.18s; }
-      .nav-links.open li:nth-child(4) { transition-delay: 0.24s; }
-      .nav-links.open li:nth-child(5) { transition-delay: 0.30s; }
-      .nav-links.open li:nth-child(6) { transition-delay: 0.36s; }
-      .nav-links.open li:nth-child(7) { transition-delay: 0.42s; }
-      .nav-links li a { display: block; padding: 1.25rem 0; min-height: 44px; line-height: 44px; font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; transition: color 0.25s; }
-      .nav-links li a:hover, .nav-links li a:active { color: var(--gold-light); }
-      section { padding: 4rem 4%; }
-      #hero { padding: 7rem 4% 4rem; gap: 2rem; }
-      h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
-      .hero-sub { font-size: 0.93rem; max-width: 100%; }
-      .hero-stats { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
-      .hero-stat              { padding: 0.75rem 0; border-left: none !important; border-top: none !important; }
-      .hero-stat ~ .hero-stat { border-top: 1px solid var(--border) !important; }
-      .hero-stat-number { font-size: 1.8rem; }
-      .captable-card { padding: 1.75rem; }
-      .interests-grid { grid-template-columns: 1fr; }
-      .cs-modal { padding: 2.5rem 1.5rem 3rem; }
-      .timeline-item { padding-left: 2rem; }
-      .timeline-bullets li, .cs-modal-section ul li { display: block; padding-left: 1.4rem; position: relative; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
-      .timeline-bullets li::before, .cs-modal-section ul li::before { position: absolute; left: 0; top: 0.05rem; }
-      footer { flex-direction: column; text-align: center; }
-    }
-    @media (max-width: 420px) {
-      section { padding: 3rem 4%; }
-      #hero { padding: 6.5rem 4% 3rem; }
-      h1 { font-size: 2rem; }
-      .hero-avatar { width: clamp(72px,18vw,85px); height: clamp(72px,18vw,85px); }
-      .hero-actions { flex-direction: column; }
-      .btn-primary, .btn-secondary { text-align: center; }
-      .captable-metrics { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 359px) {
-      .interests-grid { grid-template-columns: 1fr !important; }
-    }
-
-    /* cross-browser defensive */
-    .about-text, .thesis-cards, .edu-detail, .contact-sub, .timeline-title,
-    .timeline-company, .edu-degree, .edu-school, .project-title, .project-course { min-width: 0; overflow-wrap: break-word; word-break: normal; }
-    .timeline-bullets li strong, .about-text p strong { display: inline; overflow-wrap: break-word; word-break: normal; }
-    .hero-left, .hero-right { min-width: 0; }
-    .cs-grid > *, .interests-grid > *, .about-grid > *, .edu-grid > *, .skills-wrapper > * { min-width: 0; }
-
-    /* ── BUILD STAMP ── */
-    #build-stamp { font-size: 0.6rem; font-family: monospace; color: rgba(136,153,170,0.45); letter-spacing: 0.05em; white-space: nowrap; }
-    #debug-overlay { position: fixed; bottom: 1rem; right: 1rem; z-index: 9999; background: rgba(8,17,31,0.92); border: 1px solid rgba(196,150,42,0.4); color: #D4AF5A; font-family: monospace; font-size: 0.68rem; line-height: 1.6; padding: 0.55rem 0.85rem; border-radius: 3px; pointer-events: none; display: none; }
-  </style>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo">Tejas<span> Sharma</span></div>
+  <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#theses">Theses</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li class="nav-contact-mobile"><a href="Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/evaluations">Evaluations</a></li>
+    <li><a href="/theses">Theses</a></li>
+    <li><a href="/modeling">Modeling</a></li>
+    <li><a href="/experience">Experience</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
   </ul>
-  <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
+  <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
   <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
     <span></span><span></span><span></span>
   </button>
@@ -482,7 +34,7 @@
 <section id="hero">
   <div class="hero-left">
     <div class="hero-avatar-wrap fade-up">
-      <img class="hero-avatar" src="profile.png" alt="Tejas Sharma" />
+      <img class="hero-avatar" src="/profile.png" alt="Tejas Sharma" />
       <div class="hero-avatar-meta">
         <div class="hero-avatar-name">Tejas Sharma</div>
         <div class="hero-avatar-role">Venture Capital Analyst</div>
@@ -495,8 +47,8 @@
     <h1 class="fade-up">Tejas<br /><em>Sharma</em></h1>
     <p class="hero-sub fade-up">Early-stage VC analyst evaluating startups across digital health, mobility, biotech, and deep tech.</p>
     <div class="hero-actions fade-up">
-      <a href="#work" class="btn-primary">View Startup Evaluations</a>
-      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Download Resume</a>
+      <a href="/evaluations" class="btn-primary">View Startup Evaluations</a>
+      <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Download Resume</a>
       <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="btn-secondary" target="_blank">LinkedIn</a>
     </div>
     <div class="hero-stats fade-up">
@@ -513,8 +65,8 @@
         <div class="hero-stat-label">Sectors Covered</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-number">3.92</div>
-        <div class="hero-stat-label">GPA / 4.0</div>
+        <div class="hero-stat-number">3<sup>+</sup></div>
+        <div class="hero-stat-label">Years in VC</div>
       </div>
     </div>
   </div>
@@ -544,10 +96,6 @@
       <circle cx="448" cy="78" r="200" stroke="rgba(196,150,42,0.03)" stroke-width="1" fill="none"/>
       <circle cx="448" cy="78" r="270" stroke="rgba(196,150,42,0.02)" stroke-width="1" fill="none"/>
       <path d="M 30,445 C 90,420 160,390 210,362 C 270,328 310,290 355,248 C 395,210 420,155 448,78 L 448,460 L 30,460 Z" fill="url(#areaFill)"/>
-      <path d="M 30,455 C 92,432 162,402 212,374 C 273,340 313,302 358,260 C 398,222 423,167 448,90" stroke="rgba(196,150,42,0.07)" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M 30,450 C 91,427 161,397 211,370 C 272,336 312,297 357,255 C 397,216 422,161 448,84" stroke="rgba(196,150,42,0.1)"  stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M 30,445 C 90,422 160,392 210,365 C 271,331 311,293 356,251 C 396,212 421,157 448,80" stroke="rgba(196,150,42,0.15)" stroke-width="2"   stroke-linecap="round"/>
-      <path d="M 30,440 C 89,417 159,387 209,360 C 270,326 310,288 355,246 C 395,208 420,153 448,76" stroke="rgba(196,150,42,0.22)" stroke-width="2.5" stroke-linecap="round"/>
       <path d="M 30,435 C 88,411 158,381 208,354 C 269,320 309,282 354,240 C 394,202 419,147 448,70"  stroke="rgba(196,150,42,0.65)" stroke-width="3"   stroke-linecap="round"/>
       <path d="M 30,432 C 87,408 157,378 207,351 C 268,317 308,279 353,237 C 393,199 418,144 448,67"  stroke="#C4962A"              stroke-width="2.2" stroke-linecap="round"/>
       <line x1="138" y1="390" x2="138" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
@@ -569,476 +117,143 @@
       <circle cx="448" cy="70" r="22" fill="rgba(196,150,42,0.14)" stroke="rgba(196,150,42,0.55)" stroke-width="1.5"/>
       <circle cx="448" cy="70" r="10" fill="rgba(196,150,42,0.35)" stroke="#C4962A" stroke-width="2"/>
       <circle cx="448" cy="70" r="4"  fill="#C4962A"/>
-      <line x1="448" y1="70" x2="475" y2="40"  stroke="rgba(196,150,42,0.55)" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="448" y1="70" x2="468" y2="32"  stroke="rgba(196,150,42,0.42)" stroke-width="1"   stroke-linecap="round"/>
-      <line x1="448" y1="70" x2="480" y2="55"  stroke="rgba(196,150,42,0.38)" stroke-width="1"   stroke-linecap="round"/>
-      <line x1="448" y1="70" x2="488" y2="68"  stroke="rgba(196,150,42,0.3)"  stroke-width="0.9" stroke-linecap="round"/>
-      <line x1="448" y1="70" x2="430" y2="30"  stroke="rgba(196,150,42,0.28)" stroke-width="0.8" stroke-linecap="round"/>
       <text x="448" y="24" text-anchor="middle" fill="rgba(196,150,42,0.8)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="2">WPSF</text>
       <text x="448" y="13" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="9" font-family="Playfair Display,serif" font-weight="700">$5M</text>
-      <circle cx="70"  cy="260" r="2"   fill="rgba(196,150,42,0.2)"/>
-      <circle cx="180" cy="180" r="1.5" fill="rgba(196,150,42,0.18)"/>
-      <circle cx="310" cy="130" r="2"   fill="rgba(196,150,42,0.2)"/>
-      <circle cx="420" cy="160" r="1.5" fill="rgba(196,150,42,0.15)"/>
-      <circle cx="80"  cy="370" r="1.5" fill="rgba(196,150,42,0.12)"/>
     </svg>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Approach</span></div>
-  <h2 class="fade-up">Where capital<br />meets conviction.</h2>
-  <div class="about-grid">
-    <div class="about-text fade-up">
-      <p>I am an early-stage venture capital analyst with hands-on experience across <strong>deal evaluation, financial due diligence, and fund operations</strong>. As a VC Analyst at <strong>Tech Launch Arizona</strong>, I conduct end-to-end diligence on IP-backed startups for the Wildcat Philanthropic Seed Fund, a $5M evergreen university fund. My work covers market analysis, competitive benchmarking, financial modeling, and Investment Committee presentations.</p>
-      <p>My evaluation work spans four sectors: <strong>digital health, mobility SaaS, aquaculture biotech, and deep tech semiconductor equipment</strong>. Each deal has sharpened my ability to stress-test business models, size markets rigorously, and identify the variables that determine whether a company scales or stalls.</p>
-      <p>Before Tech Launch Arizona, I co-founded <strong>FanFliQ</strong> and led a $60K seed raise. That experience gave me founder-side fluency in cap table mechanics, investor narrative, and unit economics that most analysts don't get early in their careers.</p>
-    </div>
-    <div class="thesis-cards fade-up">
-      <div class="thesis-card">
-        <div class="thesis-card-header">
-          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
-            <polyline points="7,20 10,14 14,17 18,11 21,7" stroke="#C4962A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="21" cy="7" r="2" fill="#C4962A"/>
-          </svg>
-          <div class="thesis-card-title">Startup Evaluation</div>
-        </div>
-        <p>Market sizing, competitive moat analysis, unit economics review, and team assessment. The full diligence stack for early-stage investments from pre-seed to Series A.</p>
-      </div>
-      <div class="thesis-card">
-        <div class="thesis-card-header">
-          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
-            <rect x="8" y="9" width="12" height="10" rx="1" stroke="#C4962A" stroke-width="1.2" fill="none"/>
-            <line x1="11" y1="13" x2="17" y2="13" stroke="#C4962A" stroke-width="1" stroke-linecap="round"/>
-            <line x1="11" y1="15.5" x2="15" y2="15.5" stroke="#C4962A" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-          </svg>
-          <div class="thesis-card-title">Financial Modeling</div>
-        </div>
-        <p>3-statement models, cap table mechanics, waterfall analysis, cash flow projections, and scenario analysis. Quantitative diligence that drives IC conviction.</p>
-      </div>
-      <div class="thesis-card">
-        <div class="thesis-card-header">
-          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
-            <circle cx="14" cy="11" r="3" stroke="#C4962A" stroke-width="1.2" fill="none"/>
-            <path d="M8 21 C8 17.5 10.5 15.5 14 15.5 C17.5 15.5 20 17.5 20 21" stroke="#C4962A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          </svg>
-          <div class="thesis-card-title">VC Operations</div>
-        </div>
-        <p>Deal sourcing, investment memo writing, pipeline management, and portfolio monitoring. The operational infrastructure that lets a fund move fast and back the right founders.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INVESTMENT THESES -->
-<section id="theses">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Theses</span></div>
-  <h2 class="fade-up">Where I think<br />the opportunity is.</h2>
-  <p class="section-intro fade-up">Four themes I believe will shape venture markets over the next decade, based on diligence work and ongoing market research.</p>
-
-  <div class="theses-grid">
-
-    <div class="thesis-item fade-up">
-      <div class="thesis-item-num">01</div>
-      <div class="thesis-item-name">AI Infrastructure and Applied AI</div>
-      <p class="thesis-item-body">The durable opportunity in AI is not in model development itself, which is commoditizing quickly. It is in companies building proprietary data pipelines, domain-specific applications, and workflow integrations that create switching costs in regulated or specialized markets. Applied AI in healthcare, legal, and financial services is particularly interesting where data access and compliance expertise function as moats.</p>
-    </div>
-
-    <div class="thesis-item fade-up">
-      <div class="thesis-item-num">02</div>
-      <div class="thesis-item-name">Digital Health Diagnostics</div>
-      <p class="thesis-item-body">The shift toward continuous, data-driven monitoring is creating diagnostic categories that did not exist five years ago. Platforms that generate objective clinical data with clear reimbursement pathways and health system integration are best positioned to scale. AI-enabled diagnostics that reduce specialist burden while improving accuracy represent the most compelling near-term opportunity in this space.</p>
-    </div>
-
-    <div class="thesis-item fade-up">
-      <div class="thesis-item-num">03</div>
-      <div class="thesis-item-name">Vertical SaaS</div>
-      <p class="thesis-item-body">Horizontal SaaS markets are largely captured. The next defensible software businesses will be built for specific industries where deep workflow integration, proprietary operational data, and high switching costs create positions that horizontal competitors cannot easily replicate. The best vertical SaaS companies often look too small early and too dominant later.</p>
-    </div>
-
-    <div class="thesis-item fade-up">
-      <div class="thesis-item-num">04</div>
-      <div class="thesis-item-name">Frontier Deep Tech and University Spinouts</div>
-      <p class="thesis-item-body">University-origin companies in semiconductor equipment, synthetic biology, advanced materials, and energy technology are entering the market with IP-backed differentiation and patient capital structures. The tech transfer pipeline from research institutions remains an underexplored sourcing channel. Government investment programs are creating near-term demand tailwinds for companies that can navigate qualification and commercialization.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- DEAL SOURCING -->
-<section id="sourcing">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Deal Sourcing</span></div>
-  <h2 class="fade-up">How I find<br />early-stage opportunities.</h2>
-  <p class="section-intro fade-up">Four approaches I use to identify and evaluate startups before they reach competitive deal processes.</p>
-
-  <div class="sourcing-grid">
-
-    <div class="sourcing-card fade-up">
-      <div class="sourcing-card-num">01</div>
-      <div class="sourcing-card-title">Founder Ecosystems</div>
-      <p class="sourcing-card-body">Active engagement with university entrepreneurship programs, accelerators, and tech transfer offices surfaces IP-backed early-stage ventures before they reach competitive processes. University pipelines, particularly those connected to NSF I-Corps and SBIR grant recipients, are a consistent source of technically differentiated companies at the pre-seed stage.</p>
-    </div>
-
-    <div class="sourcing-card fade-up">
-      <div class="sourcing-card-num">02</div>
-      <div class="sourcing-card-title">Market-First Sourcing</div>
-      <p class="sourcing-card-body">Identifying sectors undergoing structural change through regulatory shifts, input cost changes, or technology unlocks, then working backward to find companies building for those tailwinds. Market-first sourcing produces higher-conviction deal flow in categories that generalist processes underweight and helps avoid chasing consensus themes after the signal has already been priced in.</p>
-    </div>
-
-    <div class="sourcing-card fade-up">
-      <div class="sourcing-card-num">03</div>
-      <div class="sourcing-card-title">Founder-Led Discovery</div>
-      <p class="sourcing-card-body">Conversations with early-stage founders frequently surface adjacent opportunities within the same sector. Founders tend to have sharper competitive landscape awareness than most secondary research, making founder networks a high-signal sourcing channel. The best introductions often come from founders who chose not to pursue a particular adjacent market themselves.</p>
-    </div>
-
-    <div class="sourcing-card fade-up">
-      <div class="sourcing-card-num">04</div>
-      <div class="sourcing-card-title">Pattern Recognition</div>
-      <p class="sourcing-card-body">Building mental models across sectors by reviewing pitch decks, attending demo days, and tracking cohort outcomes over time. Pattern recognition sharpens the speed and accuracy of initial screening and helps identify category-level trends before they become consensus. The goal is to develop sector-specific intuition that allows for faster and more confident initial assessments.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- INVESTMENT WORK / CASE STUDIES -->
-<section id="work">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Startup Evaluations</span></div>
+<!-- FEATURED EVALUATIONS -->
+<section id="work" style="background: var(--navy); border-top: 1px solid var(--border);">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Featured Work</span></div>
   <h2 class="fade-up">Startup evaluations.</h2>
-  <p class="section-intro fade-up">Four deal analyses across venture sectors. Each covers the problem, market opportunity, competitive landscape, and key diligence questions from an investor perspective.</p>
+  <p class="section-intro fade-up">Deal analyses across four venture sectors. Each covers the problem, market opportunity, competitive landscape, and key diligence questions from an investor perspective.</p>
 
   <div class="cs-grid">
 
-    <!-- Card 1: Digital Health -->
-    <div class="cs-card digital-health fade-up" onclick="openModal('digital-health')">
+    <a href="/evaluations/digital-diagnostics" class="cs-card digital-health fade-up">
       <span class="cs-sector-badge digital-health">Digital Health</span>
       <div class="cs-title">Digital Movement Diagnostics Platform</div>
       <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
-      <p class="cs-desc">Software platform applying computer vision and machine learning to analyze movement patterns from standard video input, enabling objective remote assessment of motor function without specialized hardware. Addresses diagnostic delays in movement disorder care by extending specialist reach through existing clinical workflows.</p>
+      <p class="cs-desc">Software platform applying computer vision and ML to analyze movement patterns from standard video, enabling objective remote assessment of motor function without specialized hardware.</p>
       <div class="cs-angles">
         <span class="cs-angle-tag">Market Analysis</span>
         <span class="cs-angle-tag">Clinical Pathway</span>
         <span class="cs-angle-tag">Reimbursement Strategy</span>
-        <span class="cs-angle-tag">Competitive Dynamics</span>
-        <span class="cs-angle-tag">Technology Assessment</span>
       </div>
-      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
-    </div>
+      <div class="cs-cta">Read Analysis <span>→</span></div>
+    </a>
 
-    <!-- Card 2: Mobility SaaS -->
-    <div class="cs-card mobility fade-up" onclick="openModal('mobility')">
+    <a href="/evaluations/mobility-platform" class="cs-card mobility fade-up">
       <span class="cs-sector-badge mobility">Mobility SaaS</span>
       <div class="cs-title">Driver Independence Mobility Platform</div>
       <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
-      <p class="cs-desc">Cross-platform software aggregating demand signals across rideshare and delivery networks to help gig economy drivers optimize earnings and work schedules without manual coordination across multiple apps. Operates in a fragmented market with no dominant cross-platform incumbent.</p>
+      <p class="cs-desc">Cross-platform software aggregating demand signals across rideshare and delivery networks to help gig economy drivers optimize earnings without manual coordination across apps.</p>
       <div class="cs-angles">
         <span class="cs-angle-tag">Market Structure</span>
         <span class="cs-angle-tag">Unit Economics</span>
         <span class="cs-angle-tag">Platform Risk</span>
-        <span class="cs-angle-tag">Network Effects</span>
-        <span class="cs-angle-tag">Product-Market Fit</span>
       </div>
-      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
-    </div>
+      <div class="cs-cta">Read Analysis <span>→</span></div>
+    </a>
 
-    <!-- Card 3: Aquaculture Biotech -->
-    <div class="cs-card biotech fade-up" onclick="openModal('biotech')">
+    <a href="/evaluations/aquaculture-biotech" class="cs-card biotech fade-up">
       <span class="cs-sector-badge biotech">Aquaculture Biotech</span>
       <div class="cs-title">Oral Vaccine Platform for Aquaculture</div>
       <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
-      <p class="cs-desc">Feed-based oral vaccine delivery system enabling mass immunization of farmed fish without manual injection, reducing labor burden, fish stress, and antibiotic dependence in commercial aquaculture. Targets a structural disease management problem in a large and growing global protein production sector.</p>
+      <p class="cs-desc">Feed-based oral vaccine delivery system enabling mass immunization of farmed fish without manual injection, reducing labor burden and antibiotic dependence in commercial aquaculture.</p>
       <div class="cs-angles">
         <span class="cs-angle-tag">Biology Risk</span>
         <span class="cs-angle-tag">Regulatory Pathway</span>
-        <span class="cs-angle-tag">Commercial Scalability</span>
         <span class="cs-angle-tag">Market Tailwinds</span>
-        <span class="cs-angle-tag">Competitive Differentiation</span>
       </div>
-      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
-    </div>
+      <div class="cs-cta">Read Analysis <span>→</span></div>
+    </a>
 
-    <!-- Card 4: Deep Tech -->
-    <div class="cs-card deep-tech fade-up" onclick="openModal('deep-tech')">
+    <a href="/evaluations/optical-metrology" class="cs-card deep-tech fade-up">
       <span class="cs-sector-badge deep-tech">Deep Tech</span>
       <div class="cs-title">Optical Metrology System for Semiconductor Manufacturing</div>
       <div class="cs-stage">Growth Stage &middot; Evaluated 2025</div>
-      <p class="cs-desc">Proprietary optical inspection system designed for high-throughput wafer defect detection at advanced semiconductor process nodes, offering throughput advantages over incumbent electron-based approaches. Positioned at the intersection of advanced node transitions and domestic semiconductor capacity buildout.</p>
+      <p class="cs-desc">Proprietary optical inspection system for high-throughput wafer defect detection at advanced semiconductor nodes, offering throughput advantages over incumbent electron-based approaches.</p>
       <div class="cs-angles">
         <span class="cs-angle-tag">Technology Readiness</span>
-        <span class="cs-angle-tag">Customer Qualification</span>
         <span class="cs-angle-tag">IP Defensibility</span>
         <span class="cs-angle-tag">Market Timing</span>
-        <span class="cs-angle-tag">Competitive Landscape</span>
       </div>
-      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
-    </div>
+      <div class="cs-cta">Read Analysis <span>→</span></div>
+    </a>
 
   </div>
 </section>
 
-<!-- CASE STUDY MODAL -->
-<div class="cs-modal-overlay" id="csOverlay" onclick="closeModal()"></div>
-<div class="cs-modal" id="csModal" role="dialog" aria-modal="true" aria-label="Case Study">
-  <button class="cs-modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-  <div id="csModalContent"></div>
-</div>
+<!-- INVESTMENT FOCUS -->
+<section class="preview-section" style="padding: 7rem 5%;">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Focus</span></div>
+  <h2 class="fade-up">Where I focus.</h2>
+  <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;" class="fade-up">
+    <div>
+      <p style="font-size: 0.97rem; color: var(--text-muted); line-height: 1.95; margin-bottom: 1.2rem;">I concentrate on four themes: <strong style="color: var(--text);">applied AI in regulated markets</strong>, <strong style="color: var(--text);">digital health diagnostics</strong>, <strong style="color: var(--text);">vertical SaaS</strong>, and <strong style="color: var(--text);">frontier deep tech from university spinouts</strong>. Each area combines structural tailwinds with defensible differentiation.</p>
+      <p style="font-size: 0.97rem; color: var(--text-muted); line-height: 1.95;">My work at Tech Launch Arizona gives me direct access to IP-backed university spinouts before they enter competitive deal processes. That pipeline shapes how I think about early-stage evaluation and what defensibility actually looks like at the pre-seed stage.</p>
+      <a href="/theses" class="preview-link">View Investment Theses <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1rem 1.25rem; font-size: 0.83rem; color: var(--text-muted); line-height: 1.7;">AI Infrastructure &amp; Applied AI in regulated verticals</div>
+      <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--green-light); padding: 1rem 1.25rem; font-size: 0.83rem; color: var(--text-muted); line-height: 1.7;">Digital Health Diagnostics with reimbursement pathways</div>
+      <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--blue-accent); padding: 1rem 1.25rem; font-size: 0.83rem; color: var(--text-muted); line-height: 1.7;">Vertical SaaS with deep workflow integration</div>
+      <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--purple-accent); padding: 1rem 1.25rem; font-size: 0.83rem; color: var(--text-muted); line-height: 1.7;">Frontier Deep Tech and University Spinouts</div>
+    </div>
+  </div>
+</section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Venture Experience</span></div>
+<!-- EXPERIENCE PREVIEW -->
+<section style="background: var(--navy); border-top: 1px solid var(--border); padding: 7rem 5%;">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Current Role</span></div>
   <h2 class="fade-up">From the trenches<br />of early-stage capital.</h2>
-  <p class="section-intro fade-up">Venture diligence, fund operations, and startup co-founding. Both sides of the cap table.</p>
-  <div class="timeline">
 
-    <div class="timeline-item fade-up">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta"><span class="timeline-period">May 2025 &ndash; Present</span><span class="timeline-company">Tech Launch Arizona &middot; Wildcat Philanthropic Seed Fund</span></div>
-      <div class="timeline-title">VC Analyst</div>
-      <div class="timeline-location">Tucson, AZ</div>
-      <ul class="timeline-bullets">
-        <li>Conduct <strong>end-to-end due diligence</strong> on early-stage ventures for the <strong>$5M Wildcat Philanthropic Seed Fund</strong>, covering market analysis, competitive benchmarking, financial modeling, and Investment Committee presentations.</li>
-        <li>Evaluate IP-backed technologies across digital health, mobility, biotech, and deep tech using <strong>PitchBook</strong> for market intelligence and comparable analysis.</li>
-        <li>Author investment memos and diligence reports delivered to an IC of domain experts and faculty advisors.</li>
-        <li>Introduced structured deal-scoring rubrics and pipeline frameworks, improving IC decision turnaround by <strong>40%</strong>.</li>
-        <li>Spearheading capital strategy initiatives to grow WPSF's AUM by <strong>30%</strong> via HNI, alumni, and philanthropic network development.</li>
-      </ul>
-      <div class="timeline-tags"><span class="tag">Due Diligence</span><span class="tag">Investment Memos</span><span class="tag">PitchBook</span><span class="tag">Financial Modeling</span><span class="tag">Deal Sourcing</span><span class="tag">Capital Strategy</span></div>
+  <div class="preview-role fade-up">
+    <div class="preview-role-meta">
+      <span class="preview-role-period">May 2025 &ndash; Present</span>
+      <span class="preview-role-company">Tech Launch Arizona &middot; Wildcat Philanthropic Seed Fund</span>
     </div>
-
-    <div class="timeline-item fade-up">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta"><span class="timeline-period">Nov 2022 &ndash; Aug 2024</span><span class="timeline-company">FanFliQ</span></div>
-      <div class="timeline-title">Co-Founder &amp; Finance Lead</div>
-      <div class="timeline-location">New Delhi, India</div>
-      <ul class="timeline-bullets">
-        <li>Co-founded a <strong>music-tech SaaS platform</strong>, onboarding 1,000+ creators and driving a 20% increase in revenue per creator through data-driven service bundling.</li>
-        <li>Led financial planning and GTM analytics; reduced <strong>CAC by ~25%</strong> through channel prioritization and cohort-level performance tracking.</li>
-        <li>Built investor-facing financial models, cap table structures, and valuation frameworks to support a <strong>$60K seed raise at a $300K post-money valuation</strong>.</li>
-        <li>Managed cash flow forecasting and burn analysis, stabilizing monthly churn below early-stage SaaS benchmarks.</li>
-      </ul>
-      <div class="timeline-tags"><span class="tag">Seed Raise</span><span class="tag">Cap Table</span><span class="tag">Valuation</span><span class="tag">GTM Analytics</span><span class="tag">SaaS</span><span class="tag">FP&amp;A</span></div>
-    </div>
-
-    <div class="timeline-item fade-up">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta"><span class="timeline-period">Mar 2022 &ndash; Oct 2022</span><span class="timeline-company">India Accelerator</span></div>
-      <div class="timeline-title">Entrepreneur In Residence (VC Analyst)</div>
-      <div class="timeline-location">Delhi-NCR, India</div>
-      <ul class="timeline-bullets">
-        <li>Evaluated and advised <strong>10+ portfolio startups</strong> on financial modeling, GTM strategy, and investor readiness across pre-seed to pre-Series A stages.</li>
-        <li>Conducted startup screening and investment due diligence using <strong>PitchBook</strong> to surface high-potential ventures aligned with fund thesis.</li>
-        <li>Prepared founders for Demo Day by stress-testing business models and refining investor narratives, achieving a <strong>70% increase in investor approval rates</strong>.</li>
-        <li>Reduced market-entry risk for portfolio companies by 25% through targeted market analysis and commercialization strategy support.</li>
-      </ul>
-      <div class="timeline-tags"><span class="tag">Startup Screening</span><span class="tag">Demo Day Prep</span><span class="tag">Pitch Coaching</span><span class="tag">Fundraising Strategy</span><span class="tag">Portfolio Tracking</span></div>
-    </div>
-
+    <div class="preview-role-title">VC Analyst</div>
+    <p class="preview-role-body">Conducting end-to-end due diligence on early-stage IP-backed ventures for the $5M Wildcat Philanthropic Seed Fund. Work covers market analysis, financial modeling, competitive benchmarking, and Investment Committee presentations across digital health, mobility, biotech, and deep tech.</p>
+    <a href="/experience" class="preview-link">Full Experience <span>→</span></a>
   </div>
 </section>
 
-<!-- FINANCIAL MODELING -->
-<section id="modeling">
+<!-- MODELING PREVIEW -->
+<section style="background: var(--navy-mid); border-top: 1px solid var(--border); padding: 7rem 5%;">
   <div class="section-label fade-up"><div class="section-label-line"></div><span>Financial Modeling</span></div>
   <h2 class="fade-up">Quantitative diligence.</h2>
-  <p class="modeling-intro fade-up">Venture capital investing requires precise financial analysis, from cap table mechanics to waterfall distributions and scenario-based cash flow modeling. Below is a VC financial model built to analyze startup economics across funding rounds.</p>
+  <p class="section-intro fade-up">Venture capital investing requires precise financial analysis, from cap table mechanics to waterfall distributions. Below is a preview of a VC financial model built for startup economics analysis.</p>
 
-  <div class="captable-card fade-up">
-    <span class="project-badge">&#9654; VC Financial Model</span>
-    <div class="project-title">Venture Capital Financial Model</div>
-    <div class="project-course">Cap Table &middot; Convertible Notes &middot; Priced Rounds &middot; Waterfall Analysis</div>
-    <div class="project-meta-sub">Built in Excel &middot; Pre-Seed through Series Seed &middot; Recently updated with modeling fixes</div>
-
-    <div class="captable-inner">
-      <div class="donut-wrap">
-        <svg class="donut-svg" viewBox="0 0 240 240">
-          <defs>
-            <filter id="sliceGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-          <path class="donut-slice" d="M 120.00,30.00 A 90,90 0 0,1 209.54,129.07 L 174.72,125.54 A 55,55 0 0,0 120.00,65.00 Z" fill="#C4962A"><title>CEO — 26.61%</title></path>
-          <path class="donut-slice" d="M 209.54,129.07 A 90,90 0 0,1 101.95,208.17 L 108.97,173.88 A 55,55 0 0,0 174.72,125.54 Z" fill="rgba(196,150,42,0.72)"><title>CTO — 26.61%</title></path>
-          <path class="donut-slice" d="M 101.95,208.17 A 90,90 0 0,1 34.10,93.15 L 67.50,103.59 A 55,55 0 0,0 108.97,173.88 Z" fill="rgba(196,150,42,0.45)"><title>COO — 26.61%</title></path>
-          <path class="donut-slice" d="M 34.10,93.15 A 90,90 0 0,1 93.47,34.00 L 103.79,67.44 A 55,55 0 0,0 67.50,103.59 Z" fill="rgba(196,150,42,0.22)"><title>Option Pool — 15.42%</title></path>
-          <path class="donut-slice" d="M 93.47,34.00 A 90,90 0 0,1 120.00,30.00 L 120.00,65.00 A 55,55 0 0,0 103.79,67.44 Z" fill="#22A06B"><title>Lead Angel — 4.76%</title></path>
-          <text x="120" y="113" text-anchor="middle" fill="#D4AF5A" font-size="15" font-family="Playfair Display,serif" font-weight="700">$4.2M</text>
-          <text x="120" y="128" text-anchor="middle" fill="rgba(136,153,170,0.8)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">POST-MONEY</text>
-        </svg>
-      </div>
-
-      <div class="captable-right">
-        <div class="captable-metrics">
-          <div class="ct-metric">
-            <div class="ct-metric-val">$4.0M</div>
-            <div class="ct-metric-lbl">Pre-Money Val.</div>
-          </div>
-          <div class="ct-metric">
-            <div class="ct-metric-val">$3.35</div>
-            <div class="ct-metric-lbl">Share Price</div>
-          </div>
-          <div class="ct-metric">
-            <div class="ct-metric-val">1.25M</div>
-            <div class="ct-metric-lbl">Total Shares</div>
-          </div>
-        </div>
-
-        <table class="ct-table">
-          <thead><tr><th>Shareholder</th><th>Shares</th><th>Ownership</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><span class="ct-dot" style="background:#C4962A;"></span>CEO (Founder)</td>
-              <td>333,333</td>
-              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:#C4962A;"></div></div><span class="ct-pct">26.61%</span></div></td>
-            </tr>
-            <tr>
-              <td><span class="ct-dot" style="background:rgba(196,150,42,0.72);"></span>CTO (Founder)</td>
-              <td>333,333</td>
-              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.72);"></div></div><span class="ct-pct">26.61%</span></div></td>
-            </tr>
-            <tr>
-              <td><span class="ct-dot" style="background:rgba(196,150,42,0.45);"></span>COO (Founder)</td>
-              <td>333,334</td>
-              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.45);"></div></div><span class="ct-pct">26.61%</span></div></td>
-            </tr>
-            <tr>
-              <td><span class="ct-dot" style="background:rgba(196,150,42,0.22);"></span>Option Pool</td>
-              <td>193,138</td>
-              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:15.42%;background:rgba(196,150,42,0.22);"></div></div><span class="ct-pct">15.42%</span></div></td>
-            </tr>
-            <tr>
-              <td><span class="ct-dot" style="background:#22A06B;"></span>Lead Angel</td>
-              <td>59,657</td>
-              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:4.76%;background:#22A06B;"></div></div><span class="ct-pct">4.76%</span></div></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div>
-          <a href="models/VC Modelling (3).xlsx" download class="ct-download">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Download Excel Model
-          </a>
-          <div class="model-note">Recently updated with formula and structure fixes.</div>
-        </div>
-      </div>
+  <div style="margin-top: 3rem; background: var(--card-bg); border: 1px solid var(--border); padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;" class="fade-up">
+    <div>
+      <span class="project-badge" style="margin-bottom: 0.75rem;">&#9654; VC Financial Model</span>
+      <div class="project-title" style="font-size: 1.35rem;">Venture Capital Financial Model</div>
+      <div class="project-course">Cap Table &middot; Convertible Notes &middot; Priced Rounds &middot; Waterfall Analysis</div>
+      <div class="project-meta-sub">Built in Excel &middot; Pre-Seed through Series Seed</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
+      <a href="/models/VC Modelling (3).xlsx" download class="ct-download">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download Excel Model
+      </a>
+      <a href="/modeling" class="preview-link" style="margin-top: 0;">View Full Model <span>→</span></a>
     </div>
   </div>
 </section>
 
-<!-- INVESTMENT INTERESTS -->
-<section id="interests">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Interests</span></div>
-  <h2 class="fade-up">Where I look for<br />breakout companies.</h2>
-  <p class="section-intro fade-up">The sectors where I spend research time, track deal flow, and develop investment conviction.</p>
-
-  <div class="interests-grid">
-
-    <div class="interest-card fade-up">
-      <div class="interest-card-accent" style="--accent-color: #7B61FF;"></div>
-      <div class="interest-icon">⬡</div>
-      <div class="interest-name">Artificial Intelligence</div>
-      <p class="interest-thesis">Foundation model infrastructure, vertical AI applications, and agentic workflows that create durable competitive advantages. Focused on companies where AI is the core product, not a feature bolted on.</p>
-    </div>
-
-    <div class="interest-card fade-up">
-      <div class="interest-card-accent" style="--accent-color: #22A06B;"></div>
-      <div class="interest-icon">◈</div>
-      <div class="interest-name">Digital Health</div>
-      <p class="interest-thesis">Diagnostics, care delivery, and health data infrastructure. Attracted to platforms with defensible clinical validation, clear reimbursement pathways, and the potential to shift care from hospital to home.</p>
-    </div>
-
-    <div class="interest-card fade-up">
-      <div class="interest-card-accent" style="--accent-color: #5B9BD5;"></div>
-      <div class="interest-icon">◇</div>
-      <div class="interest-name">Fintech Infrastructure</div>
-      <p class="interest-thesis">Payment rails, embedded finance primitives, and B2B financial tooling. The most durable fintech businesses become invisible infrastructure with high switching costs, network effects, and volume-driven unit economics.</p>
-    </div>
-
-    <div class="interest-card fade-up">
-      <div class="interest-card-accent" style="--accent-color: #C4962A;"></div>
-      <div class="interest-icon">▣</div>
-      <div class="interest-name">Developer Tools</div>
-      <p class="interest-thesis">Tooling that compounds developer productivity across CI/CD, observability, security, and AI-assisted coding workflows. Bottom-up adoption with usage-based pricing creates flywheel dynamics that are difficult to replicate.</p>
-    </div>
-
-    <div class="interest-card fade-up interests-fifth">
-      <div class="interest-card-accent" style="--accent-color: #9B7FE8;"></div>
-      <div class="interest-icon">◉</div>
-      <div class="interest-name">Frontier Technologies</div>
-      <p class="interest-thesis">Semiconductor equipment, advanced materials, climate tech, and space infrastructure. Long gestation, but IP-driven moats and government tailwinds (CHIPS Act, IRA) are creating investable entry points at Seed and Series A.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Capabilities</span></div>
-  <h2 class="fade-up">Tools of the trade.</h2>
-  <div class="skills-wrapper">
-    <div class="fade-up">
-      <div class="skill-group-title">Analytical</div>
-      <div class="skill-list">
-        <span class="skill-pill highlight">Financial Modeling</span>
-        <span class="skill-pill highlight">Startup Due Diligence</span>
-        <span class="skill-pill highlight">Cap Table Modeling</span>
-        <span class="skill-pill highlight">Unit Economics Analysis</span>
-        <span class="skill-pill highlight">Market Sizing</span>
-        <span class="skill-pill highlight">PitchBook</span>
-        <span class="skill-pill">Waterfall Analysis</span>
-        <span class="skill-pill">Cash Flow Projections</span>
-        <span class="skill-pill">Scenario Analysis</span>
-        <span class="skill-pill">Advanced Excel</span>
-      </div>
-    </div>
-    <div class="fade-up">
-      <div class="skill-group-title">Diligence</div>
-      <div class="skill-list">
-        <span class="skill-pill highlight">Investment Memo Writing</span>
-        <span class="skill-pill highlight">Competitive Analysis</span>
-        <span class="skill-pill highlight">Deal Sourcing</span>
-        <span class="skill-pill highlight">Portfolio Monitoring</span>
-        <span class="skill-pill">Market Mapping</span>
-        <span class="skill-pill">Pipeline Management</span>
-        <span class="skill-pill">IP Assessment</span>
-        <span class="skill-pill">LP Reporting</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Education</span></div>
-  <h2 class="fade-up">Academic foundation.</h2>
-  <div class="edu-grid">
-    <div class="edu-card fade-up">
-      <div class="edu-degree">MS Finance (STEM)</div>
-      <div class="edu-school">University of Arizona, Eller College of Management</div>
-      <div class="edu-period">Tucson, AZ &middot; 2024 &ndash; 2025</div>
-      <div class="edu-detail">Eller Academic Excellence Awardee &middot; 3&times; Dean's List</div>
-      <span class="edu-gpa">GPA: 3.92 / 4.00</span>
-    </div>
-    <div class="edu-card fade-up">
-      <div class="edu-degree">Bachelor of Management Studies</div>
-      <div class="edu-school">Shiv Nadar University, School of Management &amp; Entrepreneurship</div>
-      <div class="edu-period">Delhi-NCR, India &middot; May 2022</div>
-      <div class="edu-detail">Specialization in Finance</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
+<!-- CONTACT CTA -->
+<section id="contact" style="background: var(--navy); border-top: 1px solid var(--border); text-align: center; padding: 7rem 5%;">
   <div class="contact-inner">
     <div class="section-label fade-up" style="justify-content:center;"><div class="section-label-line"></div><span>Get In Touch</span><div class="section-label-line"></div></div>
     <h2 class="fade-up">Let's connect.</h2>
-    <p class="contact-sub fade-up">Open to conversations about venture capital roles, early-stage investment opportunities, and portfolio company introductions. Always happy to talk shop about markets.</p>
+    <p class="contact-sub fade-up">Open to conversations about venture capital roles, early-stage investment opportunities, and portfolio company introductions.</p>
     <div class="c-links fade-up">
       <a href="mailto:tejas.sh1406@gmail.com" class="c-link">&#9993;&nbsp; tejas.sh1406@gmail.com</a>
       <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="c-link" target="_blank">&#128279;&nbsp; LinkedIn</a>
-      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="c-link" target="_blank">&#128196;&nbsp; Resume</a>
+      <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="c-link" target="_blank">&#128196;&nbsp; Resume</a>
     </div>
   </div>
 </section>
@@ -1048,21 +263,32 @@
   <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
   <div id="build-stamp"></div>
 </footer>
-
 <div id="debug-overlay"></div>
 
 <script>
-  /* ── NAV SCROLL ── */
+  /* NAV SCROLL */
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
-  /* ── FADE-UP ── */
+  /* ACTIVE NAV */
+  (function() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+      if (href === path || (href !== '/' && path.startsWith(href + '/'))) {
+        a.classList.add('active');
+      }
+      if (href === '/' && path === '/') a.classList.add('active');
+    });
+  })();
+
+  /* FADE-UP */
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  /* ── HAMBURGER ── */
+  /* HAMBURGER */
   const hamburger = document.getElementById('navHamburger');
   const navLinks  = document.getElementById('navLinks');
   function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
@@ -1070,217 +296,19 @@
   hamburger.setAttribute('aria-expanded','false');
   hamburger.setAttribute('aria-controls','navLinks');
   hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeModal(); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-  navLinks.addEventListener('click', (e) => { if (e.target === navLinks) closeMenu(); });
 
-  /* ── CASE STUDY MODAL ── */
-  const caseStudies = {
-    'digital-health': {
-      sector: 'Digital Health',
-      sectorClass: 'digital-health',
-      title: 'Digital Movement Diagnostics Platform',
-      stage: 'Early Stage &middot; Evaluated 2025',
-      sections: [
-        {
-          heading: 'Problem',
-          body: 'Movement disorder diagnosis depends heavily on in-person clinical observation by specialists, a process that is subjective, episodic, and constrained by access to specialist providers. Patients in underserved geographies often experience significant delays between symptom onset and formal diagnosis. In conditions where early intervention meaningfully affects outcomes, these delays represent both a clinical and economic problem for health systems.'
-        },
-        {
-          heading: 'Solution',
-          body: 'A software platform that applies computer vision and machine learning to analyze movement patterns from standard video input, enabling objective, quantitative assessment of motor function. The system is designed to integrate into existing telehealth and clinical workflows without requiring specialized hardware, making it accessible across a wide range of care settings including primary care and remote monitoring programs.'
-        },
-        {
-          heading: 'Market Opportunity',
-          body: 'Movement disorders affect a large and growing patient population globally. The digital health diagnostics market is expanding as healthcare systems seek tools that extend specialist reach, reduce diagnostic variability, and support value-based care reimbursement models. Remote monitoring and AI-assisted diagnostics are increasingly recognized by both payers and health systems as areas of strategic investment and near-term procurement.'
-        },
-        {
-          heading: 'Competitive Landscape',
-          body: 'Established medical device companies and a growing cohort of digital health startups are active in adjacent diagnostic categories. The primary competitive questions center on clinical validation depth, regulatory strategy, and the ability to integrate within health system EHR infrastructure and procurement processes. Companies that build proprietary longitudinal datasets early have the potential to widen their analytical advantage over time as model performance compounds with data scale.'
-        },
-        {
-          heading: 'Evaluation Focus',
-          body: 'The evaluation examined the clinical validation approach and evidence quality, the regulatory pathway strategy, the reimbursement model and payer engagement, the depth of health system relationships, and the founding team\'s combined clinical and technical expertise. Workflow integration and the scalability of data collection across diverse care settings were central to the analysis.'
-        },
-        {
-          heading: 'Investment Perspective',
-          body: 'Diagnostic platforms that generate objective, reimbursable clinical data while reducing specialist burden address a structural challenge in healthcare delivery. The long-term value in this category is tied closely to the quality and defensibility of the underlying dataset and the strength of institutional relationships built during the early commercial phase. The key analytical question is whether clinical validation evidence is strong enough to drive health system adoption at a pace that justifies the capital required to reach scale.'
-        }
-      ]
-    },
-    'mobility': {
-      sector: 'Mobility SaaS',
-      sectorClass: 'mobility',
-      title: 'Driver Independence Mobility Platform',
-      stage: 'Early Stage &middot; Evaluated 2025',
-      sections: [
-        {
-          heading: 'Problem',
-          body: 'Gig economy drivers across rideshare and delivery platforms operate with limited visibility into cross-platform demand patterns, incentive structures, and earnings optimization strategies. The result is inefficient time allocation and unpredictable income for a large and growing workforce that lacks the institutional support structures of traditional employment. Existing tools are either platform-specific or too narrow in scope to address the cross-platform coordination challenge.'
-        },
-        {
-          heading: 'Solution',
-          body: 'A cross-platform software tool that aggregates demand signals and operational data across multiple rideshare and delivery networks, providing personalized, real-time guidance to help drivers optimize when, where, and how they work. The platform is designed to improve earnings efficiency without requiring manual coordination across separate applications, reducing cognitive load while increasing per-hour output for active drivers.'
-        },
-        {
-          heading: 'Market Opportunity',
-          body: 'The gig transportation workforce is large, growing, and largely underserved by purpose-built software. As independent work continues to expand as a labor market category, driver-side tooling is emerging as a distinct software vertical with meaningful addressable market and limited competition at the cross-platform level. The absence of a dominant player creates an early-mover opportunity for a company that can establish network effects before incumbents respond.'
-        },
-        {
-          heading: 'Competitive Landscape',
-          body: 'Existing solutions in this category are narrow and platform-specific. No well-funded competitor has established a dominant cross-platform position. The medium-term competitive risk is native feature development by the rideshare platforms themselves, which have strong incentives to shape driver behavior through their own interfaces and could replicate certain features with existing infrastructure.'
-        },
-        {
-          heading: 'Evaluation Focus',
-          body: 'The evaluation focused on the unit economics structure and sensitivity to churn, the sustainability of platform API access over time, driver retention and engagement cohort behavior, and the company\'s strategy for building a data position that becomes harder to replicate as the user base grows. Platform dependency and the regulatory environment for gig work were treated as key risk factors.'
-        },
-        {
-          heading: 'Investment Perspective',
-          body: 'Cross-platform tooling for gig workers addresses a clear and measurable pain point in a fragmented market. The product value proposition is straightforward and directly tied to driver income, which creates strong organic adoption incentives. The central investment question is around defensibility: whether the company can build a dataset and network position that compounds before larger platforms respond with competing features or API restrictions.'
-        }
-      ]
-    },
-    'biotech': {
-      sector: 'Aquaculture Biotech',
-      sectorClass: 'biotech',
-      title: 'Oral Vaccine Platform for Aquaculture',
-      stage: 'Early Stage &middot; Evaluated 2025',
-      sections: [
-        {
-          heading: 'Problem',
-          body: 'Disease management in commercial aquaculture relies heavily on injectable vaccines and antibiotic treatments. Injectable approaches require significant labor, cause fish handling stress, and face growing regulatory and consumer pressure related to antibiotic use in food supply chains. These constraints limit operational scalability for farm operators and create sustainability risks that are increasingly scrutinized by food retailers and regulatory bodies in major markets.'
-        },
-        {
-          heading: 'Solution',
-          body: 'An oral vaccine delivery system that enables mass immunization of farmed fish through feed-based administration. The platform is designed to eliminate the need for manual injection, reduce fish handling stress, and enable disease prevention at a scale not feasible with current injectable methods. The approach targets the major disease categories responsible for the highest rates of mortality and economic loss in commercial aquaculture operations.'
-        },
-        {
-          heading: 'Market Opportunity',
-          body: 'Aquaculture is among the fastest-growing protein production sectors globally, driven by rising demand for sustainable seafood and the fundamental limits of wild catch capacity. Disease prevention is consistently identified as a top operational and economic priority by farm operators. The adoption of more scalable health management tools is accelerating across major producing regions as farm scale increases and sustainability mandates tighten.'
-        },
-        {
-          heading: 'Competitive Landscape',
-          body: 'Injectable vaccines produced by a small number of established veterinary pharmaceutical companies remain the standard of care across the industry. Oral delivery has historically faced meaningful technical barriers related to antigen stability and achieving efficacy comparable to injectable approaches at commercial scale. A platform that credibly overcomes these barriers would represent a significant competitive differentiation in a market where the incumbent approach has structural limitations.'
-        },
-        {
-          heading: 'Evaluation Focus',
-          body: 'The evaluation examined the biological mechanism and efficacy evidence relative to injectable alternatives, the manufacturing scalability pathway, the regulatory approval strategy across key aquaculture markets, and the quality of existing relationships with commercial farm operators. The founding team\'s combined biology expertise and aquaculture operational experience was a significant factor in the assessment.'
-        },
-        {
-          heading: 'Investment Perspective',
-          body: 'An oral vaccine platform with demonstrated efficacy at commercial scale could meaningfully reshape disease management across a large and growing industry. The value proposition is directly tied to a measurable economic outcome for operators, which creates strong adoption incentives once technical and regulatory risk is sufficiently reduced. The key investment question is the degree to which that risk has been de-risked relative to the company\'s current stage and the capital required to reach the next meaningful validation milestone.'
-        }
-      ]
-    },
-    'deep-tech': {
-      sector: 'Deep Tech / Semiconductor Equipment',
-      sectorClass: 'deep-tech',
-      title: 'Optical Metrology System for Semiconductor Manufacturing',
-      stage: 'Growth Stage &middot; Evaluated 2025',
-      sections: [
-        {
-          heading: 'Problem',
-          body: 'As semiconductor manufacturing advances to smaller process nodes, incumbent inspection and measurement systems face fundamental throughput and cost limitations. Traditional electron-based metrology approaches are struggling to scale economically at advanced nodes, creating yield management bottlenecks for leading-edge chip manufacturers. The gap between what existing tools can measure and what advanced fabrication processes require is widening as node transitions accelerate.'
-        },
-        {
-          heading: 'Solution',
-          body: 'An optical metrology system designed for high-throughput wafer inspection at advanced semiconductor process nodes. The platform applies a proprietary optical detection approach to enable faster defect identification at a lower cost per measurement than incumbent scanning electron microscopy systems, without sacrificing the resolution required for advanced node process control. The system is designed to integrate into existing fab infrastructure and qualification workflows.'
-        },
-        {
-          heading: 'Market Opportunity',
-          body: 'The global semiconductor equipment market is large and strategically critical. Process control and metrology represents a growing subsegment as chipmakers\' yield requirements become more stringent with each node transition. Government manufacturing investment programs are creating meaningful near-term demand for domestic equipment suppliers, independent of broader semiconductor demand cycle dynamics. The structural case for advanced metrology investment is tied directly to the pace of node transitions rather than end-market consumption.'
-        },
-        {
-          heading: 'Competitive Landscape',
-          body: 'The process control market is dominated by a small number of established equipment companies with deep installed bases and long-standing customer relationships built over decades. New entrants must demonstrate clear performance advantages and navigate multi-stage customer qualification processes that can span a year or more. The barrier to entry is high, but the performance ceiling of incumbent approaches at advanced nodes creates a genuine opening for differentiated optical solutions.'
-        },
-        {
-          heading: 'Evaluation Focus',
-          body: 'The evaluation examined technology readiness level relative to customer qualification requirements, the depth and quality of existing customer engagement, the IP position and defensibility of the core optical methodology, the manufacturing scalability pathway, and the semiconductor industry experience of the founding and technical team. Customer qualification status and the pipeline of active evaluation programs were treated as the primary near-term signals.'
-        },
-        {
-          heading: 'Investment Perspective',
-          body: 'Advanced metrology is a high-barrier, high-value market category where technical differentiation translates directly into pricing power and long-term customer retention once qualification is achieved. Companies that can demonstrate credible performance at advanced nodes and manage the qualification process strategically are well-positioned to benefit from both the advanced node transition tailwind and the structural increase in domestic semiconductor manufacturing investment. The key analytical question is whether the technology is sufficiently proven and the customer engagement sufficiently advanced to de-risk the qualification timeline.'
-        }
-      ]
-    }
-  };
-
-  function openModal(id) {
-    const cs = caseStudies[id];
-    if (!cs) return;
-    const sectionsHTML = cs.sections.map((s, i) => {
-      const isLast = i === cs.sections.length - 1;
-      if (isLast) {
-        return `<div class="cs-modal-section"><div class="cs-modal-verdict"><div class="cs-modal-verdict-label">${s.heading}</div><p>${s.body}</p></div></div>`;
-      }
-      return `<div class="cs-modal-section"><h4>${s.heading}</h4><p>${s.body}</p></div>`;
-    }).join('');
-    document.getElementById('csModalContent').innerHTML = `
-      <span class="cs-modal-sector-label ${cs.sectorClass}">${cs.sector}</span>
-      <h3>${cs.title}</h3>
-      <div class="cs-modal-stage">${cs.stage}</div>
-      <div class="cs-modal-divider"></div>
-      ${sectionsHTML}
-    `;
-    document.getElementById('csOverlay').classList.add('open');
-    document.getElementById('csModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    document.getElementById('csModal').scrollTop = 0;
-  }
-
-  function closeModal() {
-    document.getElementById('csOverlay').classList.remove('open');
-    document.getElementById('csModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-</script>
-
-<script>
+  /* BUILD STAMP */
   (function() {
-    var HASH = 'd44c248';
+    var HASH = 'multi-page';
     var DEPLOYED = '2026-03-05';
-
-    function getBreakpoint(w) {
-      if (w > 1600) return '>1600';
-      if (w > 1100) return '1101–1600';
-      if (w > 768)  return '769–1100';
-      if (w > 640)  return '641–768';
-      if (w > 420)  return '421–640 (mobile)';
-      return '≤420 (mobile-sm)';
-    }
-
-    function getBrowser() {
-      var ua = navigator.userAgent;
-      if (/Edg\//.test(ua))     return 'Edge';
-      if (/Chrome\//.test(ua))  return 'Chrome';
-      if (/Safari\//.test(ua))  return 'Safari';
-      if (/Firefox\//.test(ua)) return 'Firefox';
-      return 'Other';
-    }
-
-    function update() {
-      var w = window.innerWidth;
-      var stamp = document.getElementById('build-stamp');
-      if (stamp) stamp.textContent = 'v' + HASH + ' · ' + DEPLOYED + ' · ' + w + 'px';
-      var overlay = document.getElementById('debug-overlay');
-      if (!overlay || overlay.style.display === 'none') return;
-      overlay.innerHTML = '<strong style="color:#E8E4DC;letter-spacing:.06em">▸ DEBUG</strong><br>' +
-        'viewport: ' + w + '×' + window.innerHeight + 'px<br>' +
-        'dpr: ' + (window.devicePixelRatio||1).toFixed(1) + '<br>' +
-        'browser: ' + getBrowser() + '<br>' +
-        'breakpoint: <span style="color:#D4AF5A">' + getBreakpoint(w) + '</span>';
-    }
-
+    var stamp = document.getElementById('build-stamp');
+    if (stamp) stamp.textContent = 'v' + HASH + ' · ' + DEPLOYED + ' · ' + window.innerWidth + 'px';
     if (new URLSearchParams(location.search).get('debug') === '1') {
       var overlay = document.getElementById('debug-overlay');
       if (overlay) overlay.style.display = 'block';
     }
-
-    update();
-    window.addEventListener('resize', update);
   })();
 </script>
 </body>

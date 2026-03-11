@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Tejas Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .contact-page-wrap {
+      min-height: calc(100vh - 120px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 5% 6rem;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/evaluations">Evaluations</a></li>
+    <li><a href="/theses">Theses</a></li>
+    <li><a href="/modeling">Modeling</a></li>
+    <li><a href="/experience">Experience</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
+  </ul>
+  <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- CONTACT -->
+<div class="contact-page-wrap">
+  <section id="contact" style="padding: 0; width: 100%; text-align: center; border: none;">
+    <div class="contact-inner">
+      <div class="section-label fade-up" style="justify-content:center;"><div class="section-label-line"></div><span>Get In Touch</span><div class="section-label-line"></div></div>
+      <h2 class="fade-up">Let's connect.</h2>
+      <p class="contact-sub fade-up">Open to conversations about venture capital roles, early-stage investment opportunities, and portfolio company introductions. Always happy to talk shop about markets.</p>
+      <div class="c-links fade-up">
+        <a href="mailto:tejas.sh1406@gmail.com" class="c-link">&#9993;&nbsp; tejas.sh1406@gmail.com</a>
+        <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="c-link" target="_blank">&#128279;&nbsp; LinkedIn</a>
+        <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="c-link" target="_blank">&#128196;&nbsp; Resume</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-name">Tejas Sharma</div>
+  <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
+  <div id="build-stamp"></div>
+</footer>
+<div id="debug-overlay"></div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  (function() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+      if (href === path) a.classList.add('active');
+    });
+  })();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks  = document.getElementById('navLinks');
+  function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
+  function openMenu()  { hamburger.classList.add('open');    navLinks.classList.add('open');    document.body.style.overflow = 'hidden'; hamburger.setAttribute('aria-expanded','true'); }
+  hamburger.setAttribute('aria-expanded','false');
+  hamburger.setAttribute('aria-controls','navLinks');
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+  (function() {
+    var stamp = document.getElementById('build-stamp');
+    if (stamp) stamp.textContent = 'vmulti-page · 2026-03-05 · ' + window.innerWidth + 'px';
+  })();
+</script>
+</body>
+</html>

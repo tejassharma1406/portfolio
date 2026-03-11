@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optical Metrology System | Tejas Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/evaluations">Evaluations</a></li>
+    <li><a href="/theses">Theses</a></li>
+    <li><a href="/modeling">Modeling</a></li>
+    <li><a href="/experience">Experience</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
+  </ul>
+  <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <a href="/evaluations" class="back-link">All Evaluations</a>
+  <div class="page-header-label"><div class="page-header-label-line"></div><span>Deep Tech</span></div>
+  <h1>Optical Metrology System for<br /><em>Semiconductor Manufacturing</em></h1>
+  <p class="page-header-sub">Growth Stage &middot; Evaluated 2025 &middot; Deep Tech / Semiconductor Equipment</p>
+</div>
+
+<!-- CASE STUDY CONTENT -->
+<div class="cs-detail" style="padding-top: 5rem; padding-bottom: 6rem;">
+
+  <div class="cs-detail-section fade-up">
+    <h3>Problem</h3>
+    <p>As semiconductor manufacturing advances to smaller process nodes, incumbent inspection and measurement systems face fundamental throughput and cost limitations. Traditional electron-based metrology approaches are struggling to scale economically at advanced nodes, creating yield management bottlenecks for leading-edge chip manufacturers. The gap between what existing tools can measure and what advanced fabrication processes require is widening as node transitions accelerate.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Solution</h3>
+    <p>An optical metrology system designed for high-throughput wafer inspection at advanced semiconductor process nodes. The platform applies a proprietary optical detection approach to enable faster defect identification at a lower cost per measurement than incumbent scanning electron microscopy systems, without sacrificing the resolution required for advanced node process control. The system is designed to integrate into existing fab infrastructure and qualification workflows.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Market Opportunity</h3>
+    <p>The global semiconductor equipment market is large and strategically critical. Process control and metrology represents a growing subsegment as chipmakers' yield requirements become more stringent with each node transition. Government manufacturing investment programs are creating meaningful near-term demand for domestic equipment suppliers, independent of broader semiconductor demand cycle dynamics. The structural case for advanced metrology investment is tied directly to the pace of node transitions rather than end-market consumption.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Competitive Landscape</h3>
+    <p>The process control market is dominated by a small number of established equipment companies with deep installed bases and long-standing customer relationships built over decades. New entrants must demonstrate clear performance advantages and navigate multi-stage customer qualification processes that can span a year or more. The barrier to entry is high, but the performance ceiling of incumbent approaches at advanced nodes creates a genuine opening for differentiated optical solutions.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <h3>Evaluation Focus</h3>
+    <p>The evaluation examined technology readiness level relative to customer qualification requirements, the depth and quality of existing customer engagement, the IP position and defensibility of the core optical methodology, the manufacturing scalability pathway, and the semiconductor industry experience of the founding and technical team. Customer qualification status and the pipeline of active evaluation programs were treated as the primary near-term signals.</p>
+  </div>
+
+  <div class="cs-detail-divider"></div>
+
+  <div class="cs-detail-section fade-up">
+    <div class="cs-detail-verdict">
+      <div class="cs-detail-verdict-label">Investment Perspective</div>
+      <p>Advanced metrology is a high-barrier, high-value market category where technical differentiation translates directly into pricing power and long-term customer retention once qualification is achieved. Companies that can demonstrate credible performance at advanced nodes and manage the qualification process strategically are well-positioned to benefit from both the advanced node transition tailwind and the structural increase in domestic semiconductor manufacturing investment. The key analytical question is whether the technology is sufficiently proven and the customer engagement sufficiently advanced to de-risk the qualification timeline.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border);">
+    <a href="/evaluations" class="back-link">Back to All Evaluations</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-name">Tejas Sharma</div>
+  <div class="footer-copy">Tucson, AZ &middot; tejas.sh1406@gmail.com</div>
+  <div id="build-stamp"></div>
+</footer>
+<div id="debug-overlay"></div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  (function() {
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+      if (href !== '/' && path.startsWith(href)) a.classList.add('active');
+    });
+  })();
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks  = document.getElementById('navLinks');
+  function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
+  function openMenu()  { hamburger.classList.add('open');    navLinks.classList.add('open');    document.body.style.overflow = 'hidden'; hamburger.setAttribute('aria-expanded','true'); }
+  hamburger.setAttribute('aria-expanded','false');
+  hamburger.setAttribute('aria-controls','navLinks');
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+  (function() {
+    var stamp = document.getElementById('build-stamp');
+    if (stamp) stamp.textContent = 'vmulti-page · 2026-03-05 · ' + window.innerWidth + 'px';
+  })();
+</script>
+</body>
+</html>
