@@ -125,6 +125,27 @@
     .thesis-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
     .thesis-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
 
+    /* ── INVESTMENT THESES ── */
+    #theses { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .theses-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .thesis-item { background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2rem 2rem 2rem 1.75rem; transition: transform 0.25s, border-left-color 0.25s; }
+    .thesis-item:hover { transform: translateX(4px); border-left-color: var(--gold-light); }
+    .thesis-item-num { font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; color: rgba(196,150,42,0.3); letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+    .thesis-item-name { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .thesis-item-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; overflow-wrap: break-word; hyphens: auto; }
+
+    /* ── DEAL SOURCING ── */
+    #sourcing { background: var(--navy); border-top: 1px solid var(--border); }
+    .sourcing-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .sourcing-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2rem; transition: transform 0.25s, border-color 0.25s; position: relative; }
+    .sourcing-card:hover { transform: translateY(-3px); border-color: rgba(196,150,42,0.35); }
+    .sourcing-card-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: rgba(196,150,42,0.1); line-height: 1; margin-bottom: 0.75rem; }
+    .sourcing-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .sourcing-card-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; overflow-wrap: break-word; hyphens: auto; }
+    @media (max-width: 900px) {
+      .theses-grid, .sourcing-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── CASE STUDIES ── */
     #work { background: var(--navy); border-top: 1px solid var(--border); }
     .cs-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -445,10 +466,9 @@
   <div class="nav-logo">Tejas<span> Sharma</span></div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
+    <li><a href="#theses">Theses</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#modeling">Modeling</a></li>
-    <li><a href="#interests">Interests</a></li>
     <li><a href="#contact">Contact</a></li>
     <li class="nav-contact-mobile"><a href="Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
   </ul>
@@ -473,10 +493,10 @@
       <span>Early-Stage Venture Capital</span>
     </div>
     <h1 class="fade-up">Tejas<br /><em>Sharma</em></h1>
-    <p class="hero-sub fade-up">Early-stage venture capital analyst with hands-on experience evaluating startups across digital health, mobility, biotech, and deep tech. Currently supporting the $5M Wildcat Philanthropic Seed Fund at Tech Launch Arizona.</p>
+    <p class="hero-sub fade-up">Early-stage VC analyst evaluating startups across digital health, mobility, biotech, and deep tech.</p>
     <div class="hero-actions fade-up">
-      <a href="#work" class="btn-primary">Case Studies ↓</a>
-      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Resume</a>
+      <a href="#work" class="btn-primary">View Startup Evaluations</a>
+      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Download Resume</a>
       <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="btn-secondary" target="_blank">LinkedIn</a>
     </div>
     <div class="hero-stats fade-up">
@@ -614,26 +634,96 @@
   </div>
 </section>
 
+<!-- INVESTMENT THESES -->
+<section id="theses">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Theses</span></div>
+  <h2 class="fade-up">Where I think<br />the opportunity is.</h2>
+  <p class="section-intro fade-up">Four themes I believe will shape venture markets over the next decade, based on diligence work and ongoing market research.</p>
+
+  <div class="theses-grid">
+
+    <div class="thesis-item fade-up">
+      <div class="thesis-item-num">01</div>
+      <div class="thesis-item-name">AI Infrastructure and Applied AI</div>
+      <p class="thesis-item-body">The durable opportunity in AI is not in model development itself, which is commoditizing quickly. It is in companies building proprietary data pipelines, domain-specific applications, and workflow integrations that create switching costs in regulated or specialized markets. Applied AI in healthcare, legal, and financial services is particularly interesting where data access and compliance expertise function as moats.</p>
+    </div>
+
+    <div class="thesis-item fade-up">
+      <div class="thesis-item-num">02</div>
+      <div class="thesis-item-name">Digital Health Diagnostics</div>
+      <p class="thesis-item-body">The shift toward continuous, data-driven monitoring is creating diagnostic categories that did not exist five years ago. Platforms that generate objective clinical data with clear reimbursement pathways and health system integration are best positioned to scale. AI-enabled diagnostics that reduce specialist burden while improving accuracy represent the most compelling near-term opportunity in this space.</p>
+    </div>
+
+    <div class="thesis-item fade-up">
+      <div class="thesis-item-num">03</div>
+      <div class="thesis-item-name">Vertical SaaS</div>
+      <p class="thesis-item-body">Horizontal SaaS markets are largely captured. The next defensible software businesses will be built for specific industries where deep workflow integration, proprietary operational data, and high switching costs create positions that horizontal competitors cannot easily replicate. The best vertical SaaS companies often look too small early and too dominant later.</p>
+    </div>
+
+    <div class="thesis-item fade-up">
+      <div class="thesis-item-num">04</div>
+      <div class="thesis-item-name">Frontier Deep Tech and University Spinouts</div>
+      <p class="thesis-item-body">University-origin companies in semiconductor equipment, synthetic biology, advanced materials, and energy technology are entering the market with IP-backed differentiation and patient capital structures. The tech transfer pipeline from research institutions remains an underexplored sourcing channel. Government investment programs are creating near-term demand tailwinds for companies that can navigate qualification and commercialization.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEAL SOURCING -->
+<section id="sourcing">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Deal Sourcing</span></div>
+  <h2 class="fade-up">How I find<br />early-stage opportunities.</h2>
+  <p class="section-intro fade-up">Four approaches I use to identify and evaluate startups before they reach competitive deal processes.</p>
+
+  <div class="sourcing-grid">
+
+    <div class="sourcing-card fade-up">
+      <div class="sourcing-card-num">01</div>
+      <div class="sourcing-card-title">Founder Ecosystems</div>
+      <p class="sourcing-card-body">Active engagement with university entrepreneurship programs, accelerators, and tech transfer offices surfaces IP-backed early-stage ventures before they reach competitive processes. University pipelines, particularly those connected to NSF I-Corps and SBIR grant recipients, are a consistent source of technically differentiated companies at the pre-seed stage.</p>
+    </div>
+
+    <div class="sourcing-card fade-up">
+      <div class="sourcing-card-num">02</div>
+      <div class="sourcing-card-title">Market-First Sourcing</div>
+      <p class="sourcing-card-body">Identifying sectors undergoing structural change through regulatory shifts, input cost changes, or technology unlocks, then working backward to find companies building for those tailwinds. Market-first sourcing produces higher-conviction deal flow in categories that generalist processes underweight and helps avoid chasing consensus themes after the signal has already been priced in.</p>
+    </div>
+
+    <div class="sourcing-card fade-up">
+      <div class="sourcing-card-num">03</div>
+      <div class="sourcing-card-title">Founder-Led Discovery</div>
+      <p class="sourcing-card-body">Conversations with early-stage founders frequently surface adjacent opportunities within the same sector. Founders tend to have sharper competitive landscape awareness than most secondary research, making founder networks a high-signal sourcing channel. The best introductions often come from founders who chose not to pursue a particular adjacent market themselves.</p>
+    </div>
+
+    <div class="sourcing-card fade-up">
+      <div class="sourcing-card-num">04</div>
+      <div class="sourcing-card-title">Pattern Recognition</div>
+      <p class="sourcing-card-body">Building mental models across sectors by reviewing pitch decks, attending demo days, and tracking cohort outcomes over time. Pattern recognition sharpens the speed and accuracy of initial screening and helps identify category-level trends before they become consensus. The goal is to develop sector-specific intuition that allows for faster and more confident initial assessments.</p>
+    </div>
+
+  </div>
+</section>
+
 <!-- INVESTMENT WORK / CASE STUDIES -->
 <section id="work">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Work</span></div>
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Startup Evaluations</span></div>
   <h2 class="fade-up">Startup evaluations.</h2>
-  <p class="section-intro fade-up">Four sanitized deal analyses across venture sectors. Each represents a full diligence cycle from market assessment to investment recommendation.</p>
+  <p class="section-intro fade-up">Four deal analyses across venture sectors. Each covers the problem, market opportunity, competitive landscape, and key diligence questions from an investor perspective.</p>
 
   <div class="cs-grid">
 
     <!-- Card 1: Digital Health -->
     <div class="cs-card digital-health fade-up" onclick="openModal('digital-health')">
       <span class="cs-sector-badge digital-health">Digital Health</span>
-      <div class="cs-title">AI-Powered Point-of-Care Diagnostics</div>
-      <div class="cs-stage">Seed Stage &middot; Evaluated 2025</div>
-      <p class="cs-desc">AI-enabled diagnostic platform targeting decentralized clinical testing markets. Technology enables rapid, low-cost biomarker detection without centralized lab infrastructure, addressing a clear gap in the post-pandemic shift to distributed care delivery.</p>
+      <div class="cs-title">Digital Movement Diagnostics Platform</div>
+      <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
+      <p class="cs-desc">Software platform applying computer vision and machine learning to analyze movement patterns from standard video input, enabling objective remote assessment of motor function without specialized hardware. Addresses diagnostic delays in movement disorder care by extending specialist reach through existing clinical workflows.</p>
       <div class="cs-angles">
-        <span class="cs-angle-tag">Market Sizing</span>
-        <span class="cs-angle-tag">Regulatory Pathway</span>
-        <span class="cs-angle-tag">Reimbursement Model</span>
-        <span class="cs-angle-tag">Competitive Moat</span>
-        <span class="cs-angle-tag">Unit Economics</span>
+        <span class="cs-angle-tag">Market Analysis</span>
+        <span class="cs-angle-tag">Clinical Pathway</span>
+        <span class="cs-angle-tag">Reimbursement Strategy</span>
+        <span class="cs-angle-tag">Competitive Dynamics</span>
+        <span class="cs-angle-tag">Technology Assessment</span>
       </div>
       <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
@@ -641,15 +731,15 @@
     <!-- Card 2: Mobility SaaS -->
     <div class="cs-card mobility fade-up" onclick="openModal('mobility')">
       <span class="cs-sector-badge mobility">Mobility SaaS</span>
-      <div class="cs-title">Driver Earnings Optimization Platform</div>
-      <div class="cs-stage">Pre-Series A &middot; Evaluated 2025</div>
-      <p class="cs-desc">SaaS platform aggregating demand signals across rideshare and delivery networks to maximize per-hour earnings for gig economy drivers. Strong early PMF signals in an underserved, fragmented market with compelling unit economics.</p>
+      <div class="cs-title">Driver Independence Mobility Platform</div>
+      <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
+      <p class="cs-desc">Cross-platform software aggregating demand signals across rideshare and delivery networks to help gig economy drivers optimize earnings and work schedules without manual coordination across multiple apps. Operates in a fragmented market with no dominant cross-platform incumbent.</p>
       <div class="cs-angles">
+        <span class="cs-angle-tag">Market Structure</span>
         <span class="cs-angle-tag">Unit Economics</span>
-        <span class="cs-angle-tag">Network Effects</span>
         <span class="cs-angle-tag">Platform Risk</span>
-        <span class="cs-angle-tag">CAC / LTV</span>
-        <span class="cs-angle-tag">Competitive Landscape</span>
+        <span class="cs-angle-tag">Network Effects</span>
+        <span class="cs-angle-tag">Product-Market Fit</span>
       </div>
       <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
@@ -657,15 +747,15 @@
     <!-- Card 3: Aquaculture Biotech -->
     <div class="cs-card biotech fade-up" onclick="openModal('biotech')">
       <span class="cs-sector-badge biotech">Aquaculture Biotech</span>
-      <div class="cs-title">Precision Aquaculture Intelligence Platform</div>
-      <div class="cs-stage">Seed Stage &middot; Evaluated 2025</div>
-      <p class="cs-desc">Biosensor and predictive analytics platform optimizing fish farm yields and reducing mortality rates. Targets the $285B+ global aquaculture market at the intersection of food security and precision biology. A rare deep-tech-meets-sustainability play.</p>
+      <div class="cs-title">Oral Vaccine Platform for Aquaculture</div>
+      <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
+      <p class="cs-desc">Feed-based oral vaccine delivery system enabling mass immunization of farmed fish without manual injection, reducing labor burden, fish stress, and antibiotic dependence in commercial aquaculture. Targets a structural disease management problem in a large and growing global protein production sector.</p>
       <div class="cs-angles">
         <span class="cs-angle-tag">Biology Risk</span>
-        <span class="cs-angle-tag">IP Position</span>
-        <span class="cs-angle-tag">Pilot Validation</span>
-        <span class="cs-angle-tag">Sales Cycle</span>
+        <span class="cs-angle-tag">Regulatory Pathway</span>
+        <span class="cs-angle-tag">Commercial Scalability</span>
         <span class="cs-angle-tag">Market Tailwinds</span>
+        <span class="cs-angle-tag">Competitive Differentiation</span>
       </div>
       <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
@@ -673,15 +763,15 @@
     <!-- Card 4: Deep Tech -->
     <div class="cs-card deep-tech fade-up" onclick="openModal('deep-tech')">
       <span class="cs-sector-badge deep-tech">Deep Tech</span>
-      <div class="cs-title">Advanced Semiconductor Metrology Equipment</div>
-      <div class="cs-stage">Series A &middot; Evaluated 2025</div>
-      <p class="cs-desc">Optical metrology equipment for wafer inspection at sub-5nm semiconductor nodes, with higher throughput than incumbent SEM-based approaches. CHIPS Act tailwinds and advanced node transitions create a compelling near-term demand catalyst.</p>
+      <div class="cs-title">Optical Metrology System for Semiconductor Manufacturing</div>
+      <div class="cs-stage">Growth Stage &middot; Evaluated 2025</div>
+      <p class="cs-desc">Proprietary optical inspection system designed for high-throughput wafer defect detection at advanced semiconductor process nodes, offering throughput advantages over incumbent electron-based approaches. Positioned at the intersection of advanced node transitions and domestic semiconductor capacity buildout.</p>
       <div class="cs-angles">
         <span class="cs-angle-tag">Technology Readiness</span>
-        <span class="cs-angle-tag">Customer Concentration</span>
+        <span class="cs-angle-tag">Customer Qualification</span>
         <span class="cs-angle-tag">IP Defensibility</span>
-        <span class="cs-angle-tag">Capital Intensity</span>
-        <span class="cs-angle-tag">CHIPS Act Exposure</span>
+        <span class="cs-angle-tag">Market Timing</span>
+        <span class="cs-angle-tag">Competitive Landscape</span>
       </div>
       <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
@@ -700,7 +790,7 @@
 <section id="experience">
   <div class="section-label fade-up"><div class="section-label-line"></div><span>Venture Experience</span></div>
   <h2 class="fade-up">From the trenches<br />of early-stage capital.</h2>
-  <p class="section-intro fade-up">Hands-on exposure across fund operations, deal evaluation, and startup co-founding. Both sides of the cap table.</p>
+  <p class="section-intro fade-up">Venture diligence, fund operations, and startup co-founding. Both sides of the cap table.</p>
   <div class="timeline">
 
     <div class="timeline-item fade-up">
@@ -888,42 +978,31 @@
   <h2 class="fade-up">Tools of the trade.</h2>
   <div class="skills-wrapper">
     <div class="fade-up">
-      <div class="skill-group-title">Analytical &amp; Technical</div>
+      <div class="skill-group-title">Analytical</div>
       <div class="skill-list">
         <span class="skill-pill highlight">Financial Modeling</span>
-        <span class="skill-pill highlight">Due Diligence</span>
+        <span class="skill-pill highlight">Startup Due Diligence</span>
         <span class="skill-pill highlight">Cap Table Modeling</span>
-        <span class="skill-pill highlight">Waterfall Analysis</span>
-        <span class="skill-pill highlight">Unit Economics</span>
+        <span class="skill-pill highlight">Unit Economics Analysis</span>
+        <span class="skill-pill highlight">Market Sizing</span>
         <span class="skill-pill highlight">PitchBook</span>
-        <span class="skill-pill">DCF Modeling</span>
+        <span class="skill-pill">Waterfall Analysis</span>
         <span class="skill-pill">Cash Flow Projections</span>
-        <span class="skill-pill">Equity Valuation</span>
-        <span class="skill-pill">Bloomberg Terminal</span>
-        <span class="skill-pill">Advanced Excel</span>
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">CAC / LTV Analysis</span>
-        <span class="skill-pill">FP&amp;A</span>
         <span class="skill-pill">Scenario Analysis</span>
+        <span class="skill-pill">Advanced Excel</span>
       </div>
     </div>
     <div class="fade-up">
-      <div class="skill-group-title">Diligence &amp; Advisory</div>
+      <div class="skill-group-title">Diligence</div>
       <div class="skill-list">
         <span class="skill-pill highlight">Investment Memo Writing</span>
-        <span class="skill-pill highlight">Market Sizing</span>
         <span class="skill-pill highlight">Competitive Analysis</span>
         <span class="skill-pill highlight">Deal Sourcing</span>
         <span class="skill-pill highlight">Portfolio Monitoring</span>
-        <span class="skill-pill">Investor Relations</span>
-        <span class="skill-pill">GTM Strategy</span>
-        <span class="skill-pill">Pitch Deck Review</span>
-        <span class="skill-pill">Capital Strategy</span>
-        <span class="skill-pill">Pipeline Management</span>
-        <span class="skill-pill">LP Reporting</span>
-        <span class="skill-pill">Cohort Analysis</span>
         <span class="skill-pill">Market Mapping</span>
+        <span class="skill-pill">Pipeline Management</span>
         <span class="skill-pill">IP Assessment</span>
+        <span class="skill-pill">LP Reporting</span>
       </div>
     </div>
   </div>
@@ -1000,104 +1079,149 @@
     'digital-health': {
       sector: 'Digital Health',
       sectorClass: 'digital-health',
-      title: 'AI-Powered Point-of-Care Diagnostics',
-      stage: 'Seed Stage &middot; Evaluated 2025',
-      overview: 'AI-enabled diagnostic platform targeting decentralized clinical testing markets. The technology enables rapid, low-cost biomarker detection at the point of care, eliminating the need for centralized lab infrastructure and dramatically reducing time-to-result for clinicians and patients.',
-      market: 'The decentralized diagnostics market exceeds $12B and is growing at an ~18% CAGR, driven by post-pandemic shifts toward distributed care delivery, CMS reimbursement expansion for remote testing, and chronic disease management trends pushing diagnostics out of hospital settings.',
-      businessModel: 'Hardware + consumables (razor/razorblade). Diagnostic devices placed at marginal cost; recurring revenue generated through per-test consumable cartridges at approximately 60% gross margin. SaaS data layer creates additional recurring revenue from clinic-level analytics and outcomes reporting.',
-      diligence: [
-        '<strong>IP position:</strong> 3 pending patents on core detection methodology; exclusive licensing from university research institution creates defensible moat in the near term.',
-        '<strong>Regulatory pathway:</strong> Pursuing 510(k) clearance; clinical validation data submitted to FDA. Regulatory risk manageable given device classification and predicate device strategy.',
-        '<strong>Clinical validation:</strong> Early pilots with 2 regional health systems demonstrated accuracy comparable to centralized lab methods at 4x faster turnaround.',
-        '<strong>Unit economics:</strong> Device placement cost ~$3,200; break-even at approximately 8 tests/month per device. Early adopter sites averaging 22 tests/month.',
-        '<strong>Competitive landscape:</strong> Abbott and Roche dominate large-lab diagnostics; neither has a solution optimized for low-volume point-of-care with AI interpretation at this price point.'
-      ],
-      verdict: 'Compelling platform at the intersection of two durable trends: decentralized care delivery and AI-assisted diagnostics. Razor/razorblade model creates predictable recurring revenue if clinical adoption ramps. Primary risks are reimbursement timeline uncertainty and the speed of clinical network expansion. Recommend monitoring FDA clearance milestone and pilot site renewal rates as key investment signals.'
+      title: 'Digital Movement Diagnostics Platform',
+      stage: 'Early Stage &middot; Evaluated 2025',
+      sections: [
+        {
+          heading: 'Problem',
+          body: 'Movement disorder diagnosis depends heavily on in-person clinical observation by specialists, a process that is subjective, episodic, and constrained by access to specialist providers. Patients in underserved geographies often experience significant delays between symptom onset and formal diagnosis. In conditions where early intervention meaningfully affects outcomes, these delays represent both a clinical and economic problem for health systems.'
+        },
+        {
+          heading: 'Solution',
+          body: 'A software platform that applies computer vision and machine learning to analyze movement patterns from standard video input, enabling objective, quantitative assessment of motor function. The system is designed to integrate into existing telehealth and clinical workflows without requiring specialized hardware, making it accessible across a wide range of care settings including primary care and remote monitoring programs.'
+        },
+        {
+          heading: 'Market Opportunity',
+          body: 'Movement disorders affect a large and growing patient population globally. The digital health diagnostics market is expanding as healthcare systems seek tools that extend specialist reach, reduce diagnostic variability, and support value-based care reimbursement models. Remote monitoring and AI-assisted diagnostics are increasingly recognized by both payers and health systems as areas of strategic investment and near-term procurement.'
+        },
+        {
+          heading: 'Competitive Landscape',
+          body: 'Established medical device companies and a growing cohort of digital health startups are active in adjacent diagnostic categories. The primary competitive questions center on clinical validation depth, regulatory strategy, and the ability to integrate within health system EHR infrastructure and procurement processes. Companies that build proprietary longitudinal datasets early have the potential to widen their analytical advantage over time as model performance compounds with data scale.'
+        },
+        {
+          heading: 'Evaluation Focus',
+          body: 'The evaluation examined the clinical validation approach and evidence quality, the regulatory pathway strategy, the reimbursement model and payer engagement, the depth of health system relationships, and the founding team\'s combined clinical and technical expertise. Workflow integration and the scalability of data collection across diverse care settings were central to the analysis.'
+        },
+        {
+          heading: 'Investment Perspective',
+          body: 'Diagnostic platforms that generate objective, reimbursable clinical data while reducing specialist burden address a structural challenge in healthcare delivery. The long-term value in this category is tied closely to the quality and defensibility of the underlying dataset and the strength of institutional relationships built during the early commercial phase. The key analytical question is whether clinical validation evidence is strong enough to drive health system adoption at a pace that justifies the capital required to reach scale.'
+        }
+      ]
     },
     'mobility': {
       sector: 'Mobility SaaS',
       sectorClass: 'mobility',
-      title: 'Driver Earnings Optimization Platform',
-      stage: 'Pre-Series A &middot; Evaluated 2025',
-      overview: 'SaaS platform that aggregates demand signals across multiple rideshare and delivery networks to maximize per-hour earnings for gig economy drivers. The platform surfaces real-time zone recommendations, surge predictions, and platform arbitrage opportunities so drivers can optimize earnings without switching between apps manually.',
-      market: '4M+ active gig drivers in the US; estimated $1.2B TAM in driver-side productivity and financial tools. Market is growing alongside gig economy expansion and increasing driver awareness of income optimization. No dominant player on the driver side. The market is fragmented across several point solutions.',
-      businessModel: 'Subscription SaaS: $29/month standard, $49/month premium. 14-day free trial with 28% conversion rate. Monthly churn at 3.2%, below typical prosumer SaaS benchmarks. CAC of ~$18 via organic/community channels; LTV/CAC ratio of approximately 9x at current pricing.',
-      diligence: [
-        '<strong>Product-market fit:</strong> NPS of 68 among early adopters; strong organic word-of-mouth in driver communities on Reddit and Facebook Groups.',
-        '<strong>Network effects:</strong> Platform value increases as more drivers contribute anonymized earnings and demand data, creating a proprietary dataset that competitors cannot easily replicate.',
-        '<strong>Platform dependency risk:</strong> Revenue model is exposed to API access changes by Uber, Lyft, and DoorDash. Mitigation: diversified across 6 platforms; no single platform >35% of data inputs.',
-        '<strong>Unit economics:</strong> Strong at current scale. CAC $18 vs. LTV ~$162 at current churn. Key sensitivity is churn rate. Every 1% increase in monthly churn cuts LTV by ~$50.',
-        '<strong>Competitive landscape:</strong> Fragmented; no well-funded direct competitor. Indirect risk from platform-native earnings dashboards, which remain inferior to dedicated tooling.'
-      ],
-      verdict: 'Clear PMF in an underserved market with strong unit economics and organic distribution. The key bet is on continued gig economy growth and stable platform API ecosystems. Primary risk is platform dependency, worth structuring any investment with a milestone tied to API diversification. Recommend moving to term sheet pending deeper platform dependency analysis and review of churn cohorts by acquisition channel.'
+      title: 'Driver Independence Mobility Platform',
+      stage: 'Early Stage &middot; Evaluated 2025',
+      sections: [
+        {
+          heading: 'Problem',
+          body: 'Gig economy drivers across rideshare and delivery platforms operate with limited visibility into cross-platform demand patterns, incentive structures, and earnings optimization strategies. The result is inefficient time allocation and unpredictable income for a large and growing workforce that lacks the institutional support structures of traditional employment. Existing tools are either platform-specific or too narrow in scope to address the cross-platform coordination challenge.'
+        },
+        {
+          heading: 'Solution',
+          body: 'A cross-platform software tool that aggregates demand signals and operational data across multiple rideshare and delivery networks, providing personalized, real-time guidance to help drivers optimize when, where, and how they work. The platform is designed to improve earnings efficiency without requiring manual coordination across separate applications, reducing cognitive load while increasing per-hour output for active drivers.'
+        },
+        {
+          heading: 'Market Opportunity',
+          body: 'The gig transportation workforce is large, growing, and largely underserved by purpose-built software. As independent work continues to expand as a labor market category, driver-side tooling is emerging as a distinct software vertical with meaningful addressable market and limited competition at the cross-platform level. The absence of a dominant player creates an early-mover opportunity for a company that can establish network effects before incumbents respond.'
+        },
+        {
+          heading: 'Competitive Landscape',
+          body: 'Existing solutions in this category are narrow and platform-specific. No well-funded competitor has established a dominant cross-platform position. The medium-term competitive risk is native feature development by the rideshare platforms themselves, which have strong incentives to shape driver behavior through their own interfaces and could replicate certain features with existing infrastructure.'
+        },
+        {
+          heading: 'Evaluation Focus',
+          body: 'The evaluation focused on the unit economics structure and sensitivity to churn, the sustainability of platform API access over time, driver retention and engagement cohort behavior, and the company\'s strategy for building a data position that becomes harder to replicate as the user base grows. Platform dependency and the regulatory environment for gig work were treated as key risk factors.'
+        },
+        {
+          heading: 'Investment Perspective',
+          body: 'Cross-platform tooling for gig workers addresses a clear and measurable pain point in a fragmented market. The product value proposition is straightforward and directly tied to driver income, which creates strong organic adoption incentives. The central investment question is around defensibility: whether the company can build a dataset and network position that compounds before larger platforms respond with competing features or API restrictions.'
+        }
+      ]
     },
     'biotech': {
       sector: 'Aquaculture Biotech',
       sectorClass: 'biotech',
-      title: 'Precision Aquaculture Intelligence Platform',
-      stage: 'Seed Stage &middot; Evaluated 2025',
-      overview: 'Biotech-enabled aquaculture intelligence platform combining biosensor hardware and predictive analytics to optimize fish farm yields and reduce mortality rates. The platform monitors water quality, biological stress markers, and feeding patterns in real time, surfacing actionable recommendations to farm operators.',
-      market: 'Global aquaculture market exceeds $285B. The precision aquaculture technology segment is approximately $800M, growing at ~14% CAGR. Strong secular tailwinds from global food security pressures, sustainability mandates, and the shift to farmed seafood as wild catch capacity stagnates.',
-      businessModel: 'Hardware + SaaS subscription. Biosensor units sold or leased to farm sites (~$8,000/unit); monitoring and analytics SaaS at $1,200/month per site. Platform gross margins ~65% on SaaS revenue. Hardware gross margins ~35%, improving with manufacturing scale.',
-      diligence: [
-        '<strong>IP position:</strong> Core biosensor technology developed at a leading marine biology research institution; exclusive commercial license with clean IP assignment documentation.',
-        '<strong>Pilot validation:</strong> 3 commercial salmon farms in Norway demonstrated 22% reduction in mortality rates in 6-month pilots, which translates directly to revenue impact for operators.',
-        '<strong>Sales cycle:</strong> 6 to 12 months for farm operators due to capital budgeting cycles and operational change management. Limits near-term revenue ramp but creates sticky, contractual relationships.',
-        '<strong>Regulatory:</strong> EU market approvals in place; US FDA clearance for diagnostic claims in progress. Initial commercialization can proceed in EU while US approval is pursued.',
-        '<strong>Team:</strong> PhD-level marine biology expertise combined with aquaculture operations experience; credible execution on both the science and the commercial side.'
-      ],
-      verdict: 'Compelling technology addressing a measurable, high-stakes economic pain point. Fish mortality is a direct revenue loss event that operators are highly motivated to solve. Strong unit economics if pilot results hold at commercial scale. Primary investment risks are the length of the sales cycle and early customer concentration. Recommend structuring investment with use of proceeds tied to expanding pilot sites and reducing dependence on the initial 3 farm customers.'
+      title: 'Oral Vaccine Platform for Aquaculture',
+      stage: 'Early Stage &middot; Evaluated 2025',
+      sections: [
+        {
+          heading: 'Problem',
+          body: 'Disease management in commercial aquaculture relies heavily on injectable vaccines and antibiotic treatments. Injectable approaches require significant labor, cause fish handling stress, and face growing regulatory and consumer pressure related to antibiotic use in food supply chains. These constraints limit operational scalability for farm operators and create sustainability risks that are increasingly scrutinized by food retailers and regulatory bodies in major markets.'
+        },
+        {
+          heading: 'Solution',
+          body: 'An oral vaccine delivery system that enables mass immunization of farmed fish through feed-based administration. The platform is designed to eliminate the need for manual injection, reduce fish handling stress, and enable disease prevention at a scale not feasible with current injectable methods. The approach targets the major disease categories responsible for the highest rates of mortality and economic loss in commercial aquaculture operations.'
+        },
+        {
+          heading: 'Market Opportunity',
+          body: 'Aquaculture is among the fastest-growing protein production sectors globally, driven by rising demand for sustainable seafood and the fundamental limits of wild catch capacity. Disease prevention is consistently identified as a top operational and economic priority by farm operators. The adoption of more scalable health management tools is accelerating across major producing regions as farm scale increases and sustainability mandates tighten.'
+        },
+        {
+          heading: 'Competitive Landscape',
+          body: 'Injectable vaccines produced by a small number of established veterinary pharmaceutical companies remain the standard of care across the industry. Oral delivery has historically faced meaningful technical barriers related to antigen stability and achieving efficacy comparable to injectable approaches at commercial scale. A platform that credibly overcomes these barriers would represent a significant competitive differentiation in a market where the incumbent approach has structural limitations.'
+        },
+        {
+          heading: 'Evaluation Focus',
+          body: 'The evaluation examined the biological mechanism and efficacy evidence relative to injectable alternatives, the manufacturing scalability pathway, the regulatory approval strategy across key aquaculture markets, and the quality of existing relationships with commercial farm operators. The founding team\'s combined biology expertise and aquaculture operational experience was a significant factor in the assessment.'
+        },
+        {
+          heading: 'Investment Perspective',
+          body: 'An oral vaccine platform with demonstrated efficacy at commercial scale could meaningfully reshape disease management across a large and growing industry. The value proposition is directly tied to a measurable economic outcome for operators, which creates strong adoption incentives once technical and regulatory risk is sufficiently reduced. The key investment question is the degree to which that risk has been de-risked relative to the company\'s current stage and the capital required to reach the next meaningful validation milestone.'
+        }
+      ]
     },
     'deep-tech': {
-      sector: 'Deep Tech · Semiconductor Equipment',
+      sector: 'Deep Tech / Semiconductor Equipment',
       sectorClass: 'deep-tech',
-      title: 'Advanced Semiconductor Metrology Equipment',
-      stage: 'Series A &middot; Evaluated 2025',
-      overview: 'Advanced optical metrology equipment for semiconductor wafer inspection at sub-5nm process nodes. The technology delivers defect detection at significantly higher throughput than incumbent scanning electron microscopy (SEM) approaches, addressing a critical bottleneck in advanced semiconductor manufacturing as the industry transitions to 3nm and 2nm nodes.',
-      market: 'Global semiconductor equipment market exceeds $100B. Process control and metrology is an ~$8B subsegment growing alongside advanced node transitions. CHIPS Act domestic fab buildout ($52B+ in US investment) creates near-term demand catalyst independent of global semiconductor cycle.',
-      businessModel: 'Capital equipment sales ($2 to $4M per unit) with recurring service and maintenance contracts (~18% of unit price annually). Gross margins 45 to 55%, consistent with semiconductor equipment industry benchmarks. Revenue is lumpy by nature: large deals with long qualification cycles, followed by repeat orders.',
-      diligence: [
-        '<strong>Technology validation:</strong> Core optical detection methodology validated in collaboration with a top-5 global chip manufacturer; performance data on file.',
-        '<strong>IP position:</strong> 2 patents granted, 4 pending; defensible differentiation around optical aperture design and AI-assisted defect classification.',
-        '<strong>Customer concentration:</strong> Initial revenue from 1–2 fab customers creates concentration risk; mitigated by formal qualification processes underway at 3 additional fabs.',
-        '<strong>Qualification cycles:</strong> 12 to 18 months from initial evaluation to production qualification is standard in semiconductor equipment. Long lead times, but relationships are sticky once qualified.',
-        '<strong>Competitive landscape:</strong> KLA Tencor and Applied Materials dominate the broader process control market; differentiation is in throughput at sub-5nm nodes specifically, where incumbents face technical limitations.'
-      ],
-      verdict: 'Technically differentiated solution at a critical juncture in semiconductor capacity buildout. CHIPS Act spending and advanced node transitions create a multi-year demand tailwind that is independent of near-term consumer electronics cycles. The primary investment risks are customer concentration and revenue lumpiness inherent to the capital equipment model. Recommend investment contingent on visibility into the 3-fab qualification pipeline and contracted backlog at close.'
+      title: 'Optical Metrology System for Semiconductor Manufacturing',
+      stage: 'Growth Stage &middot; Evaluated 2025',
+      sections: [
+        {
+          heading: 'Problem',
+          body: 'As semiconductor manufacturing advances to smaller process nodes, incumbent inspection and measurement systems face fundamental throughput and cost limitations. Traditional electron-based metrology approaches are struggling to scale economically at advanced nodes, creating yield management bottlenecks for leading-edge chip manufacturers. The gap between what existing tools can measure and what advanced fabrication processes require is widening as node transitions accelerate.'
+        },
+        {
+          heading: 'Solution',
+          body: 'An optical metrology system designed for high-throughput wafer inspection at advanced semiconductor process nodes. The platform applies a proprietary optical detection approach to enable faster defect identification at a lower cost per measurement than incumbent scanning electron microscopy systems, without sacrificing the resolution required for advanced node process control. The system is designed to integrate into existing fab infrastructure and qualification workflows.'
+        },
+        {
+          heading: 'Market Opportunity',
+          body: 'The global semiconductor equipment market is large and strategically critical. Process control and metrology represents a growing subsegment as chipmakers\' yield requirements become more stringent with each node transition. Government manufacturing investment programs are creating meaningful near-term demand for domestic equipment suppliers, independent of broader semiconductor demand cycle dynamics. The structural case for advanced metrology investment is tied directly to the pace of node transitions rather than end-market consumption.'
+        },
+        {
+          heading: 'Competitive Landscape',
+          body: 'The process control market is dominated by a small number of established equipment companies with deep installed bases and long-standing customer relationships built over decades. New entrants must demonstrate clear performance advantages and navigate multi-stage customer qualification processes that can span a year or more. The barrier to entry is high, but the performance ceiling of incumbent approaches at advanced nodes creates a genuine opening for differentiated optical solutions.'
+        },
+        {
+          heading: 'Evaluation Focus',
+          body: 'The evaluation examined technology readiness level relative to customer qualification requirements, the depth and quality of existing customer engagement, the IP position and defensibility of the core optical methodology, the manufacturing scalability pathway, and the semiconductor industry experience of the founding and technical team. Customer qualification status and the pipeline of active evaluation programs were treated as the primary near-term signals.'
+        },
+        {
+          heading: 'Investment Perspective',
+          body: 'Advanced metrology is a high-barrier, high-value market category where technical differentiation translates directly into pricing power and long-term customer retention once qualification is achieved. Companies that can demonstrate credible performance at advanced nodes and manage the qualification process strategically are well-positioned to benefit from both the advanced node transition tailwind and the structural increase in domestic semiconductor manufacturing investment. The key analytical question is whether the technology is sufficiently proven and the customer engagement sufficiently advanced to de-risk the qualification timeline.'
+        }
+      ]
     }
   };
 
   function openModal(id) {
     const cs = caseStudies[id];
     if (!cs) return;
-    const diligenceHTML = cs.diligence.map(d => `<li>${d}</li>`).join('');
+    const sectionsHTML = cs.sections.map((s, i) => {
+      const isLast = i === cs.sections.length - 1;
+      if (isLast) {
+        return `<div class="cs-modal-section"><div class="cs-modal-verdict"><div class="cs-modal-verdict-label">${s.heading}</div><p>${s.body}</p></div></div>`;
+      }
+      return `<div class="cs-modal-section"><h4>${s.heading}</h4><p>${s.body}</p></div>`;
+    }).join('');
     document.getElementById('csModalContent').innerHTML = `
       <span class="cs-modal-sector-label ${cs.sectorClass}">${cs.sector}</span>
       <h3>${cs.title}</h3>
       <div class="cs-modal-stage">${cs.stage}</div>
       <div class="cs-modal-divider"></div>
-      <div class="cs-modal-section">
-        <h4>Deal Overview</h4>
-        <p>${cs.overview}</p>
-      </div>
-      <div class="cs-modal-section">
-        <h4>Market</h4>
-        <p>${cs.market}</p>
-      </div>
-      <div class="cs-modal-section">
-        <h4>Business Model</h4>
-        <p>${cs.businessModel}</p>
-      </div>
-      <div class="cs-modal-section">
-        <h4>Diligence Findings</h4>
-        <ul>${diligenceHTML}</ul>
-      </div>
-      <div class="cs-modal-section">
-        <div class="cs-modal-verdict">
-          <div class="cs-modal-verdict-label">Investment Thesis</div>
-          <p>${cs.verdict}</p>
-        </div>
-      </div>
+      ${sectionsHTML}
     `;
     document.getElementById('csOverlay').classList.add('open');
     document.getElementById('csModal').classList.add('open');
