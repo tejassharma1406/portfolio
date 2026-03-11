@@ -16,12 +16,12 @@
   <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/">Home</a></li>
-    <li><a href="/evaluations">Evaluations</a></li>
-    <li><a href="/theses">Theses</a></li>
-    <li><a href="/modeling">Modeling</a></li>
-    <li><a href="/experience">Experience</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="/evaluations.html">Evaluations</a></li>
+    <li><a href="/theses.html">Theses</a></li>
+    <li><a href="/modeling.html">Modeling</a></li>
+    <li><a href="/experience.html">Experience</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
     <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
   </ul>
   <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
@@ -119,10 +119,12 @@
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
   (function() {
-    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    const path = window.location.pathname;
     document.querySelectorAll('.nav-links a').forEach(a => {
-      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
-      if (href === path) a.classList.add('active');
+      const href = a.getAttribute('href') || '';
+      if (href === path) { a.classList.add('active'); return; }
+      if (href === '/evaluations.html' && path.startsWith('/evaluations-')) a.classList.add('active');
+      if ((href === '/' || href === '/index.html') && (path === '/' || path === '/index.html')) a.classList.add('active');
     });
   })();
 

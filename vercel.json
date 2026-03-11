@@ -1,13 +1,8 @@
 {
+  "cleanUrls": false,
   "headers": [
     {
-      "source": "/",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store" }
-      ]
-    },
-    {
-      "source": "/(.*)\\.html",
+      "source": "/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "no-store" }
       ]

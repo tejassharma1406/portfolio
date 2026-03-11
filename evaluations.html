@@ -16,12 +16,12 @@
   <a href="/" class="nav-logo">Tejas<span> Sharma</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/">Home</a></li>
-    <li><a href="/evaluations">Evaluations</a></li>
-    <li><a href="/theses">Theses</a></li>
-    <li><a href="/modeling">Modeling</a></li>
-    <li><a href="/experience">Experience</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
+    <li><a href="/evaluations.html">Evaluations</a></li>
+    <li><a href="/theses.html">Theses</a></li>
+    <li><a href="/modeling.html">Modeling</a></li>
+    <li><a href="/experience.html">Experience</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
     <li class="nav-contact-mobile"><a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
   </ul>
   <a href="/Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
@@ -41,7 +41,7 @@
 <section id="work" style="background: var(--navy); border-top: none; padding-top: 5rem;">
   <div class="cs-grid">
 
-    <a href="/evaluations/digital-diagnostics" class="cs-card digital-health fade-up">
+    <a href="/evaluations-digital-diagnostics.html" class="cs-card digital-health fade-up">
       <span class="cs-sector-badge digital-health">Digital Health</span>
       <div class="cs-title">Digital Movement Diagnostics Platform</div>
       <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
@@ -56,7 +56,7 @@
       <div class="cs-cta">Read Analysis <span>→</span></div>
     </a>
 
-    <a href="/evaluations/mobility-platform" class="cs-card mobility fade-up">
+    <a href="/evaluations-mobility-platform.html" class="cs-card mobility fade-up">
       <span class="cs-sector-badge mobility">Mobility SaaS</span>
       <div class="cs-title">Driver Independence Mobility Platform</div>
       <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
@@ -71,7 +71,7 @@
       <div class="cs-cta">Read Analysis <span>→</span></div>
     </a>
 
-    <a href="/evaluations/aquaculture-biotech" class="cs-card biotech fade-up">
+    <a href="/evaluations-aquaculture-biotech.html" class="cs-card biotech fade-up">
       <span class="cs-sector-badge biotech">Aquaculture Biotech</span>
       <div class="cs-title">Oral Vaccine Platform for Aquaculture</div>
       <div class="cs-stage">Early Stage &middot; Evaluated 2025</div>
@@ -86,7 +86,7 @@
       <div class="cs-cta">Read Analysis <span>→</span></div>
     </a>
 
-    <a href="/evaluations/optical-metrology" class="cs-card deep-tech fade-up">
+    <a href="/evaluations-optical-metrology.html" class="cs-card deep-tech fade-up">
       <span class="cs-sector-badge deep-tech">Deep Tech</span>
       <div class="cs-title">Optical Metrology System for Semiconductor Manufacturing</div>
       <div class="cs-stage">Growth Stage &middot; Evaluated 2025</div>
@@ -116,11 +116,12 @@
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
   (function() {
-    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    const path = window.location.pathname;
     document.querySelectorAll('.nav-links a').forEach(a => {
-      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
-      if (href === path || (href !== '/' && path.startsWith(href + '/'))) a.classList.add('active');
-      if (href === '/' && path === '/') a.classList.add('active');
+      const href = a.getAttribute('href') || '';
+      if (href === path) { a.classList.add('active'); return; }
+      if (href === '/evaluations.html' && path.startsWith('/evaluations-')) a.classList.add('active');
+      if ((href === '/' || href === '/index.html') && (path === '/' || path === '/index.html')) a.classList.add('active');
     });
   })();
 
