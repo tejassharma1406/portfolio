@@ -318,7 +318,7 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); 
   font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--gold); background: rgba(196,150,42,0.1); padding: 0.2rem 0.65rem; border-radius: 2px;
 }
-.exp-card-role { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+.exp-card-role { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.25; overflow-wrap: break-word; }
 .exp-card-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.8; flex: 1; overflow-wrap: break-word; hyphens: auto; }
 @media (max-width: 1100px) { .exp-card-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px)  { .exp-card-grid { grid-template-columns: 1fr; } }
@@ -543,6 +543,8 @@ footer { padding: 1.75rem 5%; background: var(--navy); border-top: 1px solid var
 .tool-logo-card:hover { border-color: rgba(196,150,42,0.4); transform: translateY(-3px); }
 .tool-logo-card img { opacity: 0.75; transition: opacity 0.2s; display: block; }
 .tool-logo-card:hover img { opacity: 1; }
+.tool-logo-card svg { opacity: 0.85; transition: opacity 0.2s; display: block; flex-shrink: 0; }
+.tool-logo-card:hover svg { opacity: 1; }
 .tool-logo-card > span { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 .tool-custom-badge { width: 30px; height: 30px; background: rgba(196,150,42,0.12); border: 1px solid rgba(196,150,42,0.35); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.63rem; font-weight: 800; letter-spacing: 0.04em; color: var(--gold); }
 @media (max-width: 900px) { .skills-two-col { grid-template-columns: 1fr; gap: 2.5rem; } }
