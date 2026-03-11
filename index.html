@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tejas Sharma | Venture Capital &amp; Finance</title>
+  <title>Tejas Sharma | Venture Capital Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
@@ -15,6 +15,8 @@
       --gold:       #C4962A;
       --gold-light: #D4AF5A;
       --green-light:#22A06B;
+      --blue-accent:#5B9BD5;
+      --purple-accent:#9B7FE8;
       --text:       #E8E4DC;
       --text-muted: #8899AA;
       --border:     rgba(196,150,42,0.18);
@@ -45,7 +47,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 5%;
-      background: rgba(8,17,31,0.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      background: rgba(8,17,31,0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       transition: padding 0.3s;
     }
@@ -63,11 +65,9 @@
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      min-height: 100svh; /* iOS Safari: excludes collapsible browser chrome */
+      min-height: 100svh;
       display: grid; grid-template-columns: 1fr 1.1fr;
       align-items: center;
-      /* padding-top clears the fixed nav (~64px) at all desktop widths;
-         clamp ensures a safe minimum of 4.5rem ≈ 72px at any viewport height */
       padding: clamp(4.5rem, 9vh, 7rem) 5% clamp(2rem, 4vh, 4rem);
       gap: 3rem;
       background: var(--navy); position: relative; overflow: visible;
@@ -76,41 +76,31 @@
     .hero-avatar-wrap { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; flex: 0 0 auto; }
     .hero-avatar { width: clamp(84px, 6vw, 120px); height: clamp(84px, 6vw, 120px); min-width: clamp(84px, 6vw, 120px); border-radius: 9999px; border: 2.5px solid var(--gold); box-shadow: 0 0 0 6px rgba(196,150,42,0.1), 0 8px 32px rgba(0,0,0,0.5); object-fit: cover; object-position: center; flex: 0 0 auto; flex-shrink: 0; }
     .hero-avatar-meta { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
-    .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); overflow-wrap: break-word; word-break: normal; }
-    .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); overflow-wrap: break-word; word-break: normal; }
+    .hero-avatar-name { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-avatar-role { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; color: rgba(196,150,42,0.65); }
     .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
     .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
     .hero-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
     h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); }
     h1 em { font-style: italic; color: var(--gold-light); }
-    .hero-sub { margin-top: 1.75rem; font-size: 1.02rem; color: var(--text-muted); max-width: 460px; line-height: 1.9; }
+    .hero-sub { margin-top: 1.75rem; font-size: 1.02rem; color: var(--text-muted); max-width: 480px; line-height: 1.9; }
     .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary { padding: 0.85rem 2rem; background: var(--gold); color: var(--navy); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.25s, transform 0.2s; }
+    .btn-primary { padding: 0.85rem 2rem; background: var(--gold); color: var(--navy); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.25s, transform 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
     .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
     .btn-secondary { padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: border-color 0.25s, color 0.25s, transform 0.2s; }
     .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
-    /* hero-stats is always a CSS grid — never flex-wrap.
-       Divider nodes removed from DOM; visual separators via border-left on .hero-stat. */
     .hero-stats {
       margin-top: 4rem;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0; /* gap controlled by padding on .hero-stat */
+      gap: 0;
     }
-    .hero-stat {
-      padding: 0 2rem 0 0;
-    }
-    .hero-stat + .hero-stat {
-      padding: 0 2rem;
-      border-left: 1px solid var(--border);
-    }
-    .hero-stat:last-child {
-      padding-right: 0;
-    }
+    .hero-stat { padding: 0 2rem 0 0; }
+    .hero-stat + .hero-stat { padding: 0 2rem; border-left: 1px solid var(--border); }
+    .hero-stat:last-child { padding-right: 0; }
     .hero-stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
     .hero-stat-number sup { font-size: 1.1rem; }
     .hero-stat-label { margin-top: 0.35rem; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .hero-divider { display: none; } /* kept for safety; no DOM nodes remain */
     .hero-right { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
     .trajectory-svg { width: 100%; max-width: 520px; }
 
@@ -135,39 +125,94 @@
     .thesis-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
     .thesis-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
 
-    /* ── METRICS ── */
-    #metrics { background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 5%; }
-    .metrics-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
-    .metrics-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
-    .metric-item { text-align: center; padding: 2.5rem 1rem; border-right: 1px solid var(--border); }
-    .metric-item:last-child { border-right: none; }
-    .metric-number { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--gold-light); line-height: 1; display: block; }
-    .metric-suffix { font-size: 1.5rem; color: var(--gold); }
-    .metric-label { margin-top: 0.75rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
-    .metrics-chart-wrap { min-width: 220px; }
-    .chart-svg { width: 100%; max-width: 240px; }
-    .chart-bar { opacity: 0; animation: barRise 0.6s ease forwards; }
-    .chart-bar:nth-child(1) { animation-delay: 0.1s; }
-    .chart-bar:nth-child(2) { animation-delay: 0.2s; }
-    .chart-bar:nth-child(3) { animation-delay: 0.3s; }
-    .chart-bar:nth-child(4) { animation-delay: 0.4s; }
-    .chart-bar:nth-child(5) { animation-delay: 0.5s; }
-    @keyframes barRise { from { opacity:0; transform:scaleY(0); transform-origin:bottom; } to { opacity:1; transform:scaleY(1); transform-origin:bottom; } }
+    /* ── CASE STUDIES ── */
+    #work { background: var(--navy); border-top: 1px solid var(--border); }
+    .cs-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .cs-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      padding: 2.25rem 2rem; cursor: pointer;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column; position: relative; overflow: hidden;
+    }
+    .cs-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0.6; transition: opacity 0.25s;
+    }
+    .cs-card.digital-health::before { background: var(--green-light); }
+    .cs-card.mobility::before      { background: var(--blue-accent); }
+    .cs-card.biotech::before       { background: var(--gold); }
+    .cs-card.deep-tech::before     { background: var(--purple-accent); }
+    .cs-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+    .cs-card:hover::before { opacity: 1; }
+    .cs-sector-badge {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1.25rem; border-radius: 2px;
+    }
+    .cs-sector-badge.digital-health { color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); }
+    .cs-sector-badge.mobility       { color: var(--blue-accent);  background: rgba(91,155,213,0.1);  border: 1px solid rgba(91,155,213,0.25); }
+    .cs-sector-badge.biotech        { color: var(--gold-light);   background: rgba(196,150,42,0.1);  border: 1px solid rgba(196,150,42,0.25); }
+    .cs-sector-badge.deep-tech      { color: var(--purple-accent);background: rgba(155,127,232,0.1); border: 1px solid rgba(155,127,232,0.25); }
+    .cs-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; line-height: 1.25; }
+    .cs-stage { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500; }
+    .cs-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; flex: 1; margin-bottom: 1.5rem; overflow-wrap: break-word; hyphens: auto; }
+    .cs-angles { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.75rem; }
+    .cs-angle-tag {
+      font-size: 0.61rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; background: rgba(196,150,42,0.04); border: 1px solid var(--border); color: var(--text-muted);
+    }
+    .cs-cta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-top: auto; transition: gap 0.2s; }
+    .cs-card:hover .cs-cta { gap: 0.8rem; }
 
-    /* ── VC PLAYBOOK ── */
-    #sectors { background: var(--navy); }
-    .playbook-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
-    .play-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.25rem 1.75rem; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
-    .play-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-    .play-card:hover .play-icon-circle { stroke: rgba(196,150,42,0.65); }
-    .play-icon-wrap { margin-bottom: 1.5rem; }
-    .play-icon { width: 48px; height: 48px; }
-    .play-icon-circle { transition: stroke 0.25s; }
-    .play-num { font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 700; color: rgba(196,150,42,0.3); letter-spacing: 0.2em; line-height: 1; margin-bottom: 0.6rem; }
-    .play-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .play-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; flex: 1; overflow-wrap: break-word; word-break: normal; hyphens: auto; min-width: 0; }
-    .play-visual { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(196,150,42,0.1); }
-    .play-visual-svg { width: 100%; }
+    /* ── CASE STUDY MODAL ── */
+    .cs-modal-overlay {
+      position: fixed; inset: 0; background: rgba(8,17,31,0.85); z-index: 500;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    }
+    .cs-modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .cs-modal {
+      position: fixed; top: 0; right: 0; bottom: 0; width: min(700px, 100vw);
+      background: var(--navy-mid); border-left: 1px solid var(--border); z-index: 501;
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
+      transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      padding: 3.5rem 3rem 4rem;
+    }
+    .cs-modal.open { transform: translateX(0); }
+    .cs-modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem; background: none;
+      border: 1px solid var(--border); color: var(--text-muted); width: 36px; height: 36px;
+      border-radius: 2px; cursor: pointer; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s;
+    }
+    .cs-modal-close:hover { border-color: var(--gold); color: var(--gold-light); }
+    .cs-modal-sector-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1rem; border-radius: 2px;
+    }
+    .cs-modal-sector-label.digital-health { color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); }
+    .cs-modal-sector-label.mobility       { color: var(--blue-accent);  background: rgba(91,155,213,0.1);  border: 1px solid rgba(91,155,213,0.25); }
+    .cs-modal-sector-label.biotech        { color: var(--gold-light);   background: rgba(196,150,42,0.1);  border: 1px solid rgba(196,150,42,0.25); }
+    .cs-modal-sector-label.deep-tech      { color: var(--purple-accent);background: rgba(155,127,232,0.1); border: 1px solid rgba(155,127,232,0.25); }
+    .cs-modal h3 { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 0.5rem; }
+    .cs-modal-stage { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .cs-modal-divider { width: 40px; height: 1px; background: var(--gold); opacity: 0.5; margin-bottom: 2rem; }
+    .cs-modal-section { margin-bottom: 2rem; }
+    .cs-modal-section h4 {
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .cs-modal-section h4::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--gold); }
+    .cs-modal-section p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; overflow-wrap: break-word; hyphens: auto; }
+    .cs-modal-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .cs-modal-section ul li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; overflow-wrap: break-word; hyphens: auto; }
+    .cs-modal-section ul li::before { content: '›'; color: var(--gold); font-size: 1rem; flex-shrink: 0; line-height: 1.7; }
+    .cs-modal-section ul li strong { color: var(--text); font-weight: 600; }
+    .cs-modal-verdict {
+      background: rgba(196,150,42,0.04); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+      padding: 1.5rem 1.75rem; margin-top: 0.5rem;
+    }
+    .cs-modal-verdict-label { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .cs-modal-verdict p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; overflow-wrap: break-word; hyphens: auto; }
 
     /* ── EXPERIENCE ── */
     #experience { background: var(--navy-mid); border-top: 1px solid var(--border); }
@@ -189,56 +234,20 @@
     .timeline-tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.7rem; border: 1px solid var(--border); color: var(--text-muted); background: rgba(196,150,42,0.04); }
 
-    /* ── SKILLS ── */
-    #skills { background: var(--navy); border-top: 1px solid var(--border); }
-    .skills-wrapper { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
-    .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-    .skill-pill { font-size: 0.78rem; font-weight: 500; padding: 0.42rem 0.95rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); transition: border-color 0.2s, color 0.2s; }
-    .skill-pill:hover { border-color: var(--gold); color: var(--gold-light); }
-    .skill-pill.highlight { border-color: rgba(196,150,42,0.45); color: var(--gold-light); background: rgba(196,150,42,0.08); font-weight: 600; }
-
-    /* ── EDUCATION ── */
-    #education { background: var(--navy-mid); border-top: 1px solid var(--border); }
-    .edu-grid { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .edu-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.25rem; position: relative; overflow: hidden; transition: transform 0.25s, border-color 0.25s; }
-    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
-    .edu-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); }
-    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-    .edu-school { font-size: 0.86rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.25rem; }
-    .edu-period { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 1.1rem; }
-    .edu-detail { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
-    .edu-gpa { display: inline-block; margin-top: 1rem; padding: 0.28rem 0.8rem; background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.28); font-size: 0.75rem; font-weight: 700; color: var(--green-light); letter-spacing: 0.05em; }
-
-    /* ── PROJECTS ── */
-    #projects { background: var(--navy); border-top: 1px solid var(--border); }
-    .project-card { margin-top: 3rem; background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; transition: border-color 0.25s; }
-    .project-card:hover { border-color: rgba(196,150,42,0.4); }
+    /* ── FINANCIAL MODELING ── */
+    #modeling { background: var(--navy); border-top: 1px solid var(--border); }
+    .modeling-intro { margin-top: 0.75rem; font-size: 0.97rem; color: var(--text-muted); max-width: 560px; line-height: 1.85; }
+    .captable-card { margin-top: 3.5rem; background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; transition: border-color 0.25s; }
+    .captable-card:hover { border-color: rgba(196,150,42,0.4); }
     .project-badge { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-light); background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.25); padding: 0.22rem 0.7rem; display: inline-block; margin-bottom: 1rem; }
     .project-title { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
     .project-course { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
     .project-meta-sub { font-size: 0.76rem; color: var(--text-muted); opacity: 0.7; margin-bottom: 1.75rem; }
-    .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .project-bullets li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; word-break: normal; hyphens: auto; min-width: 0; }
-    .project-bullets li::before { content: '›'; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; line-height: 1.75; }
-    .project-bullets li strong { color: var(--text); }
-    .project-stats { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 2.5rem; border: 1px solid var(--border); }
-    .p-stat { padding: 1.5rem 1rem; text-align: center; border-right: 1px solid var(--border); background: rgba(196,150,42,0.03); }
-    .p-stat:last-child { border-right: none; }
-    .p-stat-val { font-family: 'Playfair Display', serif; font-size: 1.85rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
-    .p-stat-lbl { margin-top: 0.4rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-
-    /* ── CAP TABLE CARD ── */
-    .captable-card { margin-top: 2.5rem; background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; transition: border-color 0.25s; }
-    .captable-card:hover { border-color: rgba(196,150,42,0.4); }
     .captable-inner { display: grid; grid-template-columns: 260px 1fr; gap: 3.5rem; align-items: center; margin-top: 2.25rem; }
     .donut-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
     .donut-svg { width: 240px; height: 240px; overflow: visible; }
     .donut-slice { cursor: pointer; transition: opacity 0.2s, filter 0.2s; }
     .donut-slice:hover { opacity: 0.85; filter: brightness(1.25); }
-    .donut-center-label { position: absolute; text-align: center; pointer-events: none; }
-    .donut-center-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
-    .donut-center-sub { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem; }
     .captable-right { display: flex; flex-direction: column; gap: 1.75rem; }
     .captable-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
     .ct-metric { background: rgba(196,150,42,0.04); border: 1px solid var(--border); padding: 1rem 1.2rem; }
@@ -257,15 +266,55 @@
     .ct-pct { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 700; color: var(--text); min-width: 42px; text-align: right; }
     .ct-download { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(196,150,42,0.35); padding: 0.6rem 1.25rem; transition: background 0.2s, color 0.2s; }
     .ct-download:hover { background: rgba(196,150,42,0.08); color: var(--gold-light); }
-    @media (max-width: 900px) { .captable-inner { grid-template-columns: 1fr; } .donut-wrap { justify-content: flex-start; } }
+    .model-note { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
+    .model-note::before { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── INVESTMENT INTERESTS ── */
+    #interests { background: var(--navy-mid); border-top: 1px solid var(--border); }
+    .interests-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .interest-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      padding: 2rem 1.75rem; transition: transform 0.25s, border-color 0.25s; position: relative; overflow: hidden;
+    }
+    .interest-card:hover { transform: translateY(-3px); border-color: rgba(196,150,42,0.35); }
+    .interest-card-accent {
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent-color, var(--gold)); opacity: 0.5; transition: opacity 0.25s;
+    }
+    .interest-card:hover .interest-card-accent { opacity: 1; }
+    .interest-icon { font-size: 1.4rem; margin-bottom: 1rem; line-height: 1; }
+    .interest-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .interest-thesis { font-size: 0.86rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; hyphens: auto; }
+    .interests-fifth { grid-column: span 1; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--navy); border-top: 1px solid var(--border); }
+    .skills-wrapper { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-pill { font-size: 0.78rem; font-weight: 500; padding: 0.42rem 0.95rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); transition: border-color 0.2s, color 0.2s; max-width: 100%; overflow-wrap: break-word; }
+    .skill-pill:hover { border-color: var(--gold); color: var(--gold-light); }
+    .skill-pill.highlight { border-color: rgba(196,150,42,0.45); color: var(--gold-light); background: rgba(196,150,42,0.08); font-weight: 600; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--navy-mid); border-top: 1px solid var(--border); }
+    .edu-grid { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .edu-card { background: var(--card-bg); border: 1px solid var(--border); padding: 2.25rem; position: relative; overflow: hidden; transition: transform 0.25s, border-color 0.25s; }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
+    .edu-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); }
+    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .edu-school { font-size: 0.86rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.25rem; }
+    .edu-period { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 1.1rem; }
+    .edu-detail { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; min-width: 0; overflow-wrap: break-word; }
+    .edu-gpa { display: inline-block; margin-top: 1rem; padding: 0.28rem 0.8rem; background: rgba(34,160,107,0.1); border: 1px solid rgba(34,160,107,0.28); font-size: 0.75rem; font-weight: 700; color: var(--green-light); letter-spacing: 0.05em; }
 
     /* ── CONTACT ── */
-    #contact { background: var(--navy-mid); border-top: 1px solid var(--border); text-align: center; }
+    #contact { background: var(--navy); border-top: 1px solid var(--border); text-align: center; }
     .contact-inner { max-width: 640px; margin: 0 auto; }
     .contact-inner h2 { margin-top: 1.5rem; }
     .contact-sub { margin-top: 1rem; font-size: 0.97rem; color: var(--text-muted); line-height: 1.85; }
     .c-links { margin-top: 2.5rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
-    .c-link { display: flex; align-items: center; gap: 0.55rem; font-size: 0.83rem; font-weight: 600; color: var(--text-muted); padding: 0.75rem 1.5rem; border: 1px solid var(--border); transition: border-color 0.25s, color 0.25s, transform 0.2s; }
+    .c-link { display: flex; align-items: center; gap: 0.55rem; font-size: 0.83rem; font-weight: 600; color: var(--text-muted); padding: 0.75rem 1.5rem; border: 1px solid var(--border); transition: border-color 0.25s, color 0.25s, transform 0.2s; min-width: 0; overflow-wrap: break-word; word-break: break-all; }
     .c-link:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
 
     /* ── FOOTER ── */
@@ -283,82 +332,35 @@
       cursor: pointer; background: none; border: none; padding: 8px; z-index: 201;
       -webkit-tap-highlight-color: transparent;
     }
-    .nav-hamburger span {
-      display: block; width: 24px; height: 2px;
-      background: var(--gold-light); border-radius: 2px;
-      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s ease, width 0.25s ease;
-    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--gold-light); border-radius: 2px; transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), opacity 0.25s ease, width 0.25s ease; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .nav-contact-mobile { display: none; }
 
     /* ── RESPONSIVE ── */
-
-    /* ── ≤ 1600px (small / mid desktop) ─────────────────────────────────────
-       A. Hero anchor: align-items:start ensures content always starts at
-          exactly padding-top — prevents centering math from pushing avatar
-          above the nav when hero content height > (100svh − padding).
-          12px margin-top on avatar wrap adds guaranteed nav-clearance buffer.
-       B. Stats 2×2: at ≤1600px the 4-column row gets cramped; use 2×2 grid
-          instead (4-col preserved only on true wide desktop > 1600px).
-       C. Project bullets block: below 1600px switch <li> to display:block so
-          inline <strong> tags flow as text, not as separate flex items that
-          create the 3-column squeeze. .timeline-bullets is unaffected.
-    ─────────────────────────────────────────────────────────────────────── */
     @media (max-width: 1600px) {
-      /* A — Hero anchor + avatar breathing room */
-      #hero {
-        padding-top: clamp(5rem, 10vh, 7rem);
-        align-items: start;
-      }
+      #hero { padding-top: clamp(5rem, 10vh, 7rem); align-items: start; }
       .hero-avatar-wrap { margin-top: 12px; }
-
-      /* B — Stats 2×2 grid */
-      .hero-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.5rem 0;
-        margin-top: 2.5rem;
-      }
+      .hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.5rem 0; margin-top: 2.5rem; }
       .hero-stat              { padding: 0 1.5rem 0 0; border-left: none; border-top: none; }
       .hero-stat + .hero-stat { padding: 0 0 0 1.5rem; border-left: 1px solid var(--border); border-top: none; }
-      .hero-stat:nth-child(3) { padding: 1.5rem 1.5rem 0 0; border-left: none;                    border-top: 1px solid var(--border); }
-      .hero-stat:nth-child(4) { padding: 1.5rem 0    0 1.5rem; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+      .hero-stat:nth-child(3) { padding: 1.5rem 1.5rem 0 0; border-left: none; border-top: 1px solid var(--border); }
+      .hero-stat:nth-child(4) { padding: 1.5rem 0 0 1.5rem; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
       .hero-stat-number { font-size: 2rem; }
-
-      /* C — Project bullets: block layout */
-      .project-bullets li {
-        display: block;
-        padding-left: 1.4rem;
-        position: relative;
-        overflow-wrap: break-word;
-        word-break: normal;
-        hyphens: auto;
-        min-width: 0;
-      }
-      .project-bullets li::before {
-        position: absolute;
-        left: 0;
-        top: 0.1rem;
-      }
     }
     @media (max-width: 1100px) {
       #hero { grid-template-columns: 1fr; padding-top: 8rem; }
       .hero-right { display: none; }
+      .interests-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 900px) {
       .about-grid, .edu-grid, .skills-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-      .metrics-inner { grid-template-columns: 1fr; }
-      .metrics-grid { grid-template-columns: repeat(3, 1fr); }
-      .metric-item:nth-child(3n) { border-right: none; }
-      .metric-item:nth-child(n+4) { border-top: 1px solid var(--border); }
-      .metrics-chart-wrap { display: none; }
-      .playbook-grid { grid-template-columns: repeat(2, 1fr); }
-      .project-stats { grid-template-columns: repeat(2, 1fr); }
-      .p-stat:nth-child(2) { border-right: none; }
-      .p-stat:nth-child(3), .p-stat:nth-child(4) { border-top: 1px solid var(--border); }
+      .cs-grid { grid-template-columns: 1fr; }
+      .captable-inner { grid-template-columns: 1fr; }
+      .donut-wrap { justify-content: flex-start; }
+      .captable-metrics { grid-template-columns: repeat(2,1fr); }
     }
-    /* Stats 1-column at tablet/narrow widths (641–768px range not caught by ≤640px) */
     @media (max-width: 768px) {
       .hero-stats { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
       .hero-stat              { padding: 0.75rem 0; border-left: none !important; border-top: none !important; }
@@ -366,7 +368,6 @@
       .hero-stat-number { font-size: 2rem; }
     }
     @media (max-width: 640px) {
-      /* Navigation — raise nav above the overlay so hamburger stays clickable */
       nav { z-index: 300; }
       .nav-hamburger { display: flex; }
       .nav-cta { display: none; }
@@ -374,31 +375,17 @@
       .nav-links {
         display: flex !important; flex-direction: column; align-items: center; justify-content: center;
         gap: 0; list-style: none;
-        /* Robust overlay: inset:0 + explicit trbl for older browsers */
         position: fixed; top: 0; left: 0; right: 0; bottom: 0; inset: 0;
-        width: 100%;
-        /* dvh with vh fallback; avoids iOS address-bar collapse issues */
-        height: 100vh; height: 100dvh;
-        /* Solid base colour first, then blurred overlay for capable browsers */
-        background: #08111F;
-        background: rgba(8,17,31,0.98);
-        -webkit-backdrop-filter: blur(20px); /* iOS Safari, older Chrome */
-        backdrop-filter: blur(20px);
+        width: 100%; height: 100vh; height: 100dvh;
+        background: #08111F; background: rgba(8,17,31,0.98);
+        -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
         opacity: 0; pointer-events: none; visibility: hidden;
         transition: opacity 0.35s ease, visibility 0.35s ease; z-index: 200;
-        padding: 5rem 2rem 3rem;
-        overflow-y: auto; -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain; /* prevent scroll bleed on Android/iOS */
+        padding: 5rem 2rem 3rem; overflow-y: auto; -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
       }
       .nav-links.open { opacity: 1; pointer-events: auto; visibility: visible; }
-      .nav-links li {
-        width: 100%; text-align: center;
-        border-bottom: 1px solid rgba(196,150,42,0.1);
-        transform: translateY(18px); opacity: 0;
-        transition: transform 0.4s ease, opacity 0.4s ease;
-        /* No negative margins, no absolute positioning — stable layout */
-        position: static; margin: 0;
-      }
+      .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(196,150,42,0.1); transform: translateY(18px); opacity: 0; transition: transform 0.4s ease, opacity 0.4s ease; position: static; margin: 0; }
       .nav-links li:first-child { border-top: 1px solid rgba(196,150,42,0.1); }
       .nav-links.open li { transform: translateY(0); opacity: 1; }
       .nav-links.open li:nth-child(1) { transition-delay: 0.06s; }
@@ -407,185 +394,48 @@
       .nav-links.open li:nth-child(4) { transition-delay: 0.24s; }
       .nav-links.open li:nth-child(5) { transition-delay: 0.30s; }
       .nav-links.open li:nth-child(6) { transition-delay: 0.36s; }
-      .nav-links li a {
-        display: block; padding: 1.25rem 0;
-        /* min 44px tap target height for iOS/Android guidelines */
-        min-height: 44px; line-height: 44px;
-        font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase;
-        color: var(--text-muted); font-weight: 600;
-        transition: color 0.25s;
-      }
+      .nav-links.open li:nth-child(7) { transition-delay: 0.42s; }
+      .nav-links li a { display: block; padding: 1.25rem 0; min-height: 44px; line-height: 44px; font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; transition: color 0.25s; }
       .nav-links li a:hover, .nav-links li a:active { color: var(--gold-light); }
-      /* Sections */
       section { padding: 4rem 4%; }
-      #metrics { padding: 3.5rem 4%; }
-      /* Hero */
       #hero { padding: 7rem 4% 4rem; gap: 2rem; }
       h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
       .hero-sub { font-size: 0.93rem; max-width: 100%; }
-      /* Mobile: 1-column stats (reinforces ≤768px rule) */
       .hero-stats { grid-template-columns: 1fr; gap: 0; margin-top: 2rem; }
       .hero-stat              { padding: 0.75rem 0; border-left: none !important; border-top: none !important; }
       .hero-stat ~ .hero-stat { border-top: 1px solid var(--border) !important; }
       .hero-stat-number { font-size: 1.8rem; }
-      /* Metrics — reset 900px rules, apply 2-col layout */
-      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-      .metric-item:nth-child(3n) { border-right: 1px solid var(--border); }
-      .metric-item:nth-child(n+4) { border-top: none; }
-      .metric-item:nth-child(even) { border-right: none; }
-      .metric-item:nth-child(n+3) { border-top: 1px solid var(--border); }
-      .metric-item:nth-child(5) { grid-column: span 2; border-right: none; }
-      /* Playbook */
-      .playbook-grid { grid-template-columns: 1fr; }
-      /* Project */
-      .project-card, .captable-card { padding: 1.75rem; }
-      /* Cap table */
-      .captable-metrics { grid-template-columns: repeat(2, 1fr); }
-      .ct-table th:nth-child(2), .ct-table td:nth-child(2) { display: none; }
-      /* Timeline */
+      .captable-card { padding: 1.75rem; }
+      .interests-grid { grid-template-columns: 1fr; }
+      .cs-modal { padding: 2.5rem 1.5rem 3rem; }
       .timeline-item { padding-left: 2rem; }
-      /* Bullet lists — switch from flex to block so inline <strong> tags
-         don't become separate squeezed flex items that force vertical stacking */
-      .timeline-bullets li,
-      .project-bullets li {
-        display: block;
-        padding-left: 1.4rem;
-        position: relative;
-        overflow-wrap: break-word;
-        word-break: normal;
-        hyphens: auto;
-      }
-      .timeline-bullets li::before,
-      .project-bullets li::before {
-        position: absolute;
-        left: 0;
-        top: 0.05rem;
-      }
-      /* Footer */
+      .timeline-bullets li, .cs-modal-section ul li { display: block; padding-left: 1.4rem; position: relative; overflow-wrap: break-word; word-break: normal; hyphens: auto; }
+      .timeline-bullets li::before, .cs-modal-section ul li::before { position: absolute; left: 0; top: 0.05rem; }
       footer { flex-direction: column; text-align: center; }
     }
     @media (max-width: 420px) {
       section { padding: 3rem 4%; }
       #hero { padding: 6.5rem 4% 3rem; }
       h1 { font-size: 2rem; }
-      .hero-avatar { width: clamp(72px, 18vw, 85px); height: clamp(72px, 18vw, 85px); }
+      .hero-avatar { width: clamp(72px,18vw,85px); height: clamp(72px,18vw,85px); }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-secondary { text-align: center; }
       .captable-metrics { grid-template-columns: 1fr; }
-      .project-stats { grid-template-columns: 1fr; }
-      .p-stat { border-right: none !important; border-top: 1px solid var(--border) !important; }
-      .p-stat:first-child { border-top: none !important; }
     }
-
-    /* ── CROSS-BROWSER / CROSS-DEVICE DEFENSIVE RULES ──────────────────────
-       Root causes addressed:
-       • iOS Safari 100vh ≠ visible height → use svh/dvh with vh fallback
-       • backdrop-filter needs -webkit- prefix for Safari & old Chrome/Edge
-       • Flex children without min-width:0 collapse text on Chrome/Edge/Firefox
-       • CSS grid with fixed column widths squeezes text on narrow viewports
-       • word-break: normal + overflow-wrap: break-word is the correct default
-         (break-all causes vertical stacked letters; "anywhere" is less compat)
-       • overscroll-behavior: contain prevents scroll bleed through overlay on Android
-    ─────────────────────────────────────────────────────────────────────── */
-
-    /* Ensure all flex children that hold text don't collapse below content */
-    .about-text,
-    .thesis-cards,
-    .edu-detail,
-    .contact-sub,
-    .timeline-title,
-    .timeline-company,
-    .edu-degree,
-    .edu-school,
-    .project-title,
-    .project-course {
-      min-width: 0;
-      overflow-wrap: break-word;
-      word-break: normal;
-    }
-
-    /* Highlighted inline spans / strong: keep them inline, never break-all */
-    .timeline-bullets li strong,
-    .project-bullets li strong,
-    .about-text p strong {
-      display: inline;
-      overflow-wrap: break-word;
-      word-break: normal;
-    }
-
-    /* Contact links: allow wrapping on very narrow screens */
-    .c-link {
-      overflow-wrap: break-word;
-      word-break: break-all; /* email/phone must break on 360px */
-      min-width: 0;
-    }
-
-    /* Skill pills: no fixed width that could squeeze */
-    .skill-pill { max-width: 100%; overflow-wrap: break-word; word-break: normal; }
-
-    /* Metrics grid: force 1-col at very narrow widths */
     @media (max-width: 359px) {
-      .metrics-grid { grid-template-columns: 1fr !important; }
-      .metric-item { border-right: none !important; border-top: 1px solid var(--border); }
-      .metric-item:first-child { border-top: none; }
-      .playbook-grid { grid-template-columns: 1fr !important; }
+      .interests-grid { grid-template-columns: 1fr !important; }
     }
 
-    /* Cap table: guard the fixed 260px column from creating layout overflow */
-    .captable-inner {
-      /* Prevent the fixed 260px column from overflowing at zoom ≥125% */
-      min-width: 0;
-    }
-    @media (max-width: 640px) {
-      .captable-inner { grid-template-columns: 1fr !important; }
-    }
-
-    /* Desktop zoom resilience: at 125%/150% zoom the effective viewport shrinks.
-       The clamp() functions already adapt, but ensure containers don't overflow. */
+    /* cross-browser defensive */
+    .about-text, .thesis-cards, .edu-detail, .contact-sub, .timeline-title,
+    .timeline-company, .edu-degree, .edu-school, .project-title, .project-course { min-width: 0; overflow-wrap: break-word; word-break: normal; }
+    .timeline-bullets li strong, .about-text p strong { display: inline; overflow-wrap: break-word; word-break: normal; }
     .hero-left, .hero-right { min-width: 0; }
+    .cs-grid > *, .interests-grid > *, .about-grid > *, .edu-grid > *, .skills-wrapper > * { min-width: 0; }
 
-    /* Prevent any grid cell from forcing horizontal scroll */
-    .metrics-grid > *,
-    .playbook-grid > *,
-    .about-grid > *,
-    .edu-grid > *,
-    .skills-wrapper > * {
-      min-width: 0;
-    }
-
-    /* ── HERO-STATS NOTE ─────────────────────────────────────────────────────
-       Base (> 1600px): 4-column grid, border-left dividers via .hero-stat.
-       ≤ 1600px: 2×2 grid — handled by the ≤1600px block above.
-       ≤ 768px:  1 column  — handled by the ≤768px block below.
-       No divider DOM elements: visual separators are pure CSS border-left/top.
-    ─────────────────────────────────────────────────────────────────────── */
-
-    /* ── BUILD / DEBUG STAMP ── */
-    #build-stamp {
-      font-size: 0.6rem;
-      font-family: monospace;
-      color: rgba(136,153,170,0.45);
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-    }
-
-    /* ── DEBUG OVERLAY (enabled via ?debug=1) ── */
-    #debug-overlay {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      z-index: 9999;
-      background: rgba(8,17,31,0.92);
-      border: 1px solid rgba(196,150,42,0.4);
-      color: #D4AF5A;
-      font-family: monospace;
-      font-size: 0.68rem;
-      line-height: 1.6;
-      padding: 0.55rem 0.85rem;
-      border-radius: 3px;
-      pointer-events: none;
-      display: none;
-    }
+    /* ── BUILD STAMP ── */
+    #build-stamp { font-size: 0.6rem; font-family: monospace; color: rgba(136,153,170,0.45); letter-spacing: 0.05em; white-space: nowrap; }
+    #debug-overlay { position: fixed; bottom: 1rem; right: 1rem; z-index: 9999; background: rgba(8,17,31,0.92); border: 1px solid rgba(196,150,42,0.4); color: #D4AF5A; font-family: monospace; font-size: 0.68rem; line-height: 1.6; padding: 0.55rem 0.85rem; border-radius: 3px; pointer-events: none; display: none; }
   </style>
 </head>
 <body>
@@ -595,13 +445,14 @@
   <div class="nav-logo">Tejas<span> Sharma</span></div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li class="nav-contact-mobile"><a href="#contact">Contact</a></li>
+    <li><a href="#modeling">Modeling</a></li>
+    <li><a href="#interests">Interests</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="nav-contact-mobile"><a href="Resume/Resume_Tejas_Sharma_FIN.pdf" target="_blank">Resume</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Contact</a>
+  <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="nav-cta" target="_blank">Resume</a>
   <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation">
     <span></span><span></span><span></span>
   </button>
@@ -614,18 +465,19 @@
       <img class="hero-avatar" src="profile.png" alt="Tejas Sharma" />
       <div class="hero-avatar-meta">
         <div class="hero-avatar-name">Tejas Sharma</div>
-        <div class="hero-avatar-role">VC &amp; Startup Finance</div>
+        <div class="hero-avatar-role">Venture Capital Analyst</div>
       </div>
     </div>
     <div class="hero-eyebrow fade-up">
       <div class="hero-eyebrow-line"></div>
-      <span>Venture Capital &amp; Finance</span>
+      <span>Early-Stage Venture Capital</span>
     </div>
     <h1 class="fade-up">Tejas<br /><em>Sharma</em></h1>
-    <p class="hero-sub fade-up">MS Finance (STEM) graduate from the University of Arizona. I help startups raise capital, build compelling investor narratives, and scale with clarity at the intersection of fundraising strategy, financial modeling, and venture operations.</p>
+    <p class="hero-sub fade-up">Early-stage venture capital analyst with hands-on experience evaluating startups across digital health, mobility, biotech, and deep tech. Currently supporting the $5M Wildcat Philanthropic Seed Fund at Tech Launch Arizona.</p>
     <div class="hero-actions fade-up">
-      <a href="#experience" class="btn-primary">View Experience</a>
-      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Download Resume</a>
+      <a href="#work" class="btn-primary">Case Studies ↓</a>
+      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="btn-secondary" target="_blank">Resume</a>
+      <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="btn-secondary" target="_blank">LinkedIn</a>
     </div>
     <div class="hero-stats fade-up">
       <div class="hero-stat">
@@ -634,20 +486,19 @@
       </div>
       <div class="hero-stat">
         <div class="hero-stat-number">10<sup>+</sup></div>
-        <div class="hero-stat-label">Startups Advised</div>
+        <div class="hero-stat-label">Deals Evaluated</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">4</div>
+        <div class="hero-stat-label">Sectors Covered</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-number">3.92</div>
         <div class="hero-stat-label">GPA / 4.0</div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">$1<sup>M</sup></div>
-        <div class="hero-stat-label">Portfolio Managed</div>
-      </div>
     </div>
   </div>
 
-  <!-- GROWTH TRAJECTORY ILLUSTRATION -->
   <div class="hero-right fade-up">
     <svg class="trajectory-svg" viewBox="0 0 520 480" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -663,126 +514,78 @@
           <stop offset="0%"   stop-color="#C4962A" stop-opacity="0.3"/>
           <stop offset="100%" stop-color="#C4962A" stop-opacity="0"/>
         </radialGradient>
-        <filter id="blur8">
-          <feGaussianBlur stdDeviation="8"/>
-        </filter>
+        <filter id="blur8"><feGaussianBlur stdDeviation="8"/></filter>
       </defs>
-
-      <!-- Ambient glow at top-right peak -->
       <ellipse cx="448" cy="78" rx="140" ry="100" fill="url(#peakGlow)" filter="url(#blur8)"/>
-
-      <!-- Faint background watermark text -->
       <text x="30"  y="190" fill="rgba(196,150,42,0.04)" font-size="72" font-family="Playfair Display, serif" font-weight="700" font-style="italic">alpha</text>
       <text x="160" y="380" fill="rgba(196,150,42,0.03)" font-size="52" font-family="Playfair Display, serif" font-weight="700">growth</text>
-
-      <!-- Subtle background radial grid -->
       <circle cx="448" cy="78" r="80"  stroke="rgba(196,150,42,0.05)" stroke-width="1" fill="none"/>
       <circle cx="448" cy="78" r="140" stroke="rgba(196,150,42,0.04)" stroke-width="1" fill="none"/>
       <circle cx="448" cy="78" r="200" stroke="rgba(196,150,42,0.03)" stroke-width="1" fill="none"/>
       <circle cx="448" cy="78" r="270" stroke="rgba(196,150,42,0.02)" stroke-width="1" fill="none"/>
-
-      <!-- Area fill under main trajectory -->
       <path d="M 30,445 C 90,420 160,390 210,362 C 270,328 310,290 355,248 C 395,210 420,155 448,78 L 448,460 L 30,460 Z" fill="url(#areaFill)"/>
-
-      <!-- Shadow/echo trajectories (progressively faded outward) -->
       <path d="M 30,455 C 92,432 162,402 212,374 C 273,340 313,302 358,260 C 398,222 423,167 448,90" stroke="rgba(196,150,42,0.07)" stroke-width="1.2" stroke-linecap="round"/>
       <path d="M 30,450 C 91,427 161,397 211,370 C 272,336 312,297 357,255 C 397,216 422,161 448,84" stroke="rgba(196,150,42,0.1)"  stroke-width="1.5" stroke-linecap="round"/>
       <path d="M 30,445 C 90,422 160,392 210,365 C 271,331 311,293 356,251 C 396,212 421,157 448,80" stroke="rgba(196,150,42,0.15)" stroke-width="2"   stroke-linecap="round"/>
       <path d="M 30,440 C 89,417 159,387 209,360 C 270,326 310,288 355,246 C 395,208 420,153 448,76" stroke="rgba(196,150,42,0.22)" stroke-width="2.5" stroke-linecap="round"/>
-      <!-- Main trajectory -->
       <path d="M 30,435 C 88,411 158,381 208,354 C 269,320 309,282 354,240 C 394,202 419,147 448,70"  stroke="rgba(196,150,42,0.65)" stroke-width="3"   stroke-linecap="round"/>
-      <!-- Brightest leading edge -->
-      <path d="M 30,432 C 87,408 157,378 207,351 C 268,317 308,279 353,237 C 393,199 418,144 448,67"  stroke="#C4962A"              stroke-width="2.2" stroke-linecap="round" stroke-dasharray="none"/>
-
-      <!-- Vertical drop lines from nodes (connecting to baseline — depth) -->
+      <path d="M 30,432 C 87,408 157,378 207,351 C 268,317 308,279 353,237 C 393,199 418,144 448,67"  stroke="#C4962A"              stroke-width="2.2" stroke-linecap="round"/>
       <line x1="138" y1="390" x2="138" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
       <line x1="260" y1="310" x2="260" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
       <line x1="380" y1="210" x2="380" y2="460" stroke="rgba(196,150,42,0.08)" stroke-width="1" stroke-dasharray="3 4"/>
-
-      <!-- NODE 1: Pre-Seed (~138, 390) -->
       <circle cx="138" cy="390" r="28" fill="url(#nodeGlow)" filter="url(#blur8)"/>
       <circle cx="138" cy="390" r="16" fill="rgba(196,150,42,0.06)" stroke="rgba(196,150,42,0.2)" stroke-width="1"/>
       <circle cx="138" cy="390" r="5"  fill="#08111F" stroke="#C4962A" stroke-width="1.8"/>
       <text x="138" y="373" text-anchor="middle" fill="rgba(196,150,42,0.55)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">PRE-SEED</text>
-      <text x="162" y="398" fill="rgba(196,150,42,0.4)" font-size="11" font-family="Playfair Display,serif" font-weight="700">$60K</text>
-
-      <!-- NODE 2: Seed (~260, 310) -->
       <circle cx="260" cy="310" r="32" fill="url(#nodeGlow)" filter="url(#blur8)"/>
       <circle cx="260" cy="310" r="20" fill="rgba(196,150,42,0.07)" stroke="rgba(196,150,42,0.28)" stroke-width="1.2"/>
       <circle cx="260" cy="310" r="6"  fill="#08111F" stroke="#C4962A" stroke-width="2"/>
       <text x="260" y="290" text-anchor="middle" fill="rgba(196,150,42,0.65)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">SEED</text>
-      <text x="285" y="320" fill="rgba(196,150,42,0.5)" font-size="12" font-family="Playfair Display,serif" font-weight="700">$2M</text>
-
-      <!-- NODE 3: Series A (~380, 210) -->
       <circle cx="380" cy="210" r="38" fill="url(#nodeGlow)" filter="url(#blur8)"/>
       <circle cx="380" cy="210" r="24" fill="rgba(196,150,42,0.09)" stroke="rgba(196,150,42,0.38)" stroke-width="1.5"/>
       <circle cx="380" cy="210" r="8"  fill="#08111F" stroke="#C4962A" stroke-width="2.2"/>
       <text x="380" y="188" text-anchor="middle" fill="rgba(196,150,42,0.78)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">SERIES A</text>
-      <text x="408" y="220" fill="rgba(196,150,42,0.62)" font-size="13" font-family="Playfair Display,serif" font-weight="700">$5M</text>
-
-      <!-- PEAK NODE (448, 70) -->
       <circle cx="448" cy="70" r="50" fill="url(#peakGlow)" filter="url(#blur8)"/>
       <circle cx="448" cy="70" r="22" fill="rgba(196,150,42,0.14)" stroke="rgba(196,150,42,0.55)" stroke-width="1.5"/>
       <circle cx="448" cy="70" r="10" fill="rgba(196,150,42,0.35)" stroke="#C4962A" stroke-width="2"/>
       <circle cx="448" cy="70" r="4"  fill="#C4962A"/>
-
-      <!-- Radiating sparks from peak -->
       <line x1="448" y1="70" x2="475" y2="40"  stroke="rgba(196,150,42,0.55)" stroke-width="1.2" stroke-linecap="round"/>
       <line x1="448" y1="70" x2="468" y2="32"  stroke="rgba(196,150,42,0.42)" stroke-width="1"   stroke-linecap="round"/>
       <line x1="448" y1="70" x2="480" y2="55"  stroke="rgba(196,150,42,0.38)" stroke-width="1"   stroke-linecap="round"/>
       <line x1="448" y1="70" x2="488" y2="68"  stroke="rgba(196,150,42,0.3)"  stroke-width="0.9" stroke-linecap="round"/>
-      <line x1="448" y1="70" x2="476" y2="88"  stroke="rgba(196,150,42,0.22)" stroke-width="0.8" stroke-linecap="round"/>
-      <line x1="448" y1="70" x2="458" y2="32"  stroke="rgba(196,150,42,0.32)" stroke-width="0.8" stroke-linecap="round"/>
       <line x1="448" y1="70" x2="430" y2="30"  stroke="rgba(196,150,42,0.28)" stroke-width="0.8" stroke-linecap="round"/>
-      <!-- Fund label at peak -->
       <text x="448" y="24" text-anchor="middle" fill="rgba(196,150,42,0.8)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="2">WPSF</text>
       <text x="448" y="13" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="9" font-family="Playfair Display,serif" font-weight="700">$5M</text>
-
-      <!-- Scattered ambient dots -->
       <circle cx="70"  cy="260" r="2"   fill="rgba(196,150,42,0.2)"/>
       <circle cx="180" cy="180" r="1.5" fill="rgba(196,150,42,0.18)"/>
       <circle cx="310" cy="130" r="2"   fill="rgba(196,150,42,0.2)"/>
       <circle cx="420" cy="160" r="1.5" fill="rgba(196,150,42,0.15)"/>
       <circle cx="80"  cy="370" r="1.5" fill="rgba(196,150,42,0.12)"/>
-      <circle cx="490" cy="120" r="1.5" fill="rgba(196,150,42,0.18)"/>
-      <circle cx="200" cy="430" r="2"   fill="rgba(196,150,42,0.1)"/>
-      <circle cx="340" cy="380" r="1.5" fill="rgba(196,150,42,0.1)"/>
-      <circle cx="500" cy="200" r="1"   fill="rgba(196,150,42,0.15)"/>
     </svg>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Thesis</span></div>
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Approach</span></div>
   <h2 class="fade-up">Where capital<br />meets conviction.</h2>
   <div class="about-grid">
     <div class="about-text fade-up">
-      <p>I am a venture capital and startup finance professional with a proven track record across <strong>fundraising strategy, financial modeling, and go-to-market execution</strong>. As a VC Analyst at <strong>Tech Launch Arizona</strong>, I led end-to-end investment evaluation for the Wildcat Philanthropic Seed Fund, a $5M evergreen fund, and spearheaded a capital strategy to grow AUM by 30%.</p>
-      <p>Having sat on both sides of the table, I co-founded FanFliQ and navigated a <strong>$60K seed raise</strong> firsthand. At India Accelerator, I prepared 10+ founders for investor meetings, refined pitch decks, and stress-tested unit economics until the numbers told a clear, fundable story.</p>
-      <p>My edge is translating raw financials into <strong>compelling fundraising narratives</strong>. Revenue projections, cash flow models, cap table modeling, waterfall analysis, and investor memo writing are the tools I reach for every day to help founders raise with conviction and scale with discipline.</p>
+      <p>I am an early-stage venture capital analyst with hands-on experience across <strong>deal evaluation, financial due diligence, and fund operations</strong>. As a VC Analyst at <strong>Tech Launch Arizona</strong>, I conduct end-to-end diligence on IP-backed startups for the Wildcat Philanthropic Seed Fund — a $5M evergreen university fund — covering market analysis, competitive benchmarking, financial modeling, and Investment Committee presentations.</p>
+      <p>My evaluation work spans four sectors: <strong>digital health, mobility SaaS, aquaculture biotech, and deep tech semiconductor equipment</strong>. Each deal has sharpened my ability to stress-test business models, size markets rigorously, and identify the variables that determine whether a company scales or stalls.</p>
+      <p>Before Tech Launch Arizona, I co-founded <strong>FanFliQ</strong> and led a $60K seed raise — giving me founder-side fluency in cap table mechanics, investor narrative, and unit economics that most analysts don't get early in their careers.</p>
     </div>
     <div class="thesis-cards fade-up">
       <div class="thesis-card">
         <div class="thesis-card-header">
           <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
             <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
-            <text x="14" y="19" text-anchor="middle" fill="#C4962A" font-size="14" font-family="Inter,sans-serif" font-weight="700">$</text>
+            <polyline points="7,20 10,14 14,17 18,11 21,7" stroke="#C4962A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="21" cy="7" r="2" fill="#C4962A"/>
           </svg>
-          <div class="thesis-card-title">Startup Fundraising</div>
+          <div class="thesis-card-title">Startup Evaluation</div>
         </div>
-        <p>Building investor-ready decks, financial models, and data rooms. Crafting fundraising narratives that connect unit economics to vision and close rounds from pre-seed through Series A.</p>
-      </div>
-      <div class="thesis-card">
-        <div class="thesis-card-header">
-          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
-            <polyline points="6,20 10,14 14,16 18,10 22,7" stroke="#C4962A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="22" cy="7" r="2" fill="#C4962A"/>
-          </svg>
-          <div class="thesis-card-title">GTM &amp; Growth Strategy</div>
-        </div>
-        <p>Designing go-to-market playbooks, optimizing acquisition channels, tracking cohort performance, and building revenue operations that drive repeatable, capital-efficient growth.</p>
+        <p>Market sizing, competitive moat analysis, unit economics review, and team assessment — the full diligence stack for early-stage investments from pre-seed to Series A.</p>
       </div>
       <div class="thesis-card">
         <div class="thesis-card-header">
@@ -792,404 +595,188 @@
             <line x1="11" y1="13" x2="17" y2="13" stroke="#C4962A" stroke-width="1" stroke-linecap="round"/>
             <line x1="11" y1="15.5" x2="15" y2="15.5" stroke="#C4962A" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
           </svg>
+          <div class="thesis-card-title">Financial Modeling</div>
+        </div>
+        <p>3-statement models, cap table mechanics, waterfall analysis, cash flow projections, and scenario analysis — quantitative diligence that drives IC conviction.</p>
+      </div>
+      <div class="thesis-card">
+        <div class="thesis-card-header">
+          <svg class="thesis-card-icon" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="rgba(196,150,42,0.4)" stroke-width="1"/>
+            <circle cx="14" cy="11" r="3" stroke="#C4962A" stroke-width="1.2" fill="none"/>
+            <path d="M8 21 C8 17.5 10.5 15.5 14 15.5 C17.5 15.5 20 17.5 20 21" stroke="#C4962A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          </svg>
           <div class="thesis-card-title">VC Operations</div>
         </div>
-        <p>Deal sourcing, investment memo writing, due diligence, portfolio monitoring, and LP reporting. Building the infrastructure that lets a fund move fast and back the right founders.</p>
+        <p>Deal sourcing, investment memo writing, pipeline management, and portfolio monitoring — the operational infrastructure that lets a fund move fast and back the right founders.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- METRICS -->
-<section id="metrics">
-  <div class="metrics-inner">
-    <div class="metrics-grid">
-      <div class="metric-item fade-up"><span class="metric-number">40<span class="metric-suffix">%</span></span><div class="metric-label">Faster IC Turnaround</div></div>
-      <div class="metric-item fade-up"><span class="metric-number">30<span class="metric-suffix">%</span></span><div class="metric-label">AUM Expansion Target</div></div>
-      <div class="metric-item fade-up"><span class="metric-number">70<span class="metric-suffix">%</span></span><div class="metric-label">Investor Approval Rate</div></div>
-      <div class="metric-item fade-up"><span class="metric-number">25<span class="metric-suffix">%</span></span><div class="metric-label">CAC Reduction</div></div>
-      <div class="metric-item fade-up"><span class="metric-number">1K<span class="metric-suffix">+</span></span><div class="metric-label">Creators Onboarded</div></div>
-    </div>
-    <div class="metrics-chart-wrap fade-up">
-      <svg class="chart-svg" viewBox="0 0 240 180" fill="none">
-        <line x1="30" y1="150" x2="220" y2="150" stroke="rgba(196,150,42,0.2)" stroke-width="1"/>
-        <line x1="30" y1="10"  x2="30"  y2="150" stroke="rgba(196,150,42,0.2)" stroke-width="1"/>
-        <line x1="30" y1="110" x2="220" y2="110" stroke="rgba(196,150,42,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="30" y1="80"  x2="220" y2="80"  stroke="rgba(196,150,42,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="30" y1="50"  x2="220" y2="50"  stroke="rgba(196,150,42,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
-        <rect class="chart-bar" x="45"  y="100" width="22" height="50"  fill="rgba(196,150,42,0.25)" rx="1"/>
-        <rect class="chart-bar" x="80"  y="85"  width="22" height="65"  fill="rgba(196,150,42,0.35)" rx="1"/>
-        <rect class="chart-bar" x="115" y="65"  width="22" height="85"  fill="rgba(196,150,42,0.5)"  rx="1"/>
-        <rect class="chart-bar" x="150" y="45"  width="22" height="105" fill="rgba(196,150,42,0.65)" rx="1"/>
-        <rect class="chart-bar" x="185" y="25"  width="22" height="125" fill="#C4962A"               rx="1"/>
-        <polyline points="56,100 91,85 126,65 161,45 196,25" stroke="#D4AF5A" stroke-width="1.5" fill="none" stroke-dasharray="3 3" opacity="0.6"/>
-        <circle cx="196" cy="25" r="4" fill="#D4AF5A"/>
-        <text x="125" y="170" text-anchor="middle" fill="rgba(196,150,42,0.4)" font-size="9" font-family="Inter,sans-serif" font-weight="600">PORTFOLIO GROWTH</text>
-      </svg>
-    </div>
-  </div>
-</section>
+<!-- INVESTMENT WORK / CASE STUDIES -->
+<section id="work">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Work</span></div>
+  <h2 class="fade-up">Startup evaluations.</h2>
+  <p class="section-intro fade-up">Four sanitized deal analyses across venture sectors — each representing a full diligence cycle from market assessment to investment recommendation.</p>
 
-<!-- VC PLAYBOOK -->
-<section id="sectors">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>The VC Playbook</span></div>
-  <h2 class="fade-up">What I bring to the table.</h2>
-  <p class="section-intro fade-up">The work a strong VC associate executes every day at firms like Sequoia, a16z, or Bessemer, across deal sourcing, diligence, portfolio, and fundraising.</p>
-  <div class="playbook-grid">
+  <div class="cs-grid">
 
-    <!-- 01 Startup Fundraising -->
-    <div class="play-card fade-up">
-      <div class="play-icon-wrap">
-        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
-          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
-          <!-- Rocket body -->
-          <path d="M24 10 C24 10 30 16 30 24 L24 28 L18 24 C18 16 24 10 24 10Z" fill="rgba(196,150,42,0.12)" stroke="#C4962A" stroke-width="1.2" stroke-linejoin="round"/>
-          <!-- Rocket flame -->
-          <path d="M21 27 C21 27 22 31 24 33 C26 31 27 27 27 27" fill="rgba(196,150,42,0.35)" stroke="none"/>
-          <!-- Rocket window -->
-          <circle cx="24" cy="22" r="2.5" fill="rgba(196,150,42,0.2)" stroke="#C4962A" stroke-width="1"/>
-          <!-- Dollar sign overlay -->
-          <text x="24" y="42" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.1em">RAISE</text>
-        </svg>
+    <!-- Card 1: Digital Health -->
+    <div class="cs-card digital-health fade-up" onclick="openModal('digital-health')">
+      <span class="cs-sector-badge digital-health">Digital Health</span>
+      <div class="cs-title">AI-Powered Point-of-Care Diagnostics</div>
+      <div class="cs-stage">Seed Stage &middot; Evaluated 2025</div>
+      <p class="cs-desc">AI-enabled diagnostic platform targeting decentralized clinical testing markets. Technology enables rapid, low-cost biomarker detection without centralized lab infrastructure — addressing a clear gap in the post-pandemic shift to distributed care delivery.</p>
+      <div class="cs-angles">
+        <span class="cs-angle-tag">Market Sizing</span>
+        <span class="cs-angle-tag">Regulatory Pathway</span>
+        <span class="cs-angle-tag">Reimbursement Model</span>
+        <span class="cs-angle-tag">Competitive Moat</span>
+        <span class="cs-angle-tag">Unit Economics</span>
       </div>
-      <div class="play-num">01</div>
-      <div class="play-title">Startup Fundraising</div>
-      <p class="play-desc">Building data rooms, structuring SAFE and priced rounds, cap table modeling, waterfall analysis, and coaching founders from pre-seed to Series A closes.</p>
-      <!-- Mini infographic: funding stage ladder -->
-      <div class="play-visual">
-        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
-          <!-- Stage dots connected by curve -->
-          <line x1="18" y1="46" x2="162" y2="46" stroke="rgba(196,150,42,0.12)" stroke-width="1"/>
-          <path d="M18,44 C60,44 80,22 108,18 C136,14 148,10 162,8" stroke="rgba(196,150,42,0.35)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Pre-seed -->
-          <circle cx="18" cy="44" r="4" fill="#08111F" stroke="rgba(196,150,42,0.5)" stroke-width="1.5"/>
-          <text x="18" y="56" text-anchor="middle" fill="rgba(196,150,42,0.4)" font-size="6.5" font-family="Inter,sans-serif" font-weight="600">PRE-SEED</text>
-          <!-- Seed -->
-          <circle cx="72" cy="28" r="5" fill="#08111F" stroke="rgba(196,150,42,0.65)" stroke-width="1.8"/>
-          <text x="72" y="20" text-anchor="middle" fill="rgba(196,150,42,0.55)" font-size="6.5" font-family="Inter,sans-serif" font-weight="600">SEED</text>
-          <!-- Series A -->
-          <circle cx="130" cy="14" r="6" fill="rgba(196,150,42,0.1)" stroke="#C4962A" stroke-width="2"/>
-          <circle cx="130" cy="14" r="2.5" fill="#C4962A"/>
-          <text x="130" y="8" text-anchor="middle" fill="rgba(196,150,42,0.75)" font-size="6.5" font-family="Inter,sans-serif" font-weight="700">SERIES A</text>
-          <!-- Amounts -->
-          <text x="18" y="44" text-anchor="middle" fill="rgba(196,150,42,0)" font-size="6" font-family="Inter">$60K</text>
-          <text x="162" y="6" text-anchor="middle" fill="rgba(196,150,42,0.6)" font-size="7" font-family="Playfair Display,serif" font-weight="700">↑ AUM</text>
-        </svg>
-      </div>
+      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
 
-    <!-- 02 Financial Modeling -->
-    <div class="play-card fade-up">
-      <div class="play-icon-wrap">
-        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
-          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
-          <!-- Spreadsheet grid -->
-          <rect x="11" y="12" width="26" height="22" rx="1.5" fill="rgba(196,150,42,0.06)" stroke="rgba(196,150,42,0.4)" stroke-width="1.2"/>
-          <line x1="11" y1="17" x2="37" y2="17" stroke="rgba(196,150,42,0.35)" stroke-width="0.8"/>
-          <line x1="11" y1="22" x2="37" y2="22" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
-          <line x1="11" y1="27" x2="37" y2="27" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
-          <line x1="19" y1="12" x2="19" y2="34" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
-          <line x1="29" y1="12" x2="29" y2="34" stroke="rgba(196,150,42,0.2)" stroke-width="0.8"/>
-          <!-- Trend line overlaid on spreadsheet -->
-          <polyline points="14,32 20,26 26,23 32,18" stroke="#C4962A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="32" cy="18" r="2" fill="#C4962A"/>
-          <!-- Bottom label -->
-          <text x="24" y="42" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.08em">MODEL</text>
-        </svg>
+    <!-- Card 2: Mobility SaaS -->
+    <div class="cs-card mobility fade-up" onclick="openModal('mobility')">
+      <span class="cs-sector-badge mobility">Mobility SaaS</span>
+      <div class="cs-title">Driver Earnings Optimization Platform</div>
+      <div class="cs-stage">Pre-Series A &middot; Evaluated 2025</div>
+      <p class="cs-desc">SaaS platform aggregating demand signals across rideshare and delivery networks to maximize per-hour earnings for gig economy drivers. Strong early PMF signals in an underserved, fragmented market with compelling unit economics.</p>
+      <div class="cs-angles">
+        <span class="cs-angle-tag">Unit Economics</span>
+        <span class="cs-angle-tag">Network Effects</span>
+        <span class="cs-angle-tag">Platform Risk</span>
+        <span class="cs-angle-tag">CAC / LTV</span>
+        <span class="cs-angle-tag">Competitive Landscape</span>
       </div>
-      <div class="play-num">02</div>
-      <div class="play-title">Financial Modeling</div>
-      <p class="play-desc">3-statement models, cash flow projections, cap table modeling, waterfall analysis, unit economics, and scenario analysis that drive investor conviction.</p>
-      <!-- Mini infographic: waterfall bars -->
-      <div class="play-visual">
-        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
-          <line x1="10" y1="50" x2="170" y2="50" stroke="rgba(196,150,42,0.15)" stroke-width="1"/>
-          <!-- Bars: Revenue, COGS, Gross, OpEx, EBITDA -->
-          <rect x="14"  y="20" width="18" height="30" fill="rgba(196,150,42,0.45)" rx="1"/>
-          <rect x="44"  y="32" width="18" height="18" fill="rgba(196,150,42,0.25)" rx="1"/>
-          <rect x="74"  y="14" width="18" height="36" fill="rgba(196,150,42,0.55)" rx="1"/>
-          <rect x="104" y="28" width="18" height="22" fill="rgba(196,150,42,0.3)" rx="1"/>
-          <rect x="134" y="8"  width="18" height="42" fill="#C4962A" rx="1"/>
-          <!-- Trend line -->
-          <polyline points="23,20 53,32 83,14 113,28 143,8" stroke="rgba(212,175,90,0.6)" stroke-width="1.2" stroke-dasharray="3 2" fill="none" stroke-linecap="round"/>
-          <!-- Labels -->
-          <text x="23"  y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">REV</text>
-          <text x="53"  y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">COGS</text>
-          <text x="83"  y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">GP</text>
-          <text x="113" y="56" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">OPEX</text>
-          <text x="143" y="56" text-anchor="middle" fill="rgba(196,150,42,0.55)" font-size="5.5" font-family="Inter" font-weight="700">EBIT</text>
-        </svg>
-      </div>
+      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
 
-    <!-- 03 Fundraising Storytelling -->
-    <div class="play-card fade-up">
-      <div class="play-icon-wrap">
-        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
-          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
-          <!-- Presentation slide -->
-          <rect x="10" y="13" width="28" height="18" rx="1.5" fill="rgba(196,150,42,0.07)" stroke="rgba(196,150,42,0.45)" stroke-width="1.2"/>
-          <!-- Chart inside slide -->
-          <polyline points="14,27 18,23 22,24 26,19 32,15" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="32" cy="15" r="2" fill="#C4962A"/>
-          <!-- Podium stand -->
-          <line x1="24" y1="31" x2="24" y2="36" stroke="rgba(196,150,42,0.4)" stroke-width="1.5"/>
-          <line x1="16" y1="36" x2="32" y2="36" stroke="rgba(196,150,42,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Narrative arc label -->
-          <text x="24" y="43" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.08em">PITCH</text>
-        </svg>
+    <!-- Card 3: Aquaculture Biotech -->
+    <div class="cs-card biotech fade-up" onclick="openModal('biotech')">
+      <span class="cs-sector-badge biotech">Aquaculture Biotech</span>
+      <div class="cs-title">Precision Aquaculture Intelligence Platform</div>
+      <div class="cs-stage">Seed Stage &middot; Evaluated 2025</div>
+      <p class="cs-desc">Biosensor and predictive analytics platform optimizing fish farm yields and reducing mortality rates. Targets the $285B+ global aquaculture market at the intersection of food security and precision biology — a rare deep-tech-meets-sustainability play.</p>
+      <div class="cs-angles">
+        <span class="cs-angle-tag">Biology Risk</span>
+        <span class="cs-angle-tag">IP Position</span>
+        <span class="cs-angle-tag">Pilot Validation</span>
+        <span class="cs-angle-tag">Sales Cycle</span>
+        <span class="cs-angle-tag">Market Tailwinds</span>
       </div>
-      <div class="play-num">03</div>
-      <div class="play-title">Fundraising Storytelling</div>
-      <p class="play-desc">Translating numbers into narratives. Pitch deck strategy, investment memo writing, and investor communication that builds trust and closes rounds.</p>
-      <!-- Mini infographic: pitch deck pages arc -->
-      <div class="play-visual">
-        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
-          <!-- Deck slides (stacked cards) -->
-          <rect x="10"  y="28" width="22" height="16" rx="1" fill="rgba(196,150,42,0.08)" stroke="rgba(196,150,42,0.25)" stroke-width="1"/>
-          <rect x="46"  y="20" width="22" height="24" rx="1" fill="rgba(196,150,42,0.1)"  stroke="rgba(196,150,42,0.35)" stroke-width="1"/>
-          <rect x="82"  y="14" width="22" height="30" rx="1" fill="rgba(196,150,42,0.13)" stroke="rgba(196,150,42,0.45)" stroke-width="1"/>
-          <rect x="118" y="8"  width="22" height="36" rx="1" fill="rgba(196,150,42,0.18)" stroke="rgba(196,150,42,0.6)" stroke-width="1.2"/>
-          <rect x="148" y="4"  width="22" height="40" rx="1" fill="rgba(196,150,42,0.22)" stroke="#C4962A" stroke-width="1.5"/>
-          <!-- Mini chart lines inside last slide -->
-          <polyline points="152,38 155,28 162,24 168,16" stroke="rgba(196,150,42,0.8)" stroke-width="1.2" stroke-linecap="round"/>
-          <!-- Arc connecting slides -->
-          <path d="M21,28 C21,12 57,12 57,20" stroke="rgba(196,150,42,0.2)" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
-          <!-- Labels -->
-          <text x="21"  y="52" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">PROBLEM</text>
-          <text x="57"  y="52" text-anchor="middle" fill="rgba(196,150,42,0.35)" font-size="5.5" font-family="Inter">MARKET</text>
-          <text x="93"  y="52" text-anchor="middle" fill="rgba(196,150,42,0.4)"  font-size="5.5" font-family="Inter">TRACTION</text>
-          <text x="129" y="52" text-anchor="middle" fill="rgba(196,150,42,0.5)"  font-size="5.5" font-family="Inter">ASK</text>
-          <text x="159" y="52" text-anchor="middle" fill="rgba(196,150,42,0.7)"  font-size="5.5" font-family="Inter" font-weight="700">CLOSE</text>
-        </svg>
-      </div>
+      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
 
-    <!-- 04 GTM & Revenue Ops -->
-    <div class="play-card fade-up">
-      <div class="play-icon-wrap">
-        <svg class="play-icon" viewBox="0 0 48 48" fill="none">
-          <circle class="play-icon-circle" cx="24" cy="24" r="22" stroke="rgba(196,150,42,0.3)" stroke-width="1.2"/>
-          <!-- Funnel shape -->
-          <path d="M10 13 L38 13 L30 25 L30 36 L18 36 L18 25 Z" fill="rgba(196,150,42,0.08)" stroke="rgba(196,150,42,0.45)" stroke-width="1.2" stroke-linejoin="round"/>
-          <!-- Funnel divisions -->
-          <line x1="13" y1="19" x2="35" y2="19" stroke="rgba(196,150,42,0.3)" stroke-width="0.8"/>
-          <line x1="17" y1="25" x2="31" y2="25" stroke="rgba(196,150,42,0.3)" stroke-width="0.8"/>
-          <!-- Arrow at bottom -->
-          <line x1="24" y1="36" x2="24" y2="40" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M21 38 L24 41 L27 38" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <!-- Label -->
-          <text x="24" y="9" text-anchor="middle" fill="rgba(196,150,42,0.5)" font-size="7" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.08em">GTM</text>
-        </svg>
+    <!-- Card 4: Deep Tech -->
+    <div class="cs-card deep-tech fade-up" onclick="openModal('deep-tech')">
+      <span class="cs-sector-badge deep-tech">Deep Tech</span>
+      <div class="cs-title">Advanced Semiconductor Metrology Equipment</div>
+      <div class="cs-stage">Series A &middot; Evaluated 2025</div>
+      <p class="cs-desc">Optical metrology equipment for wafer inspection at sub-5nm semiconductor nodes — higher throughput than incumbent SEM-based approaches. CHIPS Act tailwinds and advanced node transitions create a compelling near-term demand catalyst.</p>
+      <div class="cs-angles">
+        <span class="cs-angle-tag">Technology Readiness</span>
+        <span class="cs-angle-tag">Customer Concentration</span>
+        <span class="cs-angle-tag">IP Defensibility</span>
+        <span class="cs-angle-tag">Capital Intensity</span>
+        <span class="cs-angle-tag">CHIPS Act Exposure</span>
       </div>
-      <div class="play-num">04</div>
-      <div class="play-title">GTM &amp; Revenue Ops</div>
-      <p class="play-desc">Go-to-market strategy, channel optimization, CAC/LTV analysis, cohort tracking, and growth frameworks to help portfolio companies scale efficiently.</p>
-      <!-- Mini infographic: funnel chart -->
-      <div class="play-visual">
-        <svg class="play-visual-svg" viewBox="0 0 180 58" fill="none">
-          <!-- Horizontal funnel bars (centered, shrinking) -->
-          <rect x="10"  y="6"  width="160" height="10" rx="1" fill="rgba(196,150,42,0.2)"  stroke="rgba(196,150,42,0.3)" stroke-width="0.8"/>
-          <rect x="28"  y="20" width="124" height="10" rx="1" fill="rgba(196,150,42,0.3)"  stroke="rgba(196,150,42,0.4)" stroke-width="0.8"/>
-          <rect x="50"  y="34" width="80"  height="10" rx="1" fill="rgba(196,150,42,0.45)" stroke="rgba(196,150,42,0.55)" stroke-width="1"/>
-          <rect x="68"  y="48" width="44"  height="8"  rx="1" fill="#C4962A"/>
-          <!-- Labels -->
-          <text x="90" y="14"  text-anchor="middle" fill="rgba(196,150,42,0.45)" font-size="6" font-family="Inter" font-weight="600">AWARENESS</text>
-          <text x="90" y="28"  text-anchor="middle" fill="rgba(196,150,42,0.5)"  font-size="6" font-family="Inter" font-weight="600">LEADS</text>
-          <text x="90" y="42"  text-anchor="middle" fill="rgba(196,150,42,0.65)" font-size="6" font-family="Inter" font-weight="700">PIPELINE</text>
-          <text x="90" y="56"  text-anchor="middle" fill="rgba(8,17,31,0.9)"     font-size="6" font-family="Inter" font-weight="700">REVENUE</text>
-        </svg>
-      </div>
+      <div class="cs-cta">Read Analysis <span class="cs-cta-arrow">→</span></div>
     </div>
 
   </div>
 </section>
+
+<!-- CASE STUDY MODAL -->
+<div class="cs-modal-overlay" id="csOverlay" onclick="closeModal()"></div>
+<div class="cs-modal" id="csModal" role="dialog" aria-modal="true" aria-label="Case Study">
+  <button class="cs-modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+  <div id="csModalContent"></div>
+</div>
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Professional Experience</span></div>
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Venture Experience</span></div>
   <h2 class="fade-up">From the trenches<br />of early-stage capital.</h2>
-  <p class="section-intro fade-up">Hands-on experience across fund operations, founder advisory, and startup co-founding.</p>
+  <p class="section-intro fade-up">Hands-on exposure across fund operations, deal evaluation, and startup co-founding — on both sides of the cap table.</p>
   <div class="timeline">
+
     <div class="timeline-item fade-up">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta"><span class="timeline-period">May 2025 to Present</span><span class="timeline-company">Tech Launch Arizona &middot; University of Arizona</span></div>
-      <div class="timeline-title">Venture Capital Summer Analyst</div>
-      <div class="timeline-location">Tucson, United States</div>
+      <div class="timeline-meta"><span class="timeline-period">May 2025 &ndash; Present</span><span class="timeline-company">Tech Launch Arizona &middot; Wildcat Philanthropic Seed Fund</span></div>
+      <div class="timeline-title">VC Analyst</div>
+      <div class="timeline-location">Tucson, AZ</div>
       <ul class="timeline-bullets">
-        <li>Led <strong>end-to-end due diligence</strong> for early-stage ventures supporting investment decisions for the <strong>$5M Wildcat Philanthropic Seed Fund (WPSF)</strong>.</li>
-        <li>Built comprehensive <strong>financial models</strong>, authored investment memos, and delivered data-driven diligence reports to an internal Investment Committee of domain experts.</li>
-        <li>Evaluated IP-backed technologies, assessed market feasibility, and benchmarked competitive landscapes using <strong>PitchBook</strong>.</li>
-        <li>Spearheading <strong>capital strategy initiatives</strong> to expand WPSF's AUM by 30%, leveraging relationships with HNIs, alumni investors, and philanthropic networks.</li>
-        <li>Introduced structured scoring rubrics and pipeline management frameworks, improving IC decision-making turnaround time by <strong>40%</strong>.</li>
+        <li>Conduct <strong>end-to-end due diligence</strong> on early-stage ventures — market analysis, competitive benchmarking, financial modeling, and Investment Committee presentations — for the <strong>$5M Wildcat Philanthropic Seed Fund</strong>.</li>
+        <li>Evaluate IP-backed technologies across digital health, mobility, biotech, and deep tech using <strong>PitchBook</strong> for market intelligence and comparable analysis.</li>
+        <li>Author investment memos and diligence reports delivered to an IC of domain experts and faculty advisors.</li>
+        <li>Introduced structured deal-scoring rubrics and pipeline frameworks, improving IC decision turnaround by <strong>40%</strong>.</li>
+        <li>Spearheading capital strategy initiatives to grow WPSF's AUM by <strong>30%</strong> via HNI, alumni, and philanthropic network development.</li>
       </ul>
-      <div class="timeline-tags"><span class="tag">Due Diligence</span><span class="tag">PitchBook</span><span class="tag">Financial Modeling</span><span class="tag">Investment Memos</span><span class="tag">Capital Strategy</span><span class="tag">Deal Sourcing</span><span class="tag">Portfolio Support</span></div>
+      <div class="timeline-tags"><span class="tag">Due Diligence</span><span class="tag">Investment Memos</span><span class="tag">PitchBook</span><span class="tag">Financial Modeling</span><span class="tag">Deal Sourcing</span><span class="tag">Capital Strategy</span></div>
     </div>
+
     <div class="timeline-item fade-up">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta"><span class="timeline-period">Nov 2022 to Aug 2024</span><span class="timeline-company">FanFliQ &middot; New Delhi, India</span></div>
+      <div class="timeline-meta"><span class="timeline-period">Nov 2022 &ndash; Aug 2024</span><span class="timeline-company">FanFliQ</span></div>
       <div class="timeline-title">Co-Founder &amp; Finance Lead</div>
       <div class="timeline-location">New Delhi, India</div>
       <ul class="timeline-bullets">
-        <li>Co-founded FanFliQ, a <strong>music-tech SaaS platform</strong>, onboarding 1,000+ creators and driving a 20% increase in revenue per creator through data-driven service bundling.</li>
-        <li>Owned financial planning and GTM analytics, reducing <strong>CAC by approximately 25%</strong> through channel prioritization and cohort-level performance tracking.</li>
-        <li>Analyzed user retention and churn patterns to inform product iteration, stabilizing monthly churn below early-stage SaaS benchmarks.</li>
-        <li>Built investor-facing financial models and valuation frameworks to support a <strong>$60K seed raise at $300K post-money valuation</strong>.</li>
+        <li>Co-founded a <strong>music-tech SaaS platform</strong>, onboarding 1,000+ creators and driving a 20% increase in revenue per creator through data-driven service bundling.</li>
+        <li>Led financial planning and GTM analytics; reduced <strong>CAC by ~25%</strong> through channel prioritization and cohort-level performance tracking.</li>
+        <li>Built investor-facing financial models, cap table structures, and valuation frameworks to support a <strong>$60K seed raise at a $300K post-money valuation</strong>.</li>
+        <li>Managed cash flow forecasting and burn analysis, stabilizing monthly churn below early-stage SaaS benchmarks.</li>
       </ul>
-      <div class="timeline-tags"><span class="tag">SaaS</span><span class="tag">Seed Raise</span><span class="tag">Valuation</span><span class="tag">GTM Analytics</span><span class="tag">FP&amp;A</span></div>
+      <div class="timeline-tags"><span class="tag">Seed Raise</span><span class="tag">Cap Table</span><span class="tag">Valuation</span><span class="tag">GTM Analytics</span><span class="tag">SaaS</span><span class="tag">FP&amp;A</span></div>
     </div>
+
     <div class="timeline-item fade-up">
       <div class="timeline-dot"></div>
-      <div class="timeline-meta"><span class="timeline-period">Mar 2022 to Oct 2022</span><span class="timeline-company">India Accelerator &middot; Delhi-NCR, India</span></div>
+      <div class="timeline-meta"><span class="timeline-period">Mar 2022 &ndash; Oct 2022</span><span class="timeline-company">India Accelerator</span></div>
       <div class="timeline-title">Entrepreneur In Residence (VC Analyst)</div>
       <div class="timeline-location">Delhi-NCR, India</div>
       <ul class="timeline-bullets">
-        <li>Advised <strong>10+ startups</strong> in IA's flagship cohort on financial modeling, GTM strategy, and investor readiness, supporting raises from pre-seed to pre-Series A.</li>
-        <li>Conducted startup screening and investment due diligence using <strong>PitchBook</strong> to select high-potential ventures aligned with IA's fund thesis.</li>
-        <li>Prepared founders for Demo Day by refining investor pitches and stress-testing business models.</li>
-        <li>Achieved a <strong>70% increase in investor approval rates</strong> and reduced market-entry risk by 25% through targeted market analysis and commercialization strategy support.</li>
+        <li>Evaluated and advised <strong>10+ portfolio startups</strong> on financial modeling, GTM strategy, and investor readiness across pre-seed to pre-Series A stages.</li>
+        <li>Conducted startup screening and investment due diligence using <strong>PitchBook</strong> to surface high-potential ventures aligned with fund thesis.</li>
+        <li>Prepared founders for Demo Day by stress-testing business models and refining investor narratives — achieving a <strong>70% increase in investor approval rates</strong>.</li>
+        <li>Reduced market-entry risk for portfolio companies by 25% through targeted market analysis and commercialization strategy support.</li>
       </ul>
-      <div class="timeline-tags"><span class="tag">Startup Screening</span><span class="tag">Demo Day Prep</span><span class="tag">Investor Relations</span><span class="tag">Pitch Coaching</span><span class="tag">Fundraising Strategy</span><span class="tag">Portfolio Tracking</span></div>
+      <div class="timeline-tags"><span class="tag">Startup Screening</span><span class="tag">Demo Day Prep</span><span class="tag">Pitch Coaching</span><span class="tag">Fundraising Strategy</span><span class="tag">Portfolio Tracking</span></div>
     </div>
+
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Capabilities</span></div>
-  <h2 class="fade-up">Tools of the trade.</h2>
-  <div class="skills-wrapper">
-    <div class="fade-up">
-      <div class="skill-group-title">Technical &amp; Analytical</div>
-      <div class="skill-list">
-        <span class="skill-pill highlight">Startup Fundraising</span>
-        <span class="skill-pill highlight">Financial Modeling</span>
-        <span class="skill-pill highlight">Cash Flow Projections</span>
-        <span class="skill-pill highlight">DCF Modeling</span>
-        <span class="skill-pill highlight">Cap Table Modeling</span>
-        <span class="skill-pill highlight">Waterfall Analysis</span>
-        <span class="skill-pill highlight">Revenue Operations</span>
-        <span class="skill-pill highlight">PitchBook</span>
-        <span class="skill-pill highlight">Bloomberg Terminal</span>
-        <span class="skill-pill">Equity Valuation</span>
-        <span class="skill-pill">Portfolio Management</span>
-        <span class="skill-pill">Unit Economics</span>
-        <span class="skill-pill">CAC / LTV Analysis</span>
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">Advanced MS Excel</span>
-        <span class="skill-pill">FP&amp;A</span>
-        <span class="skill-pill">Options Pricing</span>
-        <span class="skill-pill">Quantitative Analysis</span>
-      </div>
-    </div>
-    <div class="fade-up">
-      <div class="skill-group-title">Qualitative &amp; Advisory</div>
-      <div class="skill-list">
-        <span class="skill-pill highlight">Fundraising Storytelling</span>
-        <span class="skill-pill highlight">Investment Memo Writing</span>
-        <span class="skill-pill highlight">GTM Strategy</span>
-        <span class="skill-pill highlight">Investor Relations</span>
-        <span class="skill-pill highlight">Due Diligence</span>
-        <span class="skill-pill">Deal Sourcing</span>
-        <span class="skill-pill">Pitch Deck Strategy</span>
-        <span class="skill-pill">Market Mapping</span>
-        <span class="skill-pill">Capital Strategy</span>
-        <span class="skill-pill">Pipeline Management</span>
-        <span class="skill-pill">Business Negotiations</span>
-        <span class="skill-pill">LP Reporting</span>
-        <span class="skill-pill">Cohort Analysis</span>
-        <span class="skill-pill">Competitive Benchmarking</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- FINANCIAL MODELING -->
+<section id="modeling">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Financial Modeling</span></div>
+  <h2 class="fade-up">Quantitative diligence.</h2>
+  <p class="modeling-intro fade-up">Venture capital investing requires precise financial analysis — from cap table mechanics to waterfall distributions and scenario-based cash flow modeling. Below is a VC financial model built to analyze startup economics across funding rounds.</p>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Education</span></div>
-  <h2 class="fade-up">Academic foundation.</h2>
-  <div class="edu-grid">
-    <div class="edu-card fade-up">
-      <div class="edu-degree">MS Finance (STEM)</div>
-      <div class="edu-school">University of Arizona, Eller College of Management</div>
-      <div class="edu-period">Tucson, AZ &middot; 2024 to 2025</div>
-      <div class="edu-detail">Eller Academic Excellence Awardee &middot; 3x Dean's List</div>
-      <span class="edu-gpa">GPA: 3.92 / 4.00</span>
-    </div>
-    <div class="edu-card fade-up">
-      <div class="edu-degree">Bachelor of Management Studies</div>
-      <div class="edu-school">Shiv Nadar University, School of Management &amp; Entrepreneurship</div>
-      <div class="edu-period">Delhi-NCR, India &middot; May 2022</div>
-      <div class="edu-detail">Specialization in Finance</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label fade-up"><div class="section-label-line"></div><span>Project Spotlight</span></div>
-  <h2 class="fade-up">Applied portfolio theory.</h2>
-  <div class="project-card fade-up">
-    <span class="project-badge">Academic Project</span>
-    <div class="project-title">$1M AUM Endowment Fund Investment Project</div>
-    <div class="project-course">FIN526 &middot; Portfolio Management Theory</div>
-    <div class="project-meta-sub">Eller College of Management, University of Arizona &middot; Jan 2025 to May 2025</div>
-    <ul class="project-bullets">
-      <li>Managed a <strong>$1M endowment portfolio</strong> with a 70/30 equity-to-fixed-income allocation using Modern Portfolio Theory and Fama-French factor models, targeting an annual alpha of 2 to 3%.</li>
-      <li>Conducted in-depth analysis on <strong>20+ equities and fixed-income securities</strong> using Fama-French 10-factor model factor exposures to construct an alpha-generating portfolio.</li>
-      <li>Presented investment recommendations with <strong>10+ financial metrics</strong> including Sharpe ratio, beta, yield, and drawdown to faculty investment advisors for approval and implementation.</li>
-      <li>Built financial models to drive actionable insights in portfolio rebalancing and asset allocation decisions.</li>
-    </ul>
-    <div class="project-stats">
-      <div class="p-stat"><div class="p-stat-val">$1M</div><div class="p-stat-lbl">Portfolio AUM</div></div>
-      <div class="p-stat"><div class="p-stat-val">70/30</div><div class="p-stat-lbl">Equity / Fixed Income</div></div>
-      <div class="p-stat"><div class="p-stat-val">20+</div><div class="p-stat-lbl">Securities Analyzed</div></div>
-      <div class="p-stat"><div class="p-stat-val">2-3%</div><div class="p-stat-lbl">Target Alpha</div></div>
-    </div>
-  </div>
-
-  <!-- CAP TABLE MODEL CARD -->
   <div class="captable-card fade-up">
-    <span class="project-badge">&#9654; Cap Table Model</span>
-    <div class="project-title">Tejas Ventures Inc. &mdash; Cap Table Analysis</div>
-    <div class="project-course">Pre-Seed to Series Seed Round Modeling</div>
-    <div class="project-meta-sub">Built in Excel &middot; Convertible Note + Priced Round + Option Pool</div>
+    <span class="project-badge">&#9654; VC Financial Model</span>
+    <div class="project-title">Venture Capital Financial Model</div>
+    <div class="project-course">Cap Table &middot; Convertible Notes &middot; Priced Rounds &middot; Waterfall Analysis</div>
+    <div class="project-meta-sub">Built in Excel &middot; Pre-Seed through Series Seed &middot; Recently updated with modeling fixes</div>
 
     <div class="captable-inner">
-
-      <!-- DONUT CHART -->
       <div class="donut-wrap">
         <svg class="donut-svg" viewBox="0 0 240 240">
           <defs>
             <filter id="sliceGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
-          <!-- CEO: 26.607% -->
-          <path class="donut-slice" d="M 120.00,30.00 A 90,90 0 0,1 209.54,129.07 L 174.72,125.54 A 55,55 0 0,0 120.00,65.00 Z" fill="#C4962A">
-            <title>CEO — 26.61%</title>
-          </path>
-          <!-- CTO: 26.607% -->
-          <path class="donut-slice" d="M 209.54,129.07 A 90,90 0 0,1 101.95,208.17 L 108.97,173.88 A 55,55 0 0,0 174.72,125.54 Z" fill="rgba(196,150,42,0.72)">
-            <title>CTO — 26.61%</title>
-          </path>
-          <!-- COO: 26.607% -->
-          <path class="donut-slice" d="M 101.95,208.17 A 90,90 0 0,1 34.10,93.15 L 67.50,103.59 A 55,55 0 0,0 108.97,173.88 Z" fill="rgba(196,150,42,0.45)">
-            <title>COO — 26.61%</title>
-          </path>
-          <!-- Option Pool: 15.417% -->
-          <path class="donut-slice" d="M 34.10,93.15 A 90,90 0 0,1 93.47,34.00 L 103.79,67.44 A 55,55 0 0,0 67.50,103.59 Z" fill="rgba(196,150,42,0.22)">
-            <title>Option Pool — 15.42%</title>
-          </path>
-          <!-- Lead Angel: 4.762% -->
-          <path class="donut-slice" d="M 93.47,34.00 A 90,90 0 0,1 120.00,30.00 L 120.00,65.00 A 55,55 0 0,0 103.79,67.44 Z" fill="#22A06B">
-            <title>Lead Angel — 4.76%</title>
-          </path>
-          <!-- Inner hole label -->
+          <path class="donut-slice" d="M 120.00,30.00 A 90,90 0 0,1 209.54,129.07 L 174.72,125.54 A 55,55 0 0,0 120.00,65.00 Z" fill="#C4962A"><title>CEO — 26.61%</title></path>
+          <path class="donut-slice" d="M 209.54,129.07 A 90,90 0 0,1 101.95,208.17 L 108.97,173.88 A 55,55 0 0,0 174.72,125.54 Z" fill="rgba(196,150,42,0.72)"><title>CTO — 26.61%</title></path>
+          <path class="donut-slice" d="M 101.95,208.17 A 90,90 0 0,1 34.10,93.15 L 67.50,103.59 A 55,55 0 0,0 108.97,173.88 Z" fill="rgba(196,150,42,0.45)"><title>COO — 26.61%</title></path>
+          <path class="donut-slice" d="M 34.10,93.15 A 90,90 0 0,1 93.47,34.00 L 103.79,67.44 A 55,55 0 0,0 67.50,103.59 Z" fill="rgba(196,150,42,0.22)"><title>Option Pool — 15.42%</title></path>
+          <path class="donut-slice" d="M 93.47,34.00 A 90,90 0 0,1 120.00,30.00 L 120.00,65.00 A 55,55 0 0,0 103.79,67.44 Z" fill="#22A06B"><title>Lead Angel — 4.76%</title></path>
           <text x="120" y="113" text-anchor="middle" fill="#D4AF5A" font-size="15" font-family="Playfair Display,serif" font-weight="700">$4.2M</text>
           <text x="120" y="128" text-anchor="middle" fill="rgba(136,153,170,0.8)" font-size="7.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1.5">POST-MONEY</text>
         </svg>
       </div>
 
-      <!-- RIGHT: METRICS + TABLE -->
       <div class="captable-right">
         <div class="captable-metrics">
           <div class="ct-metric">
@@ -1207,75 +794,160 @@
         </div>
 
         <table class="ct-table">
-          <thead>
-            <tr>
-              <th>Shareholder</th>
-              <th>Shares</th>
-              <th>Ownership</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Shareholder</th><th>Shares</th><th>Ownership</th></tr></thead>
           <tbody>
             <tr>
               <td><span class="ct-dot" style="background:#C4962A;"></span>CEO (Founder)</td>
               <td>333,333</td>
-              <td>
-                <div class="ct-bar-wrap">
-                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:#C4962A;"></div></div>
-                  <span class="ct-pct">26.61%</span>
-                </div>
-              </td>
+              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:#C4962A;"></div></div><span class="ct-pct">26.61%</span></div></td>
             </tr>
             <tr>
               <td><span class="ct-dot" style="background:rgba(196,150,42,0.72);"></span>CTO (Founder)</td>
               <td>333,333</td>
-              <td>
-                <div class="ct-bar-wrap">
-                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.72);"></div></div>
-                  <span class="ct-pct">26.61%</span>
-                </div>
-              </td>
+              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.72);"></div></div><span class="ct-pct">26.61%</span></div></td>
             </tr>
             <tr>
               <td><span class="ct-dot" style="background:rgba(196,150,42,0.45);"></span>COO (Founder)</td>
               <td>333,334</td>
-              <td>
-                <div class="ct-bar-wrap">
-                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.45);"></div></div>
-                  <span class="ct-pct">26.61%</span>
-                </div>
-              </td>
+              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:26.61%;background:rgba(196,150,42,0.45);"></div></div><span class="ct-pct">26.61%</span></div></td>
             </tr>
             <tr>
               <td><span class="ct-dot" style="background:rgba(196,150,42,0.22);"></span>Option Pool</td>
               <td>193,138</td>
-              <td>
-                <div class="ct-bar-wrap">
-                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:15.42%;background:rgba(196,150,42,0.22);"></div></div>
-                  <span class="ct-pct">15.42%</span>
-                </div>
-              </td>
+              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:15.42%;background:rgba(196,150,42,0.22);"></div></div><span class="ct-pct">15.42%</span></div></td>
             </tr>
             <tr>
               <td><span class="ct-dot" style="background:#22A06B;"></span>Lead Angel</td>
               <td>59,657</td>
-              <td>
-                <div class="ct-bar-wrap">
-                  <div class="ct-bar-bg"><div class="ct-bar-fill" style="width:4.76%;background:#22A06B;"></div></div>
-                  <span class="ct-pct">4.76%</span>
-                </div>
-              </td>
+              <td><div class="ct-bar-wrap"><div class="ct-bar-bg"><div class="ct-bar-fill" style="width:4.76%;background:#22A06B;"></div></div><span class="ct-pct">4.76%</span></div></td>
             </tr>
           </tbody>
         </table>
 
-        <a href="models/VC Modelling.xlsx" download class="ct-download">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Download Excel Model
-        </a>
+        <div>
+          <a href="models/VC Modelling (3).xlsx" download class="ct-download">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="#C4962A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download Excel Model
+          </a>
+          <div class="model-note">Updated model — incorporates recent formula and structure fixes.</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
+<!-- INVESTMENT INTERESTS -->
+<section id="interests">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Investment Interests</span></div>
+  <h2 class="fade-up">Where I look for<br />breakout companies.</h2>
+  <p class="section-intro fade-up">The sectors where I spend research time, track deal flow, and develop investment conviction.</p>
+
+  <div class="interests-grid">
+
+    <div class="interest-card fade-up">
+      <div class="interest-card-accent" style="--accent-color: #7B61FF;"></div>
+      <div class="interest-icon">⬡</div>
+      <div class="interest-name">Artificial Intelligence</div>
+      <p class="interest-thesis">Foundation model infrastructure, vertical AI applications, and agentic workflows that create durable competitive advantages. Focused on companies where AI is the core product — not a feature bolted on.</p>
+    </div>
+
+    <div class="interest-card fade-up">
+      <div class="interest-card-accent" style="--accent-color: #22A06B;"></div>
+      <div class="interest-icon">◈</div>
+      <div class="interest-name">Digital Health</div>
+      <p class="interest-thesis">Diagnostics, care delivery, and health data infrastructure. Attracted to platforms with defensible clinical validation, clear reimbursement pathways, and the potential to shift care from hospital to home.</p>
+    </div>
+
+    <div class="interest-card fade-up">
+      <div class="interest-card-accent" style="--accent-color: #5B9BD5;"></div>
+      <div class="interest-icon">◇</div>
+      <div class="interest-name">Fintech Infrastructure</div>
+      <p class="interest-thesis">Payment rails, embedded finance primitives, and B2B financial tooling. The most durable fintech businesses are those that become invisible infrastructure — high switching costs, network effects, and volume-driven unit economics.</p>
+    </div>
+
+    <div class="interest-card fade-up">
+      <div class="interest-card-accent" style="--accent-color: #C4962A;"></div>
+      <div class="interest-icon">▣</div>
+      <div class="interest-name">Developer Tools</div>
+      <p class="interest-thesis">Tooling that compounds developer productivity — CI/CD, observability, security, and AI-assisted coding workflows. Bottom-up adoption with usage-based pricing creates flywheel dynamics that are difficult to replicate.</p>
+    </div>
+
+    <div class="interest-card fade-up interests-fifth">
+      <div class="interest-card-accent" style="--accent-color: #9B7FE8;"></div>
+      <div class="interest-icon">◉</div>
+      <div class="interest-name">Frontier Technologies</div>
+      <p class="interest-thesis">Semiconductor equipment, advanced materials, climate tech, and space infrastructure. Long gestation, but IP-driven moats and government tailwinds (CHIPS Act, IRA) are creating investable entry points at Seed and Series A.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Capabilities</span></div>
+  <h2 class="fade-up">Tools of the trade.</h2>
+  <div class="skills-wrapper">
+    <div class="fade-up">
+      <div class="skill-group-title">Analytical &amp; Technical</div>
+      <div class="skill-list">
+        <span class="skill-pill highlight">Financial Modeling</span>
+        <span class="skill-pill highlight">Due Diligence</span>
+        <span class="skill-pill highlight">Cap Table Modeling</span>
+        <span class="skill-pill highlight">Waterfall Analysis</span>
+        <span class="skill-pill highlight">Unit Economics</span>
+        <span class="skill-pill highlight">PitchBook</span>
+        <span class="skill-pill">DCF Modeling</span>
+        <span class="skill-pill">Cash Flow Projections</span>
+        <span class="skill-pill">Equity Valuation</span>
+        <span class="skill-pill">Bloomberg Terminal</span>
+        <span class="skill-pill">Advanced Excel</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">CAC / LTV Analysis</span>
+        <span class="skill-pill">FP&amp;A</span>
+        <span class="skill-pill">Scenario Analysis</span>
+      </div>
+    </div>
+    <div class="fade-up">
+      <div class="skill-group-title">Diligence &amp; Advisory</div>
+      <div class="skill-list">
+        <span class="skill-pill highlight">Investment Memo Writing</span>
+        <span class="skill-pill highlight">Market Sizing</span>
+        <span class="skill-pill highlight">Competitive Analysis</span>
+        <span class="skill-pill highlight">Deal Sourcing</span>
+        <span class="skill-pill highlight">Portfolio Monitoring</span>
+        <span class="skill-pill">Investor Relations</span>
+        <span class="skill-pill">GTM Strategy</span>
+        <span class="skill-pill">Pitch Deck Review</span>
+        <span class="skill-pill">Capital Strategy</span>
+        <span class="skill-pill">Pipeline Management</span>
+        <span class="skill-pill">LP Reporting</span>
+        <span class="skill-pill">Cohort Analysis</span>
+        <span class="skill-pill">Market Mapping</span>
+        <span class="skill-pill">IP Assessment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label fade-up"><div class="section-label-line"></div><span>Education</span></div>
+  <h2 class="fade-up">Academic foundation.</h2>
+  <div class="edu-grid">
+    <div class="edu-card fade-up">
+      <div class="edu-degree">MS Finance (STEM)</div>
+      <div class="edu-school">University of Arizona, Eller College of Management</div>
+      <div class="edu-period">Tucson, AZ &middot; 2024 &ndash; 2025</div>
+      <div class="edu-detail">Eller Academic Excellence Awardee &middot; 3&times; Dean's List</div>
+      <span class="edu-gpa">GPA: 3.92 / 4.00</span>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-degree">Bachelor of Management Studies</div>
+      <div class="edu-school">Shiv Nadar University, School of Management &amp; Entrepreneurship</div>
+      <div class="edu-period">Delhi-NCR, India &middot; May 2022</div>
+      <div class="edu-detail">Specialization in Finance</div>
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -1283,11 +955,11 @@
   <div class="contact-inner">
     <div class="section-label fade-up" style="justify-content:center;"><div class="section-label-line"></div><span>Get In Touch</span><div class="section-label-line"></div></div>
     <h2 class="fade-up">Let's connect.</h2>
-    <p class="contact-sub fade-up">Open to conversations about venture capital roles, investment opportunities, portfolio company introductions, or simply talking shop about early-stage markets.</p>
+    <p class="contact-sub fade-up">Open to conversations about venture capital roles, early-stage investment opportunities, and portfolio company introductions. Always happy to talk shop about markets.</p>
     <div class="c-links fade-up">
-      <a href="mailto:tejas.sh1406@gmail.com" class="c-link">&#9993; tejas.sh1406@gmail.com</a>
-      <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="c-link" target="_blank">&#128279; LinkedIn</a>
-      <a href="tel:+15203427175" class="c-link">&#128222; +1 (520) 342-7175</a>
+      <a href="mailto:tejas.sh1406@gmail.com" class="c-link">&#9993;&nbsp; tejas.sh1406@gmail.com</a>
+      <a href="https://www.linkedin.com/in/tejas-sharma-48376981/" class="c-link" target="_blank">&#128279;&nbsp; LinkedIn</a>
+      <a href="Resume/Resume_Tejas_Sharma_FIN.pdf" class="c-link" target="_blank">&#128196;&nbsp; Resume</a>
     </div>
   </div>
 </section>
@@ -1298,98 +970,164 @@
   <div id="build-stamp"></div>
 </footer>
 
-<!-- Debug overlay: shown only when URL contains ?debug=1 -->
 <div id="debug-overlay"></div>
 
 <script>
+  /* ── NAV SCROLL ── */
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
+  /* ── FADE-UP ── */
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); io.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  // Hamburger menu — robust for Android Chrome, iOS Safari, Windows Edge/Firefox
+  /* ── HAMBURGER ── */
   const hamburger = document.getElementById('navHamburger');
-  const navLinks = document.getElementById('navLinks');
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    navLinks.classList.remove('open');
-    document.body.style.overflow = '';
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-  function openMenu() {
-    hamburger.classList.add('open');
-    navLinks.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    hamburger.setAttribute('aria-expanded', 'true');
-  }
-  hamburger.setAttribute('aria-expanded', 'false');
-  hamburger.setAttribute('aria-controls', 'navLinks');
-
-  // Use both click and touchstart to ensure Android Chrome registers the tap
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.contains('open') ? closeMenu() : openMenu();
-  });
-  // Escape key closes menu (accessibility + desktop window zoom UX)
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  const navLinks  = document.getElementById('navLinks');
+  function closeMenu() { hamburger.classList.remove('open'); navLinks.classList.remove('open'); document.body.style.overflow = ''; hamburger.setAttribute('aria-expanded','false'); }
+  function openMenu()  { hamburger.classList.add('open');    navLinks.classList.add('open');    document.body.style.overflow = 'hidden'; hamburger.setAttribute('aria-expanded','true'); }
+  hamburger.setAttribute('aria-expanded','false');
+  hamburger.setAttribute('aria-controls','navLinks');
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeModal(); } });
   navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-  // Tap on the overlay backdrop (not a list item) closes menu
   navLinks.addEventListener('click', (e) => { if (e.target === navLinks) closeMenu(); });
 
-  function counter(el, target, suffix, isK) {
-    let s = null;
-    const run = (ts) => {
-      if (!s) s = ts;
-      const p = Math.min((ts - s) / 1500, 1), ease = 1 - Math.pow(1-p, 3), v = Math.floor(ease * target);
-      el.innerHTML = (isK && v >= 1000 ? '1K' : v) + `<span class="metric-suffix">${suffix}</span>`;
-      if (p < 1) requestAnimationFrame(run);
-    };
-    requestAnimationFrame(run);
+  /* ── CASE STUDY MODAL ── */
+  const caseStudies = {
+    'digital-health': {
+      sector: 'Digital Health',
+      sectorClass: 'digital-health',
+      title: 'AI-Powered Point-of-Care Diagnostics',
+      stage: 'Seed Stage &middot; Evaluated 2025',
+      overview: 'AI-enabled diagnostic platform targeting decentralized clinical testing markets. The technology enables rapid, low-cost biomarker detection at the point of care — eliminating the need for centralized lab infrastructure and dramatically reducing time-to-result for clinicians and patients.',
+      market: 'The decentralized diagnostics market exceeds $12B and is growing at an ~18% CAGR, driven by post-pandemic shifts toward distributed care delivery, CMS reimbursement expansion for remote testing, and chronic disease management trends pushing diagnostics out of hospital settings.',
+      businessModel: 'Hardware + consumables (razor/razorblade). Diagnostic devices placed at marginal cost; recurring revenue generated through per-test consumable cartridges at approximately 60% gross margin. SaaS data layer creates additional recurring revenue from clinic-level analytics and outcomes reporting.',
+      diligence: [
+        '<strong>IP position:</strong> 3 pending patents on core detection methodology; exclusive licensing from university research institution creates defensible moat in the near term.',
+        '<strong>Regulatory pathway:</strong> Pursuing 510(k) clearance; clinical validation data submitted to FDA. Regulatory risk manageable given device classification and predicate device strategy.',
+        '<strong>Clinical validation:</strong> Early pilots with 2 regional health systems demonstrated accuracy comparable to centralized lab methods at 4x faster turnaround.',
+        '<strong>Unit economics:</strong> Device placement cost ~$3,200; break-even at approximately 8 tests/month per device. Early adopter sites averaging 22 tests/month.',
+        '<strong>Competitive landscape:</strong> Abbott and Roche dominate large-lab diagnostics; neither has a solution optimized for low-volume point-of-care with AI interpretation at this price point.'
+      ],
+      verdict: 'Compelling platform at the intersection of two durable trends: decentralized care delivery and AI-assisted diagnostics. Razor/razorblade model creates predictable recurring revenue if clinical adoption ramps. Primary risks are reimbursement timeline uncertainty and the speed of clinical network expansion. Recommend monitoring FDA clearance milestone and pilot site renewal rates as key investment signals.'
+    },
+    'mobility': {
+      sector: 'Mobility SaaS',
+      sectorClass: 'mobility',
+      title: 'Driver Earnings Optimization Platform',
+      stage: 'Pre-Series A &middot; Evaluated 2025',
+      overview: 'SaaS platform that aggregates demand signals across multiple rideshare and delivery networks to maximize per-hour earnings for gig economy drivers. The platform surfaces real-time zone recommendations, surge predictions, and platform arbitrage opportunities — enabling drivers to optimize earnings without switching between apps manually.',
+      market: '4M+ active gig drivers in the US; estimated $1.2B TAM in driver-side productivity and financial tools. Market is growing alongside gig economy expansion and increasing driver awareness of income optimization. No dominant player on the driver side — the market is fragmented across several point solutions.',
+      businessModel: 'Subscription SaaS: $29/month standard, $49/month premium. 14-day free trial with 28% conversion rate. Monthly churn at 3.2%, below typical prosumer SaaS benchmarks. CAC of ~$18 via organic/community channels; LTV/CAC ratio of approximately 9x at current pricing.',
+      diligence: [
+        '<strong>Product-market fit:</strong> NPS of 68 among early adopters; strong organic word-of-mouth in driver communities on Reddit and Facebook Groups.',
+        '<strong>Network effects:</strong> Platform value increases as more drivers contribute anonymized earnings and demand data — creating a proprietary dataset that competitors cannot easily replicate.',
+        '<strong>Platform dependency risk:</strong> Revenue model is exposed to API access changes by Uber, Lyft, and DoorDash. Mitigation: diversified across 6 platforms; no single platform >35% of data inputs.',
+        '<strong>Unit economics:</strong> Strong at current scale — CAC $18 vs. LTV ~$162 at current churn. Key sensitivity: churn rate. Every 1% increase in monthly churn cuts LTV by ~$50.',
+        '<strong>Competitive landscape:</strong> Fragmented; no well-funded direct competitor. Indirect risk from platform-native earnings dashboards, which remain inferior to dedicated tooling.'
+      ],
+      verdict: 'Clear PMF in an underserved market with strong unit economics and organic distribution. The key bet is on continued gig economy growth and stable platform API ecosystems. Primary risk is platform dependency — worth structuring any investment with a milestone tied to API diversification. Recommend moving to term sheet pending deeper platform dependency analysis and review of churn cohorts by acquisition channel.'
+    },
+    'biotech': {
+      sector: 'Aquaculture Biotech',
+      sectorClass: 'biotech',
+      title: 'Precision Aquaculture Intelligence Platform',
+      stage: 'Seed Stage &middot; Evaluated 2025',
+      overview: 'Biotech-enabled aquaculture intelligence platform combining biosensor hardware and predictive analytics to optimize fish farm yields and reduce mortality rates. The platform monitors water quality, biological stress markers, and feeding patterns in real time, surfacing actionable recommendations to farm operators.',
+      market: 'Global aquaculture market exceeds $285B. The precision aquaculture technology segment is approximately $800M, growing at ~14% CAGR. Strong secular tailwinds from global food security pressures, sustainability mandates, and the shift to farmed seafood as wild catch capacity stagnates.',
+      businessModel: 'Hardware + SaaS subscription. Biosensor units sold or leased to farm sites (~$8,000/unit); monitoring and analytics SaaS at $1,200/month per site. Platform gross margins ~65% on SaaS revenue. Hardware gross margins ~35%, improving with manufacturing scale.',
+      diligence: [
+        '<strong>IP position:</strong> Core biosensor technology developed at a leading marine biology research institution; exclusive commercial license with clean IP assignment documentation.',
+        '<strong>Pilot validation:</strong> 3 commercial salmon farms in Norway demonstrated 22% reduction in mortality rates in 6-month pilots — directly translating to revenue impact for operators.',
+        '<strong>Sales cycle:</strong> 6–12 months for farm operators due to capital budgeting cycles and operational change management; limits near-term revenue ramp but creates sticky, contractual relationships.',
+        '<strong>Regulatory:</strong> EU market approvals in place; US FDA clearance for diagnostic claims in progress. Initial commercialization can proceed in EU while US approval is pursued.',
+        '<strong>Team:</strong> PhD-level marine biology expertise combined with aquaculture operations experience; credible execution on both the science and the commercial side.'
+      ],
+      verdict: 'Compelling technology addressing a measurable, high-stakes economic pain point — fish mortality is a direct revenue loss event that operators are highly motivated to solve. Strong unit economics if pilot results hold at commercial scale. Primary investment risks are the length of the sales cycle and early customer concentration. Recommend structuring investment with use of proceeds tied to expanding pilot sites and reducing dependence on the initial 3 farm customers.'
+    },
+    'deep-tech': {
+      sector: 'Deep Tech · Semiconductor Equipment',
+      sectorClass: 'deep-tech',
+      title: 'Advanced Semiconductor Metrology Equipment',
+      stage: 'Series A &middot; Evaluated 2025',
+      overview: 'Advanced optical metrology equipment for semiconductor wafer inspection at sub-5nm process nodes. The technology delivers defect detection at significantly higher throughput than incumbent scanning electron microscopy (SEM) approaches — addressing a critical bottleneck in advanced semiconductor manufacturing as the industry transitions to 3nm and 2nm nodes.',
+      market: 'Global semiconductor equipment market exceeds $100B. Process control and metrology is an ~$8B subsegment growing alongside advanced node transitions. CHIPS Act domestic fab buildout ($52B+ in US investment) creates near-term demand catalyst independent of global semiconductor cycle.',
+      businessModel: 'Capital equipment sales ($2–4M per unit) with recurring service and maintenance contracts (~18% of unit price annually). Gross margins 45–55%, consistent with semiconductor equipment industry benchmarks. Revenue is lumpy by nature — large deals with long qualification cycles, followed by repeat orders.',
+      diligence: [
+        '<strong>Technology validation:</strong> Core optical detection methodology validated in collaboration with a top-5 global chip manufacturer; performance data on file.',
+        '<strong>IP position:</strong> 2 patents granted, 4 pending; defensible differentiation around optical aperture design and AI-assisted defect classification.',
+        '<strong>Customer concentration:</strong> Initial revenue from 1–2 fab customers creates concentration risk; mitigated by formal qualification processes underway at 3 additional fabs.',
+        '<strong>Qualification cycles:</strong> 12–18 months from initial evaluation to production qualification is standard in semiconductor equipment — long lead times but sticky relationships once qualified.',
+        '<strong>Competitive landscape:</strong> KLA Tencor and Applied Materials dominate the broader process control market; differentiation is in throughput at sub-5nm nodes specifically, where incumbents face technical limitations.'
+      ],
+      verdict: 'Technically differentiated solution at a critical juncture in semiconductor capacity buildout. CHIPS Act spending and advanced node transitions create a multi-year demand tailwind that is independent of near-term consumer electronics cycles. The primary investment risks are customer concentration and revenue lumpiness inherent to the capital equipment model. Recommend investment contingent on visibility into the 3-fab qualification pipeline and contracted backlog at close.'
+    }
+  };
+
+  function openModal(id) {
+    const cs = caseStudies[id];
+    if (!cs) return;
+    const diligenceHTML = cs.diligence.map(d => `<li>${d}</li>`).join('');
+    document.getElementById('csModalContent').innerHTML = `
+      <span class="cs-modal-sector-label ${cs.sectorClass}">${cs.sector}</span>
+      <h3>${cs.title}</h3>
+      <div class="cs-modal-stage">${cs.stage}</div>
+      <div class="cs-modal-divider"></div>
+      <div class="cs-modal-section">
+        <h4>Deal Overview</h4>
+        <p>${cs.overview}</p>
+      </div>
+      <div class="cs-modal-section">
+        <h4>Market</h4>
+        <p>${cs.market}</p>
+      </div>
+      <div class="cs-modal-section">
+        <h4>Business Model</h4>
+        <p>${cs.businessModel}</p>
+      </div>
+      <div class="cs-modal-section">
+        <h4>Diligence Findings</h4>
+        <ul>${diligenceHTML}</ul>
+      </div>
+      <div class="cs-modal-section">
+        <div class="cs-modal-verdict">
+          <div class="cs-modal-verdict-label">Investment Thesis</div>
+          <p>${cs.verdict}</p>
+        </div>
+      </div>
+    `;
+    document.getElementById('csOverlay').classList.add('open');
+    document.getElementById('csModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('csModal').scrollTop = 0;
   }
-  new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const d = [{t:40,s:'%'},{t:30,s:'%'},{t:70,s:'%'},{t:25,s:'%'},{t:1000,s:'+',k:true}];
-        e.target.querySelectorAll('.metric-number').forEach((el, i) => { if (d[i]) counter(el, d[i].t, d[i].s, d[i].k); });
-      }
-    });
-  }, { threshold: 0.3 }).observe(document.querySelector('#metrics'));
+
+  function closeModal() {
+    document.getElementById('csOverlay').classList.remove('open');
+    document.getElementById('csModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 </script>
+
 <script>
-  /* ── BUILD STAMP + DEBUG OVERLAY ──────────────────────────────────────────
-     Build stamp: always visible in footer (subtle).
-     Debug overlay: shown only when URL contains ?debug=1
-     To enable for friend: share URL + ?debug=1
-     To remove entirely: delete this script block and the #debug-overlay div.
-  ─────────────────────────────────────────────────────────────────────────── */
   (function() {
-    var HASH = '427f5c2';
+    var HASH = 'd44c248';
     var DEPLOYED = '2026-03-05';
 
-    /* Returns which CSS stats-grid mode is active for this viewport width.
-       Mirrors exactly the CSS breakpoints:
-         > 1600px  → 4-col  (base rule)
-         769–1600  → 2×2    (≤1600px rule)
-         ≤768px    → 1-col  (≤768px rule) */
-    function getStatsMode(w) {
-      if (w > 1600) return 'grid4';
-      if (w > 768)  return 'grid2';
-      return 'grid1';
-    }
-
-    /* Returns a short CSS-breakpoint label for the current width. */
     function getBreakpoint(w) {
-      if (w > 1600) return '>1600 (4-col stats)';
-      if (w > 1100) return '1101–1600 (2×2 stats, 2-col hero)';
-      if (w > 768)  return '769–1100 (2×2 stats, 1-col hero)';
-      if (w > 640)  return '641–768 (1-col stats)';
+      if (w > 1600) return '>1600';
+      if (w > 1100) return '1101–1600';
+      if (w > 768)  return '769–1100';
+      if (w > 640)  return '641–768';
       if (w > 420)  return '421–640 (mobile)';
       return '≤420 (mobile-sm)';
     }
 
-    /* Short browser name from UA string. */
     function getBrowser() {
       var ua = navigator.userAgent;
       if (/Edg\//.test(ua))     return 'Edge';
@@ -1401,37 +1139,17 @@
 
     function update() {
       var w = window.innerWidth;
-      var h = window.innerHeight;
-
-      // Footer stamp (always on)
       var stamp = document.getElementById('build-stamp');
       if (stamp) stamp.textContent = 'v' + HASH + ' · ' + DEPLOYED + ' · ' + w + 'px';
-
-      // Debug overlay (only when ?debug=1)
       var overlay = document.getElementById('debug-overlay');
       if (!overlay || overlay.style.display === 'none') return;
-
-      var hero  = document.getElementById('hero');
-      var nav   = document.getElementById('navbar');
-      var navH  = nav  ? Math.round(nav.getBoundingClientRect().height) : 70;
-      var heroPT = hero ? parseInt(getComputedStyle(hero).paddingTop, 10) : 0;
-      var statsMode  = getStatsMode(w);
-      // Avatar is "safe" when hero padding-top clears the nav by ≥10px
-      var avatarMode = heroPT > navH + 10 ? 'safe' : 'clipped-risk';
-      var avatarColor = avatarMode === 'safe' ? '#22A06B' : '#FF4444';
-
-      overlay.innerHTML =
-        '<strong style="color:#E8E4DC;letter-spacing:.06em">▸ DEBUG</strong><br>' +
-        'viewport: '         + w + '×' + h + 'px<br>' +
-        'dpr: '              + (window.devicePixelRatio || 1).toFixed(1) + '<br>' +
-        'browser: '          + getBrowser() + '<br>' +
-        'breakpoint: '       + '<span style="color:#D4AF5A">' + getBreakpoint(w) + '</span><br>' +
-        'HERO_STATS_MODE: '  + '<span style="color:#D4AF5A">' + statsMode + '</span><br>' +
-        'HERO_AVATAR_MODE: ' + '<span style="color:' + avatarColor + '">' + avatarMode + '</span>' +
-        ' <span style="color:#8899AA">(pt=' + heroPT + 'px nav=' + navH + 'px)</span>';
+      overlay.innerHTML = '<strong style="color:#E8E4DC;letter-spacing:.06em">▸ DEBUG</strong><br>' +
+        'viewport: ' + w + '×' + window.innerHeight + 'px<br>' +
+        'dpr: ' + (window.devicePixelRatio||1).toFixed(1) + '<br>' +
+        'browser: ' + getBrowser() + '<br>' +
+        'breakpoint: <span style="color:#D4AF5A">' + getBreakpoint(w) + '</span>';
     }
 
-    // Enable overlay if ?debug=1
     if (new URLSearchParams(location.search).get('debug') === '1') {
       var overlay = document.getElementById('debug-overlay');
       if (overlay) overlay.style.display = 'block';
