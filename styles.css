@@ -287,8 +287,64 @@ h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); 
 .interest-thesis { font-size: 0.86rem; color: var(--text-muted); line-height: 1.75; overflow-wrap: break-word; hyphens: auto; }
 .interests-fifth { grid-column: span 1; }
 
-/* ── SKILLS ── */
+/* ── EXPERIENCE CARDS ── */
+.exp-card-grid { margin-top: 4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.exp-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 2rem 2.25rem; display: flex; flex-direction: column; gap: 1.25rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.exp-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--card-accent, var(--gold)); opacity: 0.45; transition: opacity 0.25s;
+}
+.exp-card:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.exp-card:hover::before { opacity: 1; }
+.exp-card-logo { display: flex; align-items: center; gap: 0.9rem; }
+.exp-logo-icon {
+  width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(196,150,42,0.08); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--card-accent, var(--gold-light));
+}
+.exp-logo-icon svg { width: 22px; height: 22px; }
+.exp-logo-text { display: flex; flex-direction: column; min-width: 0; }
+.exp-logo-org { font-size: 0.82rem; font-weight: 600; color: var(--text); line-height: 1.3; overflow-wrap: break-word; }
+.exp-logo-sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; overflow-wrap: break-word; }
+.exp-card-meta { display: flex; flex-direction: column; gap: 0.3rem; }
+.exp-card-period {
+  display: inline-flex; width: fit-content;
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); background: rgba(196,150,42,0.1); padding: 0.2rem 0.65rem; border-radius: 2px;
+}
+.exp-card-role { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+.exp-card-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.8; flex: 1; overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 1100px) { .exp-card-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .exp-card-grid { grid-template-columns: 1fr; } }
+
+/* ── SKILLS ICON CARDS ── */
 #skills { background: var(--navy); border-top: 1px solid var(--border); }
+.skills-icon-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.skill-icon-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 1.75rem 1.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
+  text-align: center; transition: transform 0.25s, border-color 0.25s;
+}
+.skill-icon-card:hover { transform: translateY(-3px); border-color: rgba(196,150,42,0.4); }
+.skill-icon-wrap {
+  width: 48px; height: 48px; border-radius: 8px;
+  background: rgba(196,150,42,0.08); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; color: var(--gold-light);
+  transition: background 0.25s, border-color 0.25s;
+}
+.skill-icon-card:hover .skill-icon-wrap { background: rgba(196,150,42,0.14); border-color: rgba(196,150,42,0.4); }
+.skill-icon-wrap svg { width: 22px; height: 22px; }
+.skill-icon-name { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); line-height: 1.45; }
+@media (max-width: 900px) { .skills-icon-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .skills-icon-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── SKILLS (legacy pill style, kept for index page) ── */
 .skills-wrapper { margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
 .skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
 .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
