@@ -502,3 +502,48 @@ footer { padding: 1.75rem 5%; background: var(--navy); border-top: 1px solid var
 /* ── BUILD STAMP ── */
 #build-stamp { font-size: 0.6rem; font-family: monospace; color: rgba(136,153,170,0.45); letter-spacing: 0.05em; white-space: nowrap; }
 #debug-overlay { position: fixed; bottom: 1rem; right: 1rem; z-index: 9999; background: rgba(8,17,31,0.92); border: 1px solid rgba(196,150,42,0.4); color: #D4AF5A; font-family: monospace; font-size: 0.68rem; line-height: 1.6; padding: 0.55rem 0.85rem; border-radius: 3px; pointer-events: none; display: none; }
+
+/* ── EXP PREVIEW GRID (landing page) ── */
+.exp-preview-grid { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.exp-preview-item {
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 2rem; position: relative; overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  display: flex; flex-direction: column;
+}
+.exp-preview-item:hover { transform: translateY(-4px); border-color: rgba(196,150,42,0.35); box-shadow: 0 10px 36px rgba(0,0,0,0.28); }
+.exp-preview-top-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0.45; transition: opacity 0.25s; }
+.exp-preview-item:hover .exp-preview-top-bar { opacity: 1; }
+.exp-preview-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }
+.exp-preview-period { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); background: rgba(196,150,42,0.1); padding: 0.2rem 0.65rem; border-radius: 2px; }
+.exp-preview-badge { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.exp-preview-role { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 0.3rem; }
+.exp-preview-org { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500; }
+.exp-preview-body { font-size: 0.86rem; color: var(--text-muted); line-height: 1.82; flex: 1; }
+@media (max-width: 900px) { .exp-preview-grid { grid-template-columns: 1fr; } }
+
+/* ── EXP CARD ACHIEVEMENT BULLETS ── */
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.72rem; }
+.exp-bullets li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.865rem; color: var(--text-muted); line-height: 1.78; }
+.exp-bullets li::before { content: '›'; color: var(--gold); font-size: 1.05rem; flex-shrink: 0; line-height: 1.78; }
+.exp-bullets li strong { color: var(--text); font-weight: 600; }
+
+/* ── SKILLS TWO-COLUMN (experience page) ── */
+.skills-two-col { margin-top: 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.skills-group-label { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--border); }
+.competency-list { display: flex; flex-direction: column; gap: 0.55rem; }
+.competency-item { display: flex; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem; background: var(--card-bg); border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
+.competency-item:hover { border-color: rgba(196,150,42,0.4); transform: translateX(4px); }
+.competency-icon { width: 32px; height: 32px; flex-shrink: 0; background: rgba(196,150,42,0.08); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--gold-light); transition: background 0.2s; }
+.competency-item:hover .competency-icon { background: rgba(196,150,42,0.15); }
+.competency-icon svg { width: 16px; height: 16px; }
+.competency-item > span { font-size: 0.83rem; font-weight: 500; color: var(--text-muted); }
+.tools-logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tool-logo-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.7rem; padding: 1.4rem 0.75rem; background: var(--card-bg); border: 1px solid var(--border); text-align: center; transition: border-color 0.2s, transform 0.2s; cursor: default; }
+.tool-logo-card:hover { border-color: rgba(196,150,42,0.4); transform: translateY(-3px); }
+.tool-logo-card img { opacity: 0.75; transition: opacity 0.2s; display: block; }
+.tool-logo-card:hover img { opacity: 1; }
+.tool-logo-card > span { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.tool-custom-badge { width: 30px; height: 30px; background: rgba(196,150,42,0.12); border: 1px solid rgba(196,150,42,0.35); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.63rem; font-weight: 800; letter-spacing: 0.04em; color: var(--gold); }
+@media (max-width: 900px) { .skills-two-col { grid-template-columns: 1fr; gap: 2.5rem; } }
+@media (max-width: 640px) { .tools-logo-grid { grid-template-columns: repeat(2, 1fr); } }
