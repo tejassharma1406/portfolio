@@ -500,7 +500,7 @@ h2 em { font-style: normal; color: var(--gold-light); }
 .exp-card-period {
   display: inline-flex; width: fit-content;
   font-size: 0.63rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--gold); background: rgba(196,150,42,0.08); padding: 0.18rem 0.6rem; border-radius: 2px;
+  color: var(--card-accent, var(--gold)); background: color-mix(in srgb, var(--card-accent, var(--gold)) 10%, transparent); padding: 0.18rem 0.6rem; border-radius: 2px;
 }
 .exp-card-role {
   font-family: 'Inter', sans-serif;
