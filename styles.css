@@ -667,8 +667,8 @@ footer {
 
 /* ── EXP CARD ACHIEVEMENT BULLETS ── */
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; margin-top: 1.25rem; }
-.exp-bullets li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.855rem; color: var(--text-muted); line-height: 1.5; }
-.exp-bullets li::before { content: '›'; color: var(--gold); font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+.exp-bullets li { display: block; position: relative; padding-left: 1.1rem; font-size: 0.855rem; color: var(--text-muted); line-height: 1.5; }
+.exp-bullets li::before { content: '›'; color: var(--gold); font-size: 1rem; line-height: 1.5; position: absolute; left: 0; top: 0; }
 .exp-bullets li strong { color: var(--text); font-weight: 600; }
 
 /* ── SKILLS TWO-COLUMN (experience page) ── */
