@@ -477,7 +477,7 @@ h2 em { font-style: normal; color: var(--gold-light); }
   position: relative; overflow: hidden;
   transition: background 0.2s;
   height: 100%;
-  min-height: 620px;
+  min-height: 680px;
 }
 .exp-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
